@@ -11,15 +11,15 @@ import routes from "../../../data/routes";
  * @param {{ isMobile?: boolean }} props
  */
 function Navbar(props) {
-    const [isFixed, setIsFixed] = useState(false);
+    const [hasScrolled, setScrolled] = useState(false);
     useEventListener("scroll", (evt) => {
         const scrollOffset = document.scrollingElement.scrollTop;
-        if (scrollOffset >= 120 && !isFixed) setIsFixed(true);
-        else if (isFixed) setIsFixed(false);
+        if (scrollOffset >= 1 && !hasScrolled) setScrolled(true);
+        else if (scrollOffset < 1 && hasScrolled) setScrolled(false);
     });
 
     return (
-        <AppBar position={isFixed ? "fixed" : "static"}>
+        <AppBar position="fixed" variant={hasScrolled && "scrolled"}>
             <Toolbar>
                 {props.isMobile ? (
                     <p>m</p>

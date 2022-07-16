@@ -81,15 +81,18 @@ function App() {
     }, []);
 
     const ContainerDiv = styled("div")({
-        position: "absolute",
+        position: "fixed",
         background: "url(resources/dark-background.jpg)",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         height: "100vh",
         width: "100vw",
+        top: 0,
+        left: 0,
+        zIndex: -1,
     });
     const BlurDiv = styled("div")({
-        position: "absolute",
+        position: "fixed",
         height: "100vh",
         width: "100vw",
         backdropFilter: "blur(10px)",
@@ -98,8 +101,8 @@ function App() {
         <ThemeProvider theme={theme}>
             <ContainerDiv>
                 <BlurDiv />
-                <Routing />
             </ContainerDiv>
+            <Routing />
         </ThemeProvider>
     );
 }
