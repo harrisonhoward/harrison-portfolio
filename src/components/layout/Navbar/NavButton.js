@@ -13,7 +13,7 @@ function NavButton(props) {
     return (
         <Container onClick={() => navigate(props.to || "/")}>
             <Typography
-                type={location.pathname === props.to && "nav-active"}
+                type={location.pathname === props.to ? "nav-active" : ""}
                 variant="nav"
                 sx={{
                     userSelect: "none",
