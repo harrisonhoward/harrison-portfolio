@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
-import { styled } from "@mui/system";
+import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import useMousePosition from "@react-hook/mouse-position";
+import { styled } from "@mui/material";
 
 import ParallaxIcon from "./ParallaxIcon";
 import useEventListener from "../../../hooks/useEventListener";
@@ -8,26 +9,9 @@ import useEventListener from "../../../hooks/useEventListener";
 const PARALLAX_DEPTH = 20;
 
 function Parallax() {
-    const ParallaxContainer = styled("div")({
-        position: "fixed",
-        left: 0,
-        top: 0,
-        height: "100vh",
-        width: "100vw",
-        overflow: "hidden",
+    const mouseCoords = useMousePosition(document.getElementById("root"), {
+        fps: 60,
     });
-
-    const [mouseCoords, setMouseCoords] = useState({ x: 0, y: 0 });
-    useEventListener(
-        "mousemove",
-        (evt) => {
-            setMouseCoords({
-                x: (window.innerHeight / 2 - evt.screenX) / PARALLAX_DEPTH,
-                y: (window.innerWidth / 2 - evt.screenY) / PARALLAX_DEPTH,
-            });
-        },
-        window
-    );
 
     return (
         <AnimatePresence initial={false}>
@@ -41,11 +25,16 @@ function Parallax() {
                     overflow: "hidden",
                 }}
                 animate={{
-                    x: mouseCoords.x,
-                    y: mouseCoords.y,
-                    transition: {
-                        type: "tween",
-                    },
+                    x:
+                        -(mouseCoords.elementHeight / 2 - mouseCoords.clientX) /
+                        PARALLAX_DEPTH,
+                    y:
+                        -(mouseCoords.elementWidth / 2 - mouseCoords.clientY) /
+                        PARALLAX_DEPTH,
+                }}
+                transition={{
+                    type: "spring",
+                    stiffness: 100,
                 }}
             >
                 <ParallaxIcon

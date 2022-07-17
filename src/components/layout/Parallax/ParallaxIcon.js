@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material";
 import * as DevIcon from "devicons-react";
 
