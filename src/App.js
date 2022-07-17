@@ -9,8 +9,7 @@ import {
 import Routing from "./components/layout/Routing";
 
 import imagesData from "./data/images.json";
-
-const NAV_HEIGHT = 90;
+import navGlobals from "./data/navGlobals.json";
 
 function App() {
     const theme = responsiveFontSizes(
@@ -30,7 +29,7 @@ function App() {
                 MuiToolbar: {
                     styleOverrides: {
                         root: {
-                            height: NAV_HEIGHT,
+                            height: navGlobals.height,
                         },
                     },
                 },

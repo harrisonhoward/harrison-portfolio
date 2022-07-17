@@ -6,6 +6,7 @@ import NavButton from "./NavButton";
 import useEventListener from "../../../hooks/useEventListener";
 
 import routes from "../../../data/routes";
+import navGlobals from "../../../data/navGlobals.json";
 
 /**
  *
@@ -42,15 +43,17 @@ function Navbar(props) {
                         boxShadow:
                             "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
                         width: containerSize.width,
-                        height: "90px",
+                        height: navGlobals.height + 20,
                         left: `calc(50% - ${containerSize.width}px / 2)`,
                     }}
                     initial={{
-                        top: `${-92 + scrolledAmount / 2}px`,
+                        top: `${-112 + scrolledAmount / 2}px`,
                     }}
                     animate={{
                         top: `${
-                            scrolledAmount < 184 ? -92 + scrolledAmount / 2 : 0
+                            scrolledAmount < 184
+                                ? -112 + scrolledAmount / 2
+                                : -20
                         }px`,
                     }}
                 />
