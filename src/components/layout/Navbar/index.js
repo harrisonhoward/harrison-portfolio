@@ -16,8 +16,12 @@ function Navbar(props) {
     const [scrolledAmount, setScrolledAmount] = useState(0);
     // Prevent the state from updating unnecessarily
     const updateScolledAmount = (amount) => {
-        if (amount < 184) setScrolledAmount(amount);
-        else if (amount > 184 && scrolledAmount < 184) setScrolledAmount(184);
+        if (amount < navGlobals.scrollLimit) setScrolledAmount(amount);
+        else if (
+            amount > navGlobals.scrollLimit &&
+            scrolledAmount < navGlobals.scrollLimit
+        )
+            setScrolledAmount(navGlobals.scrollLimit);
     };
     useEffect(() => {
         updateScolledAmount(document.scrollingElement.scrollTop);
@@ -25,18 +29,6 @@ function Navbar(props) {
     useEventListener("scroll", () => {
         updateScolledAmount(document.scrollingElement.scrollTop);
     });
-
-    const ContainerRef = useRef(null);
-    const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
-    const updateContainerSize = () =>
-        setContainerSize({
-            width: ContainerRef.current.offsetWidth,
-            height: ContainerRef.current.offsetHeight,
-        });
-    useEffect(() => {
-        updateContainerSize();
-    }, []);
-    useEventListener("resize", updateContainerSize);
 
     return (
         <AnimatePresence>
@@ -47,26 +39,23 @@ function Navbar(props) {
                         background: "#09082b",
                         boxShadow:
                             "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
-                        width: containerSize.width,
+                        width: "575px",
                         height: navGlobals.height + 20,
-                        left: `calc(50% - ${containerSize.width}px / 2)`,
+                        left: "calc(50% - 575px / 2)",
                     }}
-                    initial={{
-                        top: `${-112 + scrolledAmount / 2}px`,
-                    }}
+                    initial={false}
                     animate={{
-                        top: `${
-                            scrolledAmount < 184
-                                ? -112 + scrolledAmount / 2
-                                : -20
-                        }px`,
+                        top:
+                            scrolledAmount === navGlobals.scrollLimit
+                                ? -20
+                                : -(navGlobals.height + 30),
                     }}
                 />
                 <Toolbar>
                     {props.isMobile ? (
                         <p>m</p>
                     ) : (
-                        <Container ref={ContainerRef} variant="nav">
+                        <Container variant="nav">
                             {routes.map((route, index) => (
                                 <NavButton key={index} to={route.path}>
                                     {route.name}
