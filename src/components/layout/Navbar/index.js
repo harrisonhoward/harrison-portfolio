@@ -14,11 +14,16 @@ import navGlobals from "../../../data/navGlobals.json";
  */
 function Navbar(props) {
     const [scrolledAmount, setScrolledAmount] = useState(0);
+    // Prevent the state from updating unnecessarily
+    const updateScolledAmount = (amount) => {
+        if (amount < 184) setScrolledAmount(amount);
+        else if (amount > 184 && scrolledAmount < 184) setScrolledAmount(184);
+    };
     useEffect(() => {
-        setScrolledAmount(document.scrollingElement.scrollTop);
+        updateScolledAmount(document.scrollingElement.scrollTop);
     }, []);
     useEventListener("scroll", () => {
-        setScrolledAmount(document.scrollingElement.scrollTop);
+        updateScolledAmount(document.scrollingElement.scrollTop);
     });
 
     const ContainerRef = useRef(null);
