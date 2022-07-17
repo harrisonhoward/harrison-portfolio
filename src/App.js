@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 
+import Parallax from "./components/layout/Parallax";
 import Routing from "./components/layout/Routing";
 
 import imagesData from "./data/images.json";
@@ -98,6 +99,7 @@ function App() {
             <ContainerDiv>
                 <BlurDiv />
             </ContainerDiv>
+            <Parallax />
             <Routing />
         </ThemeProvider>
     );
