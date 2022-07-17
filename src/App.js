@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-    ThemeProvider,
-    createTheme,
-    responsiveFontSizes,
-    styled,
-} from "@mui/material/styles";
+import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 
 import Routing from "./components/layout/Routing";
 
@@ -12,73 +7,70 @@ import imagesData from "./data/images.json";
 import navGlobals from "./data/navGlobals.json";
 
 function App() {
-    const theme = responsiveFontSizes(
-        createTheme({
-            palette: {
-                mode: "dark",
-            },
-            components: {
-                MuiAppBar: {
-                    styleOverrides: {
-                        root: {
-                            background: "rgba(0,0,0,0)",
-                            boxShadow: "none",
-                        },
+    const theme = createTheme({
+        palette: {
+            mode: "dark",
+        },
+        components: {
+            MuiAppBar: {
+                styleOverrides: {
+                    root: {
+                        background: "rgba(0,0,0,0)",
+                        boxShadow: "none",
                     },
-                },
-                MuiToolbar: {
-                    styleOverrides: {
-                        root: {
-                            height: navGlobals.height,
-                        },
-                    },
-                },
-                MuiContainer: {
-                    styleOverrides: {
-                        root: {
-                            transition: "all 0.5s ease-in-out",
-                        },
-                    },
-                    variants: [
-                        {
-                            props: { variant: "nav" },
-                            style: {
-                                display: "flex",
-                                alignItems: "center",
-                                width: "unset",
-                            },
-                        },
-                    ],
-                },
-                MuiTypography: {
-                    variants: [
-                        {
-                            props: { variant: "nav" },
-                            style: {
-                                cursor: "pointer",
-                                fontSize: "1.2rem",
-                                fontWeight: "bold",
-                                transition: "all 0.2s ease-in-out",
-                                "&:hover": {
-                                    color: "#c9a240",
-                                },
-                            },
-                        },
-                        {
-                            props: { type: "nav-active" },
-                            style: {
-                                color: "#ffd15c",
-                                "&:hover": {
-                                    color: "#c9a240",
-                                },
-                            },
-                        },
-                    ],
                 },
             },
-        })
-    );
-
+            MuiToolbar: {
+                styleOverrides: {
+                    root: {
+                        height: navGlobals.height,
+                    },
+                },
+            },
+            MuiContainer: {
+                styleOverrides: {
+                    root: {
+                        transition: "all 0.5s ease-in-out",
+                    },
+                },
+                variants: [
+                    {
+                        props: { variant: "nav" },
+                        style: {
+                            display: "flex",
+                            alignItems: "center",
+                            width: "unset",
+                        },
+                    },
+                ],
+            },
+            MuiTypography: {
+                variants: [
+                    {
+                        props: { variant: "nav" },
+                        style: {
+                            cursor: "pointer",
+                            fontSize: "1.2rem",
+                            fontWeight: "bold",
+                            transition: "all 0.2s ease-in-out",
+                            "&:hover": {
+                                color: "#c9a240",
+                            },
+                        },
+                    },
+                    {
+                        props: { type: "nav-active" },
+                        style: {
+                            color: "#ffd15c",
+                            "&:hover": {
+                                color: "#c9a240",
+                            },
+                        },
+                    },
+                ],
+            },
+        },
+    });
     // Preload images stored in data
     useEffect(() => {
         Object.values(imagesData).forEach((image) => (new Image().src = image));
