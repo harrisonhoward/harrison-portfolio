@@ -50,6 +50,10 @@ function Navbar(props) {
                                 ? -20
                                 : -(navGlobals.height + 30),
                     }}
+                    transition={{
+                        type: "spring",
+                        stiffness: 125,
+                    }}
                 />
                 <Toolbar>
                     {props.isMobile ? (
