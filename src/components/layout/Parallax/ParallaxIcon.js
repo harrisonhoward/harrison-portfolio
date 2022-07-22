@@ -14,6 +14,12 @@ function ParallaxIcon(props) {
     const { top, left, right, bottom, width, height } = props;
     const Component = DevIcon[props.icon || "Aarch64Original"];
     const mouseCoords = useMousePosition(document.getElementById("root"));
+    const coordX =
+        (mouseCoords.elementHeight / 2 - mouseCoords.clientX) /
+        (props.depth || 15);
+    const coordY =
+        (mouseCoords.elementWidth / 2 - mouseCoords.clientY) /
+        (props.depth || 15);
 
     return (
         <motion.div
@@ -28,12 +34,8 @@ function ParallaxIcon(props) {
                 bottom,
             }}
             animate={{
-                x:
-                    (mouseCoords.elementHeight / 2 - mouseCoords.clientX) /
-                    (props.depth || 15),
-                y:
-                    (mouseCoords.elementWidth / 2 - mouseCoords.clientY) /
-                    (props.depth || 15),
+                translateX: coordX,
+                translateY: coordY,
             }}
             transition={{
                 type: "spring",
