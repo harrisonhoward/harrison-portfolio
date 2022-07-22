@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { styled } from "@mui/material";
 import { motion } from "framer-motion";
+import TypeAnimation from "react-type-animation";
 import useMousePosition from "@react-hook/mouse-position";
 import * as DevIcon from "devicons-react";
 
+import "./ParallaxStyles.css";
+
 const COLOUR = 255;
+const TYPED_MEMO = memo(({ ...props }) => (
+    <TypeAnimation className="animation" sequence={[props.label]} />
+));
 
 /**
  *
  * @param {{ icon: keyof import("devicons-react"), top?: string | number,
  * left?: string | number, right?: string | number, bottom?: string | number,
- * width?: string | number, height?: string | number, depth?: number
+ * width?: string | number, height?: string | number, depth?: number, label?: string
  * sx?: import("@mui/material").SxProps }} props
  */
 function ParallaxIcon(props) {
@@ -28,6 +34,7 @@ function ParallaxIcon(props) {
     // Container state
     const [mouseOver, setMouseOver] = useState(false);
     const [mouseDown, setMouseDown] = useState(false);
+    const [clicked, setClicked] = useState(false);
     // Button
     const IconButton = styled("div")({
         position: "absolute",
@@ -59,6 +66,10 @@ function ParallaxIcon(props) {
         });
     };
 
+    const onClick = () => {
+        setClicked(!clicked);
+    };
+
     return (
         <motion.div
             style={{
@@ -83,9 +94,11 @@ function ParallaxIcon(props) {
             onMouseOver={onMouseOver}
             onMouseOut={onMouseOut}
             onMouseDown={onMouseDown}
+            onClick={onClick}
         >
             <IconButton />
             <Component style={props.sx} />
+            {clicked && props.label && <TYPED_MEMO label={props.label} />}
         </motion.div>
     );
 }
