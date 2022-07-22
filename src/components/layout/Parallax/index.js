@@ -27,6 +27,9 @@ const PARALLAX_ITEMS = [
         top: "25%",
         left: "50%",
         depth: 30,
+        sx: {
+            transform: "translate3d(0.5px,-2px,0)",
+        },
     },
     {
         icon: "Html5Original",
