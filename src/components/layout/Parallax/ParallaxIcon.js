@@ -9,7 +9,11 @@ import "./ParallaxStyles.css";
 
 const COLOUR = 255;
 const TYPED_MEMO = memo(({ ...props }) => (
-    <TypeAnimation className="animation" sequence={[props.label]} />
+    <TypeAnimation
+        className="animation"
+        sequence={[props.label, 3000, ""]}
+        cursor={false}
+    />
 ));
 
 /**
@@ -67,7 +71,10 @@ function ParallaxIcon(props) {
     };
 
     const onClick = () => {
-        setClicked(!clicked);
+        if (!clicked) {
+            setClicked(true);
+            setTimeout(() => setClicked(false), 5000);
+        }
     };
 
     return (
