@@ -1,6 +1,17 @@
 import React, { useRef, useEffect, useState } from "react";
-import { AppBar, Toolbar, Container } from "@mui/material";
+import {
+    useMediaQuery,
+    AppBar,
+    Toolbar,
+    Container,
+    SwipeableDrawer,
+    Typography,
+    IconButton,
+    MenuItem,
+} from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import NavButton from "./NavButton";
 import useEventListener from "../../../hooks/useEventListener";
@@ -8,11 +19,10 @@ import useEventListener from "../../../hooks/useEventListener";
 import routes from "../../../data/routes";
 import navGlobals from "../../../data/navGlobals.json";
 
-/**
- *
- * @param {{ isMobile?: boolean }} props
- */
-function Navbar(props) {
+function Navbar() {
+    const isMobile = useMediaQuery("(max-width: 511px)");
+
+    const [drawerOpen, setDrawerOpen] = useState(false);
     const [scrolledAmount, setScrolledAmount] = useState(0);
     // Prevent the state from updating unnecessarily
     const updateScolledAmount = (amount) => {
@@ -29,6 +39,9 @@ function Navbar(props) {
     useEventListener("scroll", () => {
         updateScolledAmount(document.scrollingElement.scrollTop);
     });
+
+    const handleDrawer = (value) => () =>
+        setDrawerOpen(typeof value === "boolean" ? !!value : !drawerOpen);
 
     return (
         <AnimatePresence>
@@ -56,8 +69,25 @@ function Navbar(props) {
                     }}
                 />
                 <Toolbar>
-                    {props.isMobile ? (
-                        <p>m</p>
+                    {isMobile ? (
+                        <>
+                            <IconButton onClick={handleDrawer()}>
+                                <FontAwesomeIcon icon={faBars} />
+                            </IconButton>
+                            <SwipeableDrawer
+                                anchor="left"
+                                open={drawerOpen}
+                                onClose={handleDrawer(false)}
+                            >
+                                {routes.map((route, index) => (
+                                    <MenuItem key={index}>
+                                        <NavButton to={route.path}>
+                                            {route.name}
+                                        </NavButton>
+                                    </MenuItem>
+                                ))}
+                            </SwipeableDrawer>
+                        </>
                     ) : (
                         <Container variant="nav">
                             {routes.map((route, index) => (
