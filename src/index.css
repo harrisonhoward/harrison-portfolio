@@ -16,3 +16,12 @@ code {
 #root {
     position: relative;
 }
+
+.animation-home {
+    margin: 0;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.334;
+    letter-spacing: 0em;
+    color: #ce93d8;
+}

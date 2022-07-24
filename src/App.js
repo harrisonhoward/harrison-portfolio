@@ -92,7 +92,7 @@ function App() {
         position: "fixed",
         height: "100vh",
         width: "100vw",
-        backdropFilter: "blur(10px)",
+        //backdropFilter: "blur(5px)",
     });
     return (
         <ThemeProvider theme={theme}>
