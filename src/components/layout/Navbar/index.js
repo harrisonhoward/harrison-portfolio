@@ -75,8 +75,8 @@ function Navbar() {
                                 <FontAwesomeIcon icon={faBars} />
                             </IconButton>
                             <SwipeableDrawer
-                                anchor="left"
                                 open={drawerOpen}
+                                onOpen={handleDrawer(true)}
                                 onClose={handleDrawer(false)}
                             >
                                 {routes.map((route, index) => (

@@ -70,6 +70,15 @@ function App() {
                     },
                 ],
             },
+            MuiDrawer: {
+                styleOverrides: {
+                    paper: {
+                        background: "rgba(26, 26, 26, 0.5)",
+                        backdropFilter: "blur(5px)",
+                        borderRight: "1px solid rgba(255, 255, 255, 0.1)",
+                    },
+                },
+            },
         },
     });
     // Preload images stored in data
