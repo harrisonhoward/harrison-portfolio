@@ -32,6 +32,9 @@ function Home() {
 
     const [iconColour] = useState({});
 
+    const h4FontClamping = "clamp(0rem, 8vw, 2.125rem)";
+    const h5FontClamping = "clamp(0rem, 7vw, 1.5rem)";
+
     return (
         <Container>
             <GlassCard
@@ -43,13 +46,18 @@ function Home() {
             >
                 <ProfileImage />
                 <GroupBox>
-                    <Typography variant="h4" fontWeight={500}>
+                    <Typography
+                        variant="h4"
+                        fontWeight={500}
+                        fontSize={h4FontClamping}
+                    >
                         Hi, I'm&nbsp;
                     </Typography>
                     <Typography
                         variant="h4"
                         color="primary.dark"
                         fontWeight={500}
+                        fontSize={h4FontClamping}
                     >
                         Harrison Howard
                     </Typography>
@@ -59,7 +67,9 @@ function Home() {
                         marginBottom: "1rem",
                     }}
                 >
-                    <Typography variant="h5">I am a&nbsp;</Typography>
+                    <Typography variant="h5" fontSize={h5FontClamping}>
+                        I am a&nbsp;
+                    </Typography>
                     <TypeAnimation
                         className="animation-home"
                         sequence={[
