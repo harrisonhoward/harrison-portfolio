@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-    useTheme,
-    styled,
-    Box,
-    Typography,
-    IconButton,
-    Tooltip,
-} from "@mui/material";
+import { styled, Box, Typography, IconButton, Tooltip } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TypeAnimation from "react-type-animation";
 
@@ -37,7 +30,7 @@ function Home() {
         display: "flex",
     });
 
-    const [iconColour, setIconColour] = useState({});
+    const [iconColour] = useState({});
 
     return (
         <Container>

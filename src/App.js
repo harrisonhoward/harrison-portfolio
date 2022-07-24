@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 
 import Parallax from "./components/layout/Parallax";

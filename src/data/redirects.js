@@ -5,7 +5,7 @@ import {
     faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 
-export default [
+const redirects = [
     {
         username: "harrison.howard00707@gmail.com",
         link: "mailto:{username}",
@@ -31,3 +31,4 @@ export default [
         icon: faTwitter,
     },
 ];
+export default redirects;

@@ -17,7 +17,7 @@ function Routing() {
         if (!allRoutes.includes(currentRoute)) {
             navigate("/");
         }
-    }, [location]);
+    }, [location, navigate]);
 
     return (
         <>

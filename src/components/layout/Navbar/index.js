@@ -1,11 +1,10 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     useMediaQuery,
     AppBar,
     Toolbar,
     Container,
     SwipeableDrawer,
-    Typography,
     IconButton,
     MenuItem,
 } from "@mui/material";
