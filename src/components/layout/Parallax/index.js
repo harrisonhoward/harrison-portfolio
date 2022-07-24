@@ -83,7 +83,7 @@ function Parallax() {
         height: "100vh",
         width: "100vw",
         overflow: "hidden",
-        zIndex: -1,
+        zIndex: 0,
     });
 
     return (
