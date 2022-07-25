@@ -4,7 +4,7 @@ import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import Parallax from "./components/layout/Parallax";
 import Routing from "./components/layout/Routing";
 
-import imagesData from "./data/images.json";
+import imagesData from "./data/images";
 import navGlobals from "./data/navGlobals.json";
 
 function App() {
@@ -83,7 +83,7 @@ function App() {
     });
     // Preload images stored in data
     useEffect(() => {
-        Object.values(imagesData).forEach((image) => (new Image().src = image));
+        imagesData.forEach((image) => (new Image().src = image));
     }, []);
 
     const ContainerDiv = styled("div")({
@@ -101,7 +101,6 @@ function App() {
         position: "fixed",
         height: "100vh",
         width: "100vw",
-        //backdropFilter: "blur(5px)",
     });
     return (
         <ThemeProvider theme={theme}>
