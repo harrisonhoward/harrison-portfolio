@@ -1,5 +1,2 @@
-const images = [
-    "resources/dark-background.jpg",
-    "resources/HarrisonHoward.jpg",
-];
+const images = ["resources/HarrisonHoward.jpg"];
 export default images;

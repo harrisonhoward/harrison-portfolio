@@ -1,8 +1,15 @@
 import React, { useEffect } from "react";
-import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
+import {
+    ThemeProvider,
+    createTheme,
+    styled,
+    useMediaQuery,
+} from "@mui/material";
 
 import Parallax from "./components/layout/Parallax";
 import Routing from "./components/layout/Routing";
+
+import useProgressiveImage from "./hooks/useProgressiveImage";
 
 import imagesData from "./data/images";
 import navGlobals from "./data/navGlobals.json";
@@ -85,10 +92,20 @@ function App() {
     useEffect(() => {
         imagesData.forEach((image) => (new Image().src = image));
     }, []);
+    // Progressively load background
+    const isMobile = useMediaQuery("(max-width: 600px)");
+    const desktopBackground = useProgressiveImage(
+        "resources/dark-background-low.jpg",
+        "resources/dark-background-high.jpg"
+    );
+    const mobileBackground = useProgressiveImage(
+        "resources/dark-background-low-mobile.jpg",
+        "resources/dark-background-high-mobile.jpg"
+    );
 
     const ContainerDiv = styled("div")({
         position: "fixed",
-        background: "url(resources/dark-background.jpg)",
+        background: `url(${isMobile ? mobileBackground : desktopBackground})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         height: "100vh",

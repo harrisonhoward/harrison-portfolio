@@ -7,7 +7,7 @@ import * as DevIcon from "devicons-react";
 
 import "./ParallaxStyles.css";
 
-const COLOUR = 255;
+const COLOUR = 0;
 const TYPED_MEMO = memo(({ ...props }) => (
     <TypeAnimation
         className="animation"
@@ -46,9 +46,10 @@ function ParallaxIcon(props) {
         height: "100%",
         background: mouseOver
             ? mouseDown
-                ? `rgba(${COLOUR},${COLOUR},${COLOUR},0.15)`
-                : `rgba(${COLOUR},${COLOUR},${COLOUR},0.1)`
-            : `rgba(${COLOUR},${COLOUR},${COLOUR},0.05)`,
+                ? `rgba(${COLOUR},${COLOUR},${COLOUR},0.3)`
+                : `rgba(${COLOUR},${COLOUR},${COLOUR},0.2)`
+            : `rgba(${COLOUR},${COLOUR},${COLOUR},0.1)`,
+        backdropFilter: "blur(5px)",
         borderRadius: "50%",
         padding: "0.5rem",
         transform: "translate3d(-8px,-8px,0)",
