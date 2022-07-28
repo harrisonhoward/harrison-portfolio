@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-scroll";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Container, Typography } from "@mui/material";
 
@@ -11,16 +12,24 @@ function NavButton(props) {
     const navigate = useNavigate();
 
     return (
-        <Container onClick={() => navigate(props.to || "/")}>
-            <Typography
-                type={location.pathname === props.to ? "nav-active" : ""}
-                variant="nav"
-                sx={{
-                    userSelect: "none",
-                }}
+        <Container>
+            <Link
+                to={props.to}
+                duration={500}
+                spy
+                smooth
+                onSetActive={() => navigate(props.to || "/")}
             >
-                {props.children}
-            </Typography>
+                <Typography
+                    type={location.pathname === props.to ? "nav-active" : ""}
+                    variant="nav"
+                    sx={{
+                        userSelect: "none",
+                    }}
+                >
+                    {props.children}
+                </Typography>
+            </Link>
         </Container>
     );
 }
