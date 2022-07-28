@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
+import { animateScroll } from "react-scroll";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import Navbar from "./Navbar";
 import Home from "../../routes/Home";
+import About from "../../routes/About";
 
 import routes from "../../data/routes";
 
@@ -23,6 +25,7 @@ function Routing() {
         <>
             <Navbar />
             <Home />
+            <About />
         </>
     );
 }
