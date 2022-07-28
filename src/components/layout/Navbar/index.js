@@ -48,9 +48,9 @@ function Navbar() {
                 <motion.div
                     style={{
                         position: "absolute",
-                        background: "#09082b",
-                        boxShadow:
-                            "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
+                        background: "rgba(26, 26, 26, 0.8)",
+                        backdropFilter: "blur(10px)",
+                        border: "1px solid rgba(255, 255, 255, 0.1)",
                         width: "575px",
                         height: navGlobals.height + 30,
                         left: "calc(50% - 575px / 2)",

@@ -68,7 +68,7 @@ const glass_dark = {
         MuiDrawer: {
             styleOverrides: {
                 paper: {
-                    background: "rgba(26, 26, 26, 0.5)",
+                    background: "rgba(6, 6, 6, 0.5)",
                     backdropFilter: "blur(5px)",
                     borderRight: "1px solid rgba(255, 255, 255, 0.1)",
                 },
