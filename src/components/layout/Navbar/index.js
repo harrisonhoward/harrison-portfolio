@@ -77,6 +77,9 @@ function Navbar() {
                                 open={drawerOpen}
                                 onOpen={handleDrawer(true)}
                                 onClose={handleDrawer(false)}
+                                ModalProps={{
+                                    keepMounted: true,
+                                }}
                             >
                                 {routes.map((route, index) => (
                                     <MenuItem key={index}>
