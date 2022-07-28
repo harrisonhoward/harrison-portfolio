@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-scroll";
+import React, { useEffect, useState } from "react";
+import { Link, scroller } from "react-scroll";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Container, Typography } from "@mui/material";
 
@@ -11,6 +11,23 @@ function NavButton(props) {
     const location = useLocation();
     const navigate = useNavigate();
 
+    const [firstRender, setFirstRender] = useState(true);
+    useEffect(() => {
+        if (firstRender) setFirstRender(false);
+    }, []);
+
+    const handleSetActive = (to) => {
+        if (!firstRender) {
+            navigate(props.to || "/");
+        } else {
+            scroller.scrollTo(location.pathname, {
+                duration: 1000,
+                delay: 1000,
+                smooth: true,
+            });
+        }
+    };
+
     return (
         <Container>
             <Link
@@ -18,7 +35,7 @@ function NavButton(props) {
                 duration={500}
                 spy
                 smooth
-                onSetActive={() => navigate(props.to || "/")}
+                onSetActive={handleSetActive}
             >
                 <Typography
                     type={location.pathname === props.to ? "nav-active" : ""}
