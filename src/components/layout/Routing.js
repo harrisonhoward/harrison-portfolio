@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { animateScroll } from "react-scroll";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import Navbar from "./Navbar";

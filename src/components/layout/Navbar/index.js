@@ -4,9 +4,9 @@ import {
     AppBar,
     Toolbar,
     Container,
+    Box,
     SwipeableDrawer,
     IconButton,
-    MenuItem,
 } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -68,37 +68,41 @@ function Navbar() {
                     }}
                 />
                 <Toolbar>
-                    {isMobile ? (
-                        <>
-                            <IconButton onClick={handleDrawer()}>
-                                <FontAwesomeIcon icon={faBars} />
-                            </IconButton>
-                            <SwipeableDrawer
-                                open={drawerOpen}
-                                onOpen={handleDrawer(true)}
-                                onClose={handleDrawer(false)}
-                                ModalProps={{
-                                    keepMounted: true,
-                                }}
-                            >
-                                {routes.map((route, index) => (
-                                    <MenuItem key={index}>
-                                        <NavButton to={route.path}>
-                                            {route.name}
-                                        </NavButton>
-                                    </MenuItem>
-                                ))}
-                            </SwipeableDrawer>
-                        </>
-                    ) : (
-                        <Container variant="nav">
+                    <Box
+                        sx={{
+                            display: isMobile ? "inherit" : "none",
+                        }}
+                    >
+                        <IconButton onClick={handleDrawer()}>
+                            <FontAwesomeIcon icon={faBars} />
+                        </IconButton>
+                        <SwipeableDrawer
+                            open={drawerOpen}
+                            onOpen={handleDrawer(true)}
+                            onClose={handleDrawer(false)}
+                            ModalProps={{
+                                keepMounted: true,
+                            }}
+                        >
                             {routes.map((route, index) => (
-                                <NavButton key={index} to={route.path}>
+                                <NavButton key={index} to={route.path} isMobile>
                                     {route.name}
                                 </NavButton>
                             ))}
-                        </Container>
-                    )}
+                        </SwipeableDrawer>
+                    </Box>
+                    <Container
+                        variant="nav"
+                        sx={{
+                            display: isMobile ? "none" : "inherit",
+                        }}
+                    >
+                        {routes.map((route, index) => (
+                            <NavButton key={index} to={route.path}>
+                                {route.name}
+                            </NavButton>
+                        ))}
+                    </Container>
                 </Toolbar>
             </AppBar>
         </AnimatePresence>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, scroller } from "react-scroll";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, MenuItem } from "@mui/material";
 
 /**
  *
- * @param {{ to?: string, children?: JSX.Element }} props
+ * @param {{ to?: string, isMobile?: boolean, children?: JSX.Element }} props
  */
 function NavButton(props) {
     const location = useLocation();
@@ -28,26 +28,43 @@ function NavButton(props) {
         }
     };
 
+    const MobileContainer = props.isMobile ? MenuItem : React.Fragment;
+
     return (
-        <Container>
-            <Link
-                to={props.to}
-                duration={500}
-                spy
-                smooth
-                onSetActive={handleSetActive}
+        <Link
+            to={props.to}
+            duration={500}
+            spy
+            smooth
+            onSetActive={handleSetActive}
+        >
+            <MobileContainer
+                {...(props.isMobile
+                    ? {
+                          sx: {
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              textAlign: "center",
+                          },
+                      }
+                    : {})}
             >
-                <Typography
-                    type={location.pathname === props.to ? "nav-active" : ""}
-                    variant="nav"
-                    sx={{
-                        userSelect: "none",
-                    }}
-                >
-                    {props.children}
-                </Typography>
-            </Link>
-        </Container>
+                <Container>
+                    <Typography
+                        type={
+                            location.pathname === props.to ? "nav-active" : ""
+                        }
+                        variant="nav"
+                        sx={{
+                            userSelect: "none",
+                        }}
+                    >
+                        {props.children}
+                    </Typography>
+                </Container>
+            </MobileContainer>
+        </Link>
     );
 }
 
