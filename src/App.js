@@ -12,7 +12,6 @@ import Routing from "./components/layout/Routing";
 import useProgressiveImage from "./hooks/useProgressiveImage";
 
 import imagesData from "./data/images";
-import navGlobals from "./data/navGlobals.json";
 import glass_dark from "./themes/glass_dark";
 
 function App() {
