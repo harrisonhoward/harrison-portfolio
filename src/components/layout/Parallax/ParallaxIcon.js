@@ -85,7 +85,6 @@ function ParallaxIcon(props) {
                 width: width || "32px",
                 height: height || "32px",
                 userSelect: "none",
-                //filter: "blur(1px)",
                 top,
                 left,
                 right,
