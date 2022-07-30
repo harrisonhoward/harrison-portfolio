@@ -23,9 +23,10 @@ function NavButton(props) {
         <Link
             to={props.to}
             duration={500}
+            onSetActive={handleSetActive}
+            ignoreCancelEvents={props.isMobile}
             spy
             smooth
-            onSetActive={handleSetActive}
         >
             <MobileContainer
                 {...(props.isMobile
