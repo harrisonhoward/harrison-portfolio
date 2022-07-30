@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Link, scroller } from "react-scroll";
-import { useNavigate, useLocation } from "react-router-dom";
+import React from "react";
+import { Link } from "react-scroll";
+import { useLocation } from "react-router-dom";
 import { Container, Typography, MenuItem } from "@mui/material";
+
+import { ActiveScroller } from "../../../context/ScrollerContext";
 
 /**
  *
@@ -9,23 +11,10 @@ import { Container, Typography, MenuItem } from "@mui/material";
  */
 function NavButton(props) {
     const location = useLocation();
-    const navigate = useNavigate();
+    const { setActive } = ActiveScroller();
 
-    const [firstRender, setFirstRender] = useState(true);
-    useEffect(() => {
-        if (firstRender) setFirstRender(false);
-    }, []);
-
-    const handleSetActive = (to) => {
-        if (!firstRender) {
-            navigate(props.to || "/");
-        } else {
-            scroller.scrollTo(location.pathname, {
-                duration: 1000,
-                delay: 1000,
-                smooth: true,
-            });
-        }
+    const handleSetActive = () => {
+        setActive(props.to);
     };
 
     const MobileContainer = props.isMobile ? MenuItem : React.Fragment;
