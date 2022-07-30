@@ -39,7 +39,7 @@ function Routing() {
         const currentRoute = location.pathname;
         if (![null, undefined].includes(active))
             if (currentRoute !== active) navigate(active, { replace: true });
-    }, [active]);
+    }, [active, navigate]);
 
     return (
         <>

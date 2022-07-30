@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
     useMediaQuery,
     AppBar,
@@ -24,17 +24,20 @@ function Navbar() {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [scrolledAmount, setScrolledAmount] = useState(0);
     // Prevent the state from updating unnecessarily
-    const updateScolledAmount = (amount) => {
-        if (amount < navGlobals.scrollLimit) setScrolledAmount(amount);
-        else if (
-            amount > navGlobals.scrollLimit &&
-            scrolledAmount < navGlobals.scrollLimit
-        )
-            setScrolledAmount(navGlobals.scrollLimit);
-    };
+    const updateScolledAmount = useCallback(
+        (amount) => {
+            if (amount < navGlobals.scrollLimit) setScrolledAmount(amount);
+            else if (
+                amount > navGlobals.scrollLimit &&
+                scrolledAmount < navGlobals.scrollLimit
+            )
+                setScrolledAmount(navGlobals.scrollLimit);
+        },
+        [scrolledAmount]
+    );
     useEffect(() => {
         updateScolledAmount(document.scrollingElement.scrollTop);
-    }, []);
+    }, [updateScolledAmount]);
     useEventListener("scroll", () => {
         updateScolledAmount(document.scrollingElement.scrollTop);
     });

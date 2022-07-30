@@ -11,7 +11,7 @@ const useProgressiveImage = (lowSrc, highSrc) => {
         const image = new Image();
         image.src = highSrc;
         image.onload = () => setImage(highSrc);
-    }, []);
+    }, [highSrc]);
     return image;
 };
 
