@@ -32,6 +32,7 @@ function Routing() {
                 delay: 1000,
                 smooth: true,
             });
+        // eslint-disable-next-line
     }, [location.pathname]);
 
     // Set path as active
@@ -39,6 +40,7 @@ function Routing() {
         const currentRoute = location.pathname;
         if (![null, undefined].includes(active))
             if (currentRoute !== active) navigate(active, { replace: true });
+        // eslint-disable-next-line
     }, [active, navigate]);
 
     return (
