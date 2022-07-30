@@ -68,7 +68,7 @@ const PARALLAX_ITEMS = [
         left: "80%",
         depth: 80,
         sx: {
-            borderRadius: "10%",
+            borderRadius: "15%",
             background: "white",
         },
         label: "GitHub",
