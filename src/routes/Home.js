@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Element } from "react-scroll";
 import { styled, Box, Typography, IconButton, Tooltip } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import TypeAnimation from "react-type-animation";
+import { TypeAnimation } from "react-type-animation";
 
 import GlassCard from "../components/ui/GlassCard";
 

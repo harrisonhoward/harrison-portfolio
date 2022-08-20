@@ -1,20 +1,13 @@
-import React, { useState, memo } from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material";
 import { motion } from "framer-motion";
-import TypeAnimation from "react-type-animation";
+import { TypeAnimation } from "react-type-animation";
 import useMousePosition from "@react-hook/mouse-position";
 import * as DevIcon from "devicons-react";
 
 import "./ParallaxStyles.css";
 
 const COLOUR = 0;
-const TYPED_MEMO = memo(({ ...props }) => (
-    <TypeAnimation
-        className="animation"
-        sequence={[props.label, 3000, ""]}
-        cursor={false}
-    />
-));
 
 /**
  *
@@ -105,7 +98,13 @@ function ParallaxIcon(props) {
         >
             <IconButton />
             <Component style={props.sx} />
-            {clicked && props.label && <TYPED_MEMO label={props.label} />}
+            {clicked && props.label && (
+                <TypeAnimation
+                    className="animation"
+                    sequence={[props.label, 3000, ""]}
+                    cursor={false}
+                />
+            )}
         </motion.div>
     );
 }
