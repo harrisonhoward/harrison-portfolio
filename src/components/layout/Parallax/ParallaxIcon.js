@@ -79,7 +79,7 @@ function ParallaxIcon(props) {
             onMouseDown={onMouseDown}
             onClick={onClick}
         >
-            <IconButton mouseDown={mouseDown} mouseOver={mouseOver} />
+            <IconButton mousedown={`${mouseDown}`} mouseover={`${mouseOver}`} />
             <Component style={props.sx} />
             {clicked && props.label && (
                 <TypeAnimation
