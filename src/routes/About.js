@@ -1,26 +1,12 @@
 import React from "react";
 import { Element } from "react-scroll";
-import { styled, Box, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import GlassCard from "../components/ui/GlassCard";
+import Container from "../styles/Container";
+import ProfileImage from "../features/About/styles/ProfileImage";
 
 function About() {
-    const Container = styled(Box)({
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-    });
-
-    const ProfileImage = styled("div")({
-        background: "url(resources/HarrisonHoward.jpg)",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        width: "132px",
-        height: "132px",
-    });
-
     return (
         <Element name="/about">
             <Container>

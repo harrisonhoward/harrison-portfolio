@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
-import {
-    ThemeProvider,
-    createTheme,
-    styled,
-    useMediaQuery,
-} from "@mui/material";
+import { ThemeProvider, createTheme, useMediaQuery } from "@mui/material";
 
 import Parallax from "./components/layout/Parallax";
 import Routing from "./components/layout/Routing";
+
+import ContainerDiv from "./features/App/styles/ContainerDiv";
+import BlurDiv from "./features/App/styles/BlurDiv";
 
 import useProgressiveImage from "./hooks/useProgressiveImage";
 
@@ -31,25 +29,13 @@ function App() {
         "resources/dark-background-high-mobile.jpg"
     );
 
-    const ContainerDiv = styled("div")({
-        position: "fixed",
-        background: `url(${isMobile ? mobileBackground : desktopBackground})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        height: "100vh",
-        width: "100vw",
-        top: 0,
-        left: 0,
-        zIndex: -1,
-    });
-    const BlurDiv = styled("div")({
-        position: "fixed",
-        height: "100vh",
-        width: "100vw",
-    });
     return (
         <ThemeProvider theme={theme}>
-            <ContainerDiv>
+            <ContainerDiv
+                isMobile={isMobile}
+                desktopBackground={desktopBackground}
+                mobileBackground={mobileBackground}
+            >
                 <BlurDiv />
             </ContainerDiv>
             <Parallax />

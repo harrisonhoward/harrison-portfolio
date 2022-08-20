@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { styled } from "@mui/material";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import useMousePosition from "@react-hook/mouse-position";
 import * as DevIcon from "devicons-react";
 
-import "./ParallaxStyles.css";
+import IconButton from "./styles/IconButton";
 
-const COLOUR = 0;
+import "./ParallaxStyles.css";
 
 /**
  *
@@ -32,22 +31,6 @@ function ParallaxIcon(props) {
     const [mouseOver, setMouseOver] = useState(false);
     const [mouseDown, setMouseDown] = useState(false);
     const [clicked, setClicked] = useState(false);
-    // Button
-    const IconButton = styled("div")({
-        position: "absolute",
-        width: "100%",
-        height: "100%",
-        background: mouseOver
-            ? mouseDown
-                ? `rgba(${COLOUR},${COLOUR},${COLOUR},0.3)`
-                : `rgba(${COLOUR},${COLOUR},${COLOUR},0.2)`
-            : `rgba(${COLOUR},${COLOUR},${COLOUR},0.1)`,
-        backdropFilter: "blur(5px)",
-        borderRadius: "50%",
-        padding: "0.5rem",
-        transform: "translate3d(-8px,-8px,0)",
-        zIndex: -1,
-    });
 
     const onMouseOver = (evt) => {
         setMouseOver(true);
@@ -96,7 +79,7 @@ function ParallaxIcon(props) {
             onMouseDown={onMouseDown}
             onClick={onClick}
         >
-            <IconButton />
+            <IconButton mouseDown={mouseDown} mouseOver={mouseOver} />
             <Component style={props.sx} />
             {clicked && props.label && (
                 <TypeAnimation

@@ -1,36 +1,17 @@
 import React, { useState } from "react";
 import { Element } from "react-scroll";
-import { styled, Box, Typography, IconButton, Tooltip } from "@mui/material";
+import { Typography, IconButton, Tooltip } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { TypeAnimation } from "react-type-animation";
 
 import GlassCard from "../components/ui/GlassCard";
+import Container from "../styles/Container";
+import GroupBox from "../styles/GroupBox";
+import ProfileImage from "../features/Home/styles/ProfileImage";
 
 import redirects from "../data/redirects";
 
 function Home() {
-    const Container = styled(Box)({
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-    });
-
-    const ProfileImage = styled("div")({
-        background: "url(resources/HarrisonHoward.jpg)",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        borderRadius: "50%",
-        width: "132px",
-        height: "132px",
-        marginBottom: "1rem",
-    });
-
-    const GroupBox = styled(Box)({
-        display: "flex",
-    });
-
     const [iconColour] = useState({});
 
     const h4FontClamping = "clamp(0rem, 8vw, 2.125rem)";

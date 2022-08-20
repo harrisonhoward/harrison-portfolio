@@ -1,8 +1,8 @@
 import React from "react";
 import { AnimatePresence } from "framer-motion";
-import { styled } from "@mui/material";
 
 import ParallaxIcon from "./ParallaxIcon";
+import ParallaxContainer from "./styles/ParallaxContainer";
 
 /**
  * @type {{ icon: keyof import("devicons-react"), top?: string | number,
@@ -76,16 +76,6 @@ const PARALLAX_ITEMS = [
 ];
 
 function Parallax() {
-    const ParallaxContainer = styled("div")({
-        position: "fixed",
-        left: 0,
-        top: 0,
-        height: "100vh",
-        width: "100vw",
-        overflow: "hidden",
-        zIndex: 0,
-    });
-
     return (
         <AnimatePresence initial={false}>
             <ParallaxContainer>
