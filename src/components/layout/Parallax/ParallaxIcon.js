@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import useMousePosition from "@react-hook/mouse-position";
 import * as DevIcon from "devicons-react";
 
 import IconButton from "./styles/IconButton";
@@ -13,18 +12,17 @@ import "./ParallaxStyles.css";
  * @param {{ icon: keyof import("devicons-react"), top?: string | number,
  * left?: string | number, right?: string | number, bottom?: string | number,
  * width?: string | number, height?: string | number, depth?: number, label?: string
- * sx?: import("@mui/material").SxProps }} props
+ * sx?: import("@mui/material").SxProps, mouseCoords: import("@react-hook/mouse-position").MousePosition }} props
  */
 function ParallaxIcon(props) {
     const { top, left, right, bottom, width, height } = props;
     const Component = DevIcon[props.icon || "Aarch64Original"];
 
-    const mouseCoords = useMousePosition(document.getElementById("root"));
     const coordX =
-        (mouseCoords.elementHeight / 2 - mouseCoords.clientX) /
+        (props.mouseCoords.elementHeight / 2 - props.mouseCoords.clientX) /
         (props.depth || 15);
     const coordY =
-        (mouseCoords.elementWidth / 2 - mouseCoords.clientY) /
+        (props.mouseCoords.elementWidth / 2 - props.mouseCoords.clientY) /
         (props.depth || 15);
 
     // Container state

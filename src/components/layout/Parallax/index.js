@@ -1,5 +1,6 @@
 import React from "react";
 import { AnimatePresence } from "framer-motion";
+import useMousePosition from "@react-hook/mouse-position";
 
 import ParallaxIcon from "./ParallaxIcon";
 import ParallaxContainer from "./styles/ParallaxContainer";
@@ -76,6 +77,7 @@ const PARALLAX_ITEMS = [
 ];
 
 function Parallax() {
+    const mouseCoords = useMousePosition(document.getElementById("root"));
     return (
         <AnimatePresence initial={false}>
             <ParallaxContainer>
@@ -84,6 +86,7 @@ function Parallax() {
                         {...item}
                         key={index}
                         sx={item.sx || { borderRadius: "20%" }}
+                        mouseCoords={mouseCoords}
                     />
                 ))}
             </ParallaxContainer>
