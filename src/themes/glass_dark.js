@@ -82,6 +82,10 @@ const glass_dark = {
                     fontSize: "0.8rem",
                     padding: "0.4rem 0.5rem",
                 },
+                arrow: {
+                    color: "rgba(6, 6, 6, 0.5)",
+                    backdropFilter: "blur(5px)",
+                },
             },
         },
     },
