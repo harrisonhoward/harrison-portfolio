@@ -1,3 +1,5 @@
+import { Zoom } from "@mui/material";
+
 import navGlobals from "../data/navGlobals.json";
 
 /**
@@ -75,6 +77,12 @@ const glass_dark = {
             },
         },
         MuiTooltip: {
+            defaultProps: {
+                enterTouchDelay: 100,
+                TransitionComponent: Zoom,
+                TransitionProps: { timeout: 300 },
+                arrow: true,
+            },
             styleOverrides: {
                 tooltip: {
                     background: "rgba(6, 6, 6, 0.5)",

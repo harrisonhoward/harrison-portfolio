@@ -10,14 +10,7 @@ import Tooltip from "./styles/Tooltip";
 function DateTooltip(props) {
     const format = props.dateFormat || "dddd, Do MMMM YYYY hh:mm:ss a";
     return (
-        <Tooltip
-            title={moment(props.date).format(format)}
-            placement="top"
-            enterTouchDelay={100}
-            TransitionComponent={Zoom}
-            TransitionProps={{ timeout: 300 }}
-            arrow
-        >
+        <Tooltip title={moment(props.date).format(format)} placement="top">
             {props.children}
         </Tooltip>
     );
