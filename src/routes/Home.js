@@ -10,6 +10,7 @@ import GroupBox from "../styles/GroupBox";
 import ProfileImage from "../features/Home/styles/ProfileImage";
 
 import redirects from "../data/redirects";
+import { GLOBAL_PREFIX } from "../ClassNameGenerator";
 
 function Home() {
     const [iconColour] = useState({});
@@ -69,29 +70,26 @@ function Home() {
                     </GroupBox>
                     <GroupBox>
                         {redirects.map((redirect, index) => (
-                            <IconButton
-                                key={index}
-                                href={redirect.link.replace(
-                                    /{username}/gi,
-                                    redirect.username
-                                )}
-                                target="_blank"
-                                sx={{
-                                    "&:hover": {
-                                        color: "rgba(255, 255, 255, 0.5)",
-                                    },
-                                }}
-                            >
-                                <Tooltip
-                                    title={redirect.label}
-                                    placement="bottom"
+                            <Tooltip title={redirect.label} placement="bottom">
+                                <IconButton
+                                    key={index}
+                                    href={redirect.link.replace(
+                                        /{username}/gi,
+                                        redirect.username
+                                    )}
+                                    target="_blank"
+                                    sx={{
+                                        "&:hover": {
+                                            color: "rgba(255, 255, 255, 0.5)",
+                                        },
+                                    }}
                                 >
                                     <FontAwesomeIcon
                                         icon={redirect.icon}
                                         color={iconColour[redirect.label]}
                                     />
-                                </Tooltip>
-                            </IconButton>
+                                </IconButton>
+                            </Tooltip>
                         ))}
                     </GroupBox>
                 </GlassCard>
