@@ -33,7 +33,7 @@ function About() {
                         elevation={10}
                         sx={{
                             padding: "1rem",
-                            marginRight: "0.5rem",
+                            marginRight: "2rem",
                         }}
                     >
                         <ProfileImage />
@@ -42,9 +42,20 @@ function About() {
                 <GlassCard
                     elevation={10}
                     sx={{
+                        position: "relative",
                         width: "50%",
                         height: "332px",
                         overflow: "visible",
+                        "&:before": {
+                            content: "''",
+                            position: "absolute",
+                            width: 0,
+                            height: 0,
+                            transform: "translate(-10px, 1rem)",
+                            borderTop: "10px solid transparent",
+                            borderBottom: "10px solid transparent",
+                            borderRight: "10px solid rgba(100, 100, 100, 0.7)",
+                        },
                     }}
                 >
                     <GroupBox
