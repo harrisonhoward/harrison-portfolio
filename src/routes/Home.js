@@ -70,9 +70,12 @@ function Home() {
                     </GroupBox>
                     <GroupBox>
                         {redirects.map((redirect, index) => (
-                            <Tooltip title={redirect.label} placement="bottom">
+                            <Tooltip
+                                key={index}
+                                title={redirect.label}
+                                placement="bottom"
+                            >
                                 <IconButton
-                                    key={index}
                                     href={redirect.link.replace(
                                         /{username}/gi,
                                         redirect.username
