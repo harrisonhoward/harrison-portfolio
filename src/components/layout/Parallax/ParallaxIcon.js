@@ -11,7 +11,7 @@ import "./ParallaxStyles.css";
  *
  * @param {{ icon: keyof import("devicons-react"), top?: string | number,
  * left?: string | number, right?: string | number, bottom?: string | number,
- * width?: string | number, height?: string | number, depth?: number, label?: string
+ * width?: string | number, height?: string | number, depth?: number, label?: string,
  * sx?: import("@mui/material").SxProps, mouseCoords: import("@react-hook/mouse-position").MousePosition }} props
  */
 function ParallaxIcon(props) {
