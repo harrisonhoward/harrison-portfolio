@@ -34,16 +34,16 @@ const PARALLAX_ITEMS = [
     },
     {
         icon: "Html5Original",
-        top: "60%",
-        left: "20%",
+        top: "70%",
+        left: "25%",
         depth: 30,
         label: "HTML5",
     },
     {
         icon: "Css3Original",
-        top: "75%",
-        left: "40%",
-        depth: 25,
+        top: "78%",
+        left: "45%",
+        depth: 35,
         label: "CSS3",
     },
     {
@@ -70,6 +70,17 @@ const PARALLAX_ITEMS = [
             background: "white",
         },
         label: "GitHub",
+    },
+    {
+        icon: "ThreejsOriginal",
+        top: "45%",
+        left: "14%",
+        depth: 25,
+        label: "Threejs",
+        sx: {
+            fill: "white",
+            transform: "translate3d(1.5px,0,0)",
+        },
     },
 ];
 
