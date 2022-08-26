@@ -3,6 +3,7 @@ import { Element } from "react-scroll";
 import { Box, Typography } from "@mui/material";
 
 import GlassCard from "../components/ui/GlassCard";
+import Spangraphy from "../components/ui/Spangraphy";
 import Container from "../styles/Container";
 import GroupBox from "../styles/GroupBox";
 import ProfileImage from "../features/About/styles/ProfileImage";
@@ -71,7 +72,7 @@ function About() {
                                     date={DOB}
                                     dateFormat={"dddd, Do MMMM YYYY"}
                                 >
-                                    <span>{age} years old</span>
+                                    <Spangraphy>{age} years old</Spangraphy>
                                 </DateTooltip>
                             </Typography>
                         </Box>

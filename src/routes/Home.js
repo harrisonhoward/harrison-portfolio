@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { TypeAnimation } from "react-type-animation";
 
 import GlassCard from "../components/ui/GlassCard";
+import Spangraphy from "../components/ui/Spangraphy";
 import Container from "../styles/Container";
 import GroupBox from "../styles/GroupBox";
 import ProfileImage from "../features/Home/styles/ProfileImage";
@@ -14,8 +15,8 @@ import redirects from "../data/redirects";
 function Home() {
     const [iconColour] = useState({});
 
-    const h4FontClamping = "clamp(0rem, 8vw, 2.125rem)";
-    const h5FontClamping = "clamp(0rem, 7vw, 1.5rem)";
+    const h4FontClamping = "clamp(0rem, 7vw, 2.125rem)";
+    const h5FontClamping = "clamp(0rem, 6vw, 1.5rem)";
 
     return (
         <Element name="/">
@@ -28,45 +29,40 @@ function Home() {
                     }}
                 >
                     <ProfileImage />
-                    <GroupBox>
-                        <Typography
-                            variant="h4"
-                            fontWeight={500}
-                            fontSize={h4FontClamping}
-                        >
-                            Hi, I'm&nbsp;
-                        </Typography>
-                        <Typography
-                            variant="h4"
-                            color="primary.dark"
-                            fontWeight={500}
-                            fontSize={h4FontClamping}
-                        >
+                    <Typography
+                        variant="h4"
+                        fontWeight={500}
+                        fontSize={h4FontClamping}
+                    >
+                        Hi, I'm{" "}
+                        <Spangraphy component="span" color="primary.light">
                             Harrison Howard
-                        </Typography>
-                    </GroupBox>
-                    <GroupBox
+                        </Spangraphy>
+                    </Typography>
+                    <Typography
+                        variant="h5"
+                        fontSize={h5FontClamping}
                         sx={{
                             marginBottom: "1rem",
                         }}
                     >
-                        <Typography variant="h5" fontSize={h5FontClamping}>
-                            I am a&nbsp;
-                        </Typography>
-                        <TypeAnimation
-                            className="animation-home"
-                            sequence={[
-                                "Full-Stack Developer",
-                                1000,
-                                "React Developer",
-                                1000,
-                                "Passionate Learner",
-                                1000,
-                            ]}
-                            wrapper="h5"
-                            repeat={Infinity}
-                        />
-                    </GroupBox>
+                        I am a{" "}
+                        <Spangraphy fontWeight={500} color="secondary.light">
+                            <TypeAnimation
+                                className="animation-home"
+                                sequence={[
+                                    "Full-Stack Developer",
+                                    1000,
+                                    "React Developer",
+                                    1000,
+                                    "Passionate Learner",
+                                    1000,
+                                ]}
+                                wrapper="h5"
+                                repeat={Infinity}
+                            />
+                        </Spangraphy>
+                    </Typography>
                     <GroupBox>
                         {redirects.map((redirect, index) => (
                             <Tooltip

@@ -18,10 +18,11 @@ code {
 }
 
 .animation-home {
+    display: inline;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    color: inherit;
     margin: 0;
-    font-weight: 500;
-    font-size: clamp(0rem, 7vw, 1.5rem);
-    line-height: 1.334;
-    letter-spacing: 0em;
-    color: #7ff5cc;
 }
