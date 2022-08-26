@@ -1,6 +1,10 @@
 import { Zoom } from "@mui/material";
+import Color from "color";
 
 import navGlobals from "../data/navGlobals.json";
+
+const PrimaryMain = Color("#11a2cf");
+const SecondaryMain = Color("#12e69c");
 
 /**
  * @type {import("@mui/material").ThemeOptions}
@@ -8,6 +12,18 @@ import navGlobals from "../data/navGlobals.json";
 const glass_dark = {
     palette: {
         mode: "dark",
+        primary: {
+            light: PrimaryMain.lighten(0.5).hex(),
+            main: PrimaryMain.hex(),
+            dark: PrimaryMain.darken(0.3).hex(),
+            contrastText: "black",
+        },
+        secondary: {
+            light: SecondaryMain.lighten(0.5).hex(),
+            main: SecondaryMain.hex(),
+            dark: SecondaryMain.darken(0.3).hex(),
+            contrastText: "black",
+        },
     },
     components: {
         MuiAppBar: {
