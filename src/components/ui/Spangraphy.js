@@ -1,10 +1,11 @@
+import React from "react";
 import { Typography } from "@mui/material";
 
 /**
  *
  * @param {import("@mui/material").TypographyProps} props
  */
-function Spangraphy(props) {
+const Spangraphy = React.forwardRef((props, ref) => {
     return (
         <Typography
             align="inherit"
@@ -13,9 +14,10 @@ function Spangraphy(props) {
             fontWeight="inherit"
             border="inherit"
             {...props}
+            ref={ref}
             component="span"
         />
     );
-}
+});
 
 export default Spangraphy;
