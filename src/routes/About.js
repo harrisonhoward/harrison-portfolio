@@ -67,7 +67,7 @@ function About() {
                     >
                         <Box>
                             <Typography variant="body1">
-                                I am currently&nbsp;
+                                I am currently{" "}
                                 <DateTooltip
                                     date={DOB}
                                     dateFormat={"dddd, Do MMMM YYYY"}
