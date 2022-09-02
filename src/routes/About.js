@@ -8,6 +8,7 @@ import Container from "../styles/Container";
 import GroupBox from "../styles/GroupBox";
 import ProfileImage from "../features/About/styles/ProfileImage";
 import DateTooltip from "../components/ui/DateTooltip";
+import Code from "../components/ui/Code";
 
 const DOB = new Date(2002, 5, 6);
 
@@ -67,7 +68,9 @@ function About() {
                     >
                         <Box>
                             <Typography variant="body1">
-                                I am currently{" "}
+                                Hi, I'm <Code>Harrison Howard</Code> a
+                                Full-Stack Website Developer based in Brisbane,
+                                Australia. I am currently{" "}
                                 <DateTooltip
                                     date={DOB}
                                     dateFormat={"dddd, Do MMMM YYYY"}
