@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 
 /**
  *
- * @param {import("@mui/material").TypographyProps} props
+ * @type {import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").TypographyTypeMap<{}, "span">}
  */
 const Spangraphy = React.forwardRef((props, ref) => {
     return (
