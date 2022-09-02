@@ -18,12 +18,16 @@ function ParallaxIcon(props) {
     const { top, left, right, bottom, width, height } = props;
     const Component = DevIcon[props.icon || "Aarch64Original"];
 
-    const coordX =
-        (props.mouseCoords.elementHeight / 2 - props.mouseCoords.clientX) /
-        (props.depth || 15);
-    const coordY =
-        (props.mouseCoords.elementWidth / 2 - props.mouseCoords.clientY) /
-        (props.depth || 15);
+    let coordX = 0;
+    let coordY = 0;
+    if (props.mouseCoords) {
+        coordX =
+            (props.mouseCoords.elementHeight / 2 - props.mouseCoords.clientX) /
+            (props.depth || 15);
+        coordY =
+            (props.mouseCoords.elementWidth / 2 - props.mouseCoords.clientY) /
+            (props.depth || 15);
+    }
 
     // Container state
     const [mouseOver, setMouseOver] = useState(false);
