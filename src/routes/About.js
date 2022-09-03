@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { Element } from "react-scroll";
 import { Box, Typography } from "@mui/material";
+import Color from "color";
 
 import GlassCard from "../components/ui/GlassCard";
 import Spangraphy from "../components/ui/Spangraphy";
@@ -68,9 +69,19 @@ function About() {
                     >
                         <Box>
                             <Typography variant="body1">
-                                Hi, I'm <Code>Harrison Howard</Code> a
-                                Full-Stack Website Developer based in Brisbane,
-                                Australia. I am currently{" "}
+                                Hi, I'm{" "}
+                                <Code
+                                    sx={{
+                                        color: (theme) =>
+                                            Color(theme.palette.primary.main)
+                                                .lighten(0.6)
+                                                .string(),
+                                    }}
+                                >
+                                    Harrison Howard
+                                </Code>{" "}
+                                a Full-Stack Website Developer based in
+                                Brisbane, Australia. I am currently{" "}
                                 <DateTooltip
                                     date={DOB}
                                     dateFormat={"dddd, Do MMMM YYYY"}
