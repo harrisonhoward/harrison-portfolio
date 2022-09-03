@@ -3,10 +3,10 @@ import GlassCardStyles from "./styles/GlassCardStyles";
 
 /**
  *
- * @param {import("@mui/material").CardProps} props
+ * @type {import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").CardTypeMap<{}, "div">}
  */
-function GlassCard(props) {
-    return <GlassCardStyles {...props} />;
-}
+const GlassCard = React.forwardRef((props, ref) => {
+    return <GlassCardStyles ref={ref} {...props} />;
+});
 
 export default GlassCard;
