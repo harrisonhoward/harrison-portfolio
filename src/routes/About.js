@@ -27,8 +27,11 @@ function About() {
             return age - 1;
         return age;
     }, []);
-    const age = useMemo(() => calculateYears(DOB), []);
-    const coding = useMemo(() => calculateYears(new Date(2015, 5, 6)), []);
+    const age = useMemo(() => calculateYears(DOB), [calculateYears]);
+    const coding = useMemo(
+        () => calculateYears(new Date(2015, 5, 6)),
+        [calculateYears]
+    );
 
     const contentRef = useRef(null);
     const [contentSize, setContentSize] = useState({

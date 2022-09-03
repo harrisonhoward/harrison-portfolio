@@ -11,6 +11,7 @@ const useEventListener = (
     useEffect(() => {
         // If first render is true, run the handler
         if (!!firstRender) handler(element);
+        // eslint-disable-next-line
     }, []);
 
     useEffect(() => {
