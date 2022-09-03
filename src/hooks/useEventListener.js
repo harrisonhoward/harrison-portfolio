@@ -1,7 +1,17 @@
 import { useEffect, useRef } from "react";
 
-const useEventListener = (eventName, handler, element = window) => {
+const useEventListener = (
+    eventName,
+    handler,
+    firstRender,
+    element = window
+) => {
     const savedHandler = useRef();
+
+    useEffect(() => {
+        // If first render is true, run the handler
+        if (!!firstRender) handler(element);
+    }, []);
 
     useEffect(() => {
         savedHandler.current = handler;
