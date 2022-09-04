@@ -33,22 +33,6 @@ function About() {
         [calculateYears]
     );
 
-    const contentRef = useRef(null);
-    const [contentSize, setContentSize] = useState({
-        width: contentRef.current?.offsetWidth,
-        height: contentRef.current?.offsetHeight,
-    });
-    useEventListener(
-        "resize",
-        () => {
-            setContentSize({
-                width: contentRef.current.offsetWidth,
-                height: contentRef.current.offsetHeight,
-            });
-        },
-        window
-    );
-
     return (
         <Element name="/about">
             <Container
@@ -59,98 +43,107 @@ function About() {
                     },
                 }}
             >
-                <Box
+                <GroupBox
                     sx={{
-                        height: contentSize.height || 242,
                         "@media (max-width: 600px)": {
-                            height: "auto",
-                            marginLeft: "2rem",
-                            marginBottom: "2rem",
+                            flexDirection: "column",
+                            alignItems: "center",
                         },
                     }}
                 >
+                    <Box
+                        sx={{
+                            marginRight: "2rem",
+                            "@media (max-width: 600px)": {
+                                marginBottom: "2rem",
+                                marginRight: 0,
+                            },
+                        }}
+                    >
+                        <GlassCard
+                            elevation={10}
+                            sx={{
+                                padding: "1rem",
+                            }}
+                        >
+                            <ProfileImage />
+                        </GlassCard>
+                    </Box>
                     <GlassCard
                         elevation={10}
                         sx={{
-                            padding: "1rem",
-                            marginRight: "2rem",
-                        }}
-                    >
-                        <ProfileImage />
-                    </GlassCard>
-                </Box>
-                <GlassCard
-                    ref={contentRef}
-                    elevation={10}
-                    sx={{
-                        position: "relative",
-                        width: "100%",
-                        maxWidth: MAX_WIDTH,
-                        overflow: "visible",
-                        "&:before": {
-                            content: "''",
-                            position: "absolute",
-                            width: 0,
-                            height: 0,
-                            transform: "translate(-10px, 1rem)",
-                            borderTop: "10px solid transparent",
-                            borderBottom: "10px solid transparent",
-                            borderRight: "10px solid rgba(100, 100, 100, 0.7)",
-                            "@media (max-width: 600px)": {
-                                transform: `translate(calc(${
-                                    contentSize.width || MAX_WIDTH
-                                }px / 2 - 0.5rem), -20.5px)`,
-                                borderLeft: "10px solid transparent",
-                                borderRight: "10px solid transparent",
-                                borderBottom:
+                            position: "relative",
+                            width: "100%",
+                            maxWidth: MAX_WIDTH,
+                            overflow: "visible",
+                            "&:before": {
+                                content: "''",
+                                position: "absolute",
+                                width: 0,
+                                height: 0,
+                                transform: "translate(-10px, 1rem)",
+                                borderTop: "10px solid transparent",
+                                borderBottom: "10px solid transparent",
+                                borderRight:
                                     "10px solid rgba(100, 100, 100, 0.7)",
+                                "@media (max-width: 600px)": {
+                                    transform: `translate(-5px, -20.5px)`,
+                                    left: "50%",
+                                    borderLeft: "10px solid transparent",
+                                    borderRight: "10px solid transparent",
+                                    borderBottom:
+                                        "10px solid rgba(100, 100, 100, 0.7)",
+                                },
                             },
-                        },
-                    }}
-                >
-                    <GroupBox
-                        sx={{
-                            margin: "1rem",
                         }}
                     >
-                        <Box>
-                            <Typography variant="body1">
-                                Hi, I'm{" "}
-                                <Code
-                                    sx={{
-                                        color: (theme) =>
-                                            Color(theme.palette.primary.main)
-                                                .lighten(0.6)
-                                                .string(),
-                                    }}
-                                >
-                                    Harrison Howard
-                                </Code>{" "}
-                                a Full-Stack Website Developer based in
-                                Brisbane, Australia. I am currently{" "}
-                                <DateTooltip
-                                    date={DOB}
-                                    dateFormat={"dddd, Do of MMMM YYYY"}
-                                >
-                                    <Spangraphy>{age} years old</Spangraphy>
-                                </DateTooltip>
-                                , and have been coding since I was 13 years old.
-                                I started with Unity making 2D games and evolved
-                                into exploring the technology of Full-Stack
-                                Website Development.
-                            </Typography>
-                            <ParagraphDivider />
-                            <Typography variant="body1">
-                                I am eager to invest and expand my knowledge in
-                                the real world, solving real-world problems. I
-                                have spent {coding} years learning and
-                                discovering new technologies and languages that
-                                have given me the experience I need to begin the
-                                career I want.
-                            </Typography>
-                        </Box>
-                    </GroupBox>
-                </GlassCard>
+                        <GroupBox
+                            sx={{
+                                margin: "1rem",
+                            }}
+                        >
+                            <Box>
+                                <Typography variant="body1">
+                                    Hi, I'm{" "}
+                                    <Code
+                                        sx={{
+                                            color: (theme) =>
+                                                Color(
+                                                    theme.palette.primary.main
+                                                )
+                                                    .lighten(0.6)
+                                                    .string(),
+                                        }}
+                                    >
+                                        Harrison Howard
+                                    </Code>{" "}
+                                    a Full-Stack Website Developer based in
+                                    Brisbane, Australia. I am currently{" "}
+                                    <DateTooltip
+                                        date={DOB}
+                                        dateFormat={"dddd, Do of MMMM YYYY"}
+                                    >
+                                        <Spangraphy>{age} years old</Spangraphy>
+                                    </DateTooltip>
+                                    , and have been coding since I was 13 years
+                                    old. I started with Unity making 2D games
+                                    and evolved into exploring the technology of
+                                    Full-Stack Website Development.
+                                </Typography>
+                                <ParagraphDivider />
+                                <Typography variant="body1">
+                                    I am eager to invest and expand my knowledge
+                                    in the real world, solving real-world
+                                    problems. I have spent {coding} years
+                                    learning and discovering new technologies
+                                    and languages that have given me the
+                                    experience I need to begin the career I
+                                    want.
+                                </Typography>
+                            </Box>
+                        </GroupBox>
+                    </GlassCard>
+                </GroupBox>
             </Container>
         </Element>
     );
