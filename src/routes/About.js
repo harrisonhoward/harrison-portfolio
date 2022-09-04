@@ -1,6 +1,6 @@
-import React, { useState, useCallback, useMemo, useRef } from "react";
+import React, { useCallback, useMemo } from "react";
 import { Element } from "react-scroll";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import Color from "color";
 
 import GlassCard from "../components/ui/GlassCard";
@@ -33,9 +33,14 @@ function About() {
         [calculateYears]
     );
 
-    const profileBackground = useProgressiveImage(
+    const isMobile = useMediaQuery("(max-width: 600px)");
+    const profileBackgroundDesktop = useProgressiveImage(
         "resources/profile/HarrisonHoward-low.jpg",
         "resources/profile/HarrisonHoward-high.jpg"
+    );
+    const profileBackgroundMobile = useProgressiveImage(
+        "resources/profile/HarrisonHoward-low-mobile.jpg",
+        "resources/profile/HarrisonHoward-high-mobile.jpg"
     );
 
     return (
@@ -56,24 +61,33 @@ function About() {
                         },
                     }}
                 >
-                    <Box
+                    <GlassCard
+                        elevation={10}
                         sx={{
+                            maxHeight: "210px",
+                            minWidth: "140px",
                             marginRight: "2rem",
+                            padding: "1rem",
                             "@media (max-width: 600px)": {
                                 marginBottom: "2rem",
                                 marginRight: 0,
                             },
                         }}
                     >
-                        <GlassCard
-                            elevation={10}
+                        <ProfileImage
+                            background={
+                                isMobile
+                                    ? profileBackgroundMobile
+                                    : profileBackgroundDesktop
+                            }
                             sx={{
-                                padding: "1rem",
+                                "@media (min-width: 600px)": {
+                                    height: "100%",
+                                    width: "100%",
+                                },
                             }}
-                        >
-                            <ProfileImage background={profileBackground} />
-                        </GlassCard>
-                    </Box>
+                        />
+                    </GlassCard>
                     <GlassCard
                         elevation={10}
                         sx={{

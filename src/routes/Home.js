@@ -21,8 +21,8 @@ function Home() {
     const h5FontClamping = "clamp(0rem, 6vw, 1.5rem)";
 
     const profileBackground = useProgressiveImage(
-        "resources/profile/HarrisonHoward-low.jpg",
-        "resources/profile/HarrisonHoward-high.jpg"
+        "resources/profile/HarrisonHoward-low-mobile.jpg",
+        "resources/profile/HarrisonHoward-high-mobile.jpg"
     );
 
     return (
