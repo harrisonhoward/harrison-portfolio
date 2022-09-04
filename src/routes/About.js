@@ -79,15 +79,13 @@ function About() {
                             "&:before": {
                                 content: "''",
                                 position: "absolute",
-                                width: 0,
-                                height: 0,
                                 transform: "translate(-10px, 1rem)",
                                 borderTop: "10px solid transparent",
                                 borderBottom: "10px solid transparent",
                                 borderRight:
                                     "10px solid rgba(100, 100, 100, 0.7)",
                                 "@media (max-width: 600px)": {
-                                    transform: `translate(-5px, -20.5px)`,
+                                    transform: `translate(-50%, -20.5px)`,
                                     left: "50%",
                                     borderLeft: "10px solid transparent",
                                     borderRight: "10px solid transparent",
