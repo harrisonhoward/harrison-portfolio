@@ -1,11 +1,7 @@
 import { styled } from "@mui/material";
 const ContainerDiv = styled("div")((props) => ({
     position: "fixed",
-    background: `url(${
-        props.ismobile === "true"
-            ? props.mobilebackground
-            : props.desktopbackground
-    })`,
+    background: `url(${props.background})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     height: "100vh",

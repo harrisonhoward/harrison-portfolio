@@ -32,9 +32,7 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <ContainerDiv
-                ismobile={`${isMobile}`}
-                desktopbackground={desktopBackground}
-                mobilebackground={mobileBackground}
+                background={isMobile ? mobileBackground : desktopBackground}
             >
                 <BlurDiv />
             </ContainerDiv>
