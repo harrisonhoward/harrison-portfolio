@@ -65,7 +65,7 @@ function About() {
                         elevation={10}
                         sx={{
                             maxHeight: "210px",
-                            minWidth: "140px",
+                            minWidth: "142px",
                             marginRight: "2rem",
                             padding: "1rem",
                             "@media (max-width: 600px)": {
