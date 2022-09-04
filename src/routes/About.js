@@ -12,7 +12,7 @@ import DateTooltip from "../components/ui/DateTooltip";
 import Code from "../components/ui/Code";
 import ParagraphDivider from "../styles/ParagraphDivider";
 
-import useEventListener from "../hooks/useEventListener";
+import useProgressiveImage from "../hooks/useProgressiveImage";
 
 const DOB = new Date(2002, 5, 6);
 const MAX_WIDTH = 600;
@@ -31,6 +31,11 @@ function About() {
     const coding = useMemo(
         () => calculateYears(new Date(2015, 5, 6)),
         [calculateYears]
+    );
+
+    const profileBackground = useProgressiveImage(
+        "resources/profile/HarrisonHoward-low.jpg",
+        "resources/profile/HarrisonHoward-high.jpg"
     );
 
     return (
@@ -66,7 +71,7 @@ function About() {
                                 padding: "1rem",
                             }}
                         >
-                            <ProfileImage />
+                            <ProfileImage background={profileBackground} />
                         </GlassCard>
                     </Box>
                     <GlassCard

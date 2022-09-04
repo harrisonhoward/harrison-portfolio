@@ -21,12 +21,12 @@ function App() {
     // Progressively load background
     const isMobile = useMediaQuery("(max-width: 600px)");
     const desktopBackground = useProgressiveImage(
-        "resources/dark-background-low.jpg",
-        "resources/dark-background-high.jpg"
+        "resources/background/dark-background-low.jpg",
+        "resources/background/dark-background-high.jpg"
     );
     const mobileBackground = useProgressiveImage(
-        "resources/dark-background-low-mobile.jpg",
-        "resources/dark-background-high-mobile.jpg"
+        "resources/background/dark-background-low-mobile.jpg",
+        "resources/background/dark-background-high-mobile.jpg"
     );
 
     return (

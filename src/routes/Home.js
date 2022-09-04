@@ -10,6 +10,8 @@ import Container from "../styles/Container";
 import GroupBox from "../styles/GroupBox";
 import ProfileImage from "../features/Home/styles/ProfileImage";
 
+import useProgressiveImage from "../hooks/useProgressiveImage";
+
 import redirects from "../data/redirects";
 
 function Home() {
@@ -17,6 +19,11 @@ function Home() {
 
     const h4FontClamping = "clamp(0rem, 7vw, 2.125rem)";
     const h5FontClamping = "clamp(0rem, 6vw, 1.5rem)";
+
+    const profileBackground = useProgressiveImage(
+        "resources/profile/HarrisonHoward-low.jpg",
+        "resources/profile/HarrisonHoward-high.jpg"
+    );
 
     return (
         <Element name="/">
@@ -28,7 +35,7 @@ function Home() {
                         padding: "1rem",
                     }}
                 >
-                    <ProfileImage />
+                    <ProfileImage background={profileBackground} />
                     <Typography
                         variant="h4"
                         fontWeight={500}
