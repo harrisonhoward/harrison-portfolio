@@ -48,9 +48,6 @@ function About() {
             <Container
                 sx={{
                     margin: "0 1rem",
-                    "@media (max-width: 600px)": {
-                        flexDirection: "column",
-                    },
                 }}
             >
                 <GroupBox
@@ -161,6 +158,58 @@ function About() {
                         </GroupBox>
                     </GlassCard>
                 </GroupBox>
+                {/* <GlassCard
+                    sx={{
+                        width: "100%",
+                        maxWidth: "810px",
+                        marginTop: "3rem",
+                    }}
+                >
+                    <Grid
+                        container
+                        justifyContent="space-evenly"
+                        alignItems="space-evenly"
+                        spacing={2}
+                        sx={{
+                            marginTop: "1rem",
+                            marginBottom: "3rem",
+                        }}
+                    >
+                        <Grid
+                            item
+                            xs={8}
+                            sm={4}
+                            sx={{
+                                margin: "0 1rem",
+                            }}
+                        >
+                            <KnowledgeSlider label="React" selectedValue={1} />
+                        </Grid>
+                        <Grid
+                            item
+                            xs={8}
+                            sm={4}
+                            sx={{
+                                margin: "0 1rem",
+                            }}
+                        >
+                            <KnowledgeSlider
+                                label="JavaScript"
+                                selectedValue={1}
+                            />
+                        </Grid>
+                        <Grid
+                            item
+                            xs={8}
+                            sm={4}
+                            sx={{
+                                margin: "0 1rem",
+                            }}
+                        >
+                            <KnowledgeSlider label="Redux" selectedValue={1} />
+                        </Grid>
+                    </Grid>
+                </GlassCard> */}
             </Container>
         </Element>
     );
