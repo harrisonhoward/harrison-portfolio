@@ -8,6 +8,7 @@ import {
     faGithub,
     faTwitter,
     faLinkedin,
+    faBrowser,
 } from "@fortawesome/free-brands-svg-icons";
 
 function HomePage() {
@@ -123,6 +124,21 @@ function HomePage() {
                             <FontAwesomeIcon
                                 className={classes.linkIcon}
                                 icon={faTwitter}
+                                size="lg"
+                            />
+                        </div>
+                    </Tooltip>
+                </IconButton>
+                <IconButton
+                    style={{ color: "inherit" }}
+                    href="https://harrisontest.netlify.app"
+                    target="_blank"
+                >
+                    <Tooltip title="New Website" placement="bottom">
+                        <div>
+                            <FontAwesomeIcon
+                                className={classes.linkIcon}
+                                icon={faBrowser}
                                 size="lg"
                             />
                         </div>
