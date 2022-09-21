@@ -74,8 +74,7 @@ function HomePage() {
                                 "https://github.com/Forbidden-Duck/ecommerce-frontend",
                                 "https://github.com/Forbidden-Duck/ecommerce-backend",
                             ]}
-                            linkWebsite="https://ecommerce.harrisonhoward.xyz/"
-                            active="active"
+                            active="inactive"
                         />
                     </Grid>
                     <Grid item>
@@ -87,8 +86,7 @@ function HomePage() {
                             collections and documents for that particular connection. Create an account to be able to
                             save and favourite your database connections."
                             linkCode="https://github.com/Forbidden-Duck/mongo-web-app"
-                            linkWebsite="https://mongowebapp.harrisonhoward.xyz/"
-                            active="active"
+                            active="inactive"
                             cardGrowth={50}
                         />
                     </Grid>
@@ -96,11 +94,11 @@ function HomePage() {
                         <ProjectCard
                             banner="https://i.imgur.com/f7KdaFb.jpeg"
                             name="Thryve"
-                            date="2022 - Present"
+                            date="2022 - 2022"
                             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                             Aliquam interdum dui at nulla egestas dapibus. Donec tempor, orci a 
                             sit amet congue mauris lorem ac nibh. Nam ultrices eu neque a condimentum."
-                            active="inprogress"
+                            active="inactive"
                             cardGrowth={45}
                         />
                     </Grid>
