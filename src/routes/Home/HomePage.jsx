@@ -3,12 +3,14 @@ import PageComponent from "../../components/PageComponent";
 import { Typography, IconButton, useMediaQuery, Tooltip } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import {
+    faEnvelope,
+    faExternalLinkAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import {
     faGithub,
     faTwitter,
     faLinkedin,
-    faExternalLinkAlt,
 } from "@fortawesome/free-brands-svg-icons";
 
 function HomePage() {
