@@ -8,7 +8,7 @@ import {
     faGithub,
     faTwitter,
     faLinkedin,
-    faBrowser,
+    faExternalLinkAlt,
 } from "@fortawesome/free-brands-svg-icons";
 
 function HomePage() {
@@ -138,7 +138,7 @@ function HomePage() {
                         <div>
                             <FontAwesomeIcon
                                 className={classes.linkIcon}
-                                icon={faBrowser}
+                                icon={faExternalLinkAlt}
                                 size="lg"
                             />
                         </div>
