@@ -5,6 +5,7 @@ import { scroller } from "react-scroll";
 import Navbar from "./Navbar";
 import Home from "../../routes/Home";
 import About from "../../routes/About";
+import Projects from "../../routes/Projects";
 
 import routes from "../../data/routes";
 
@@ -48,6 +49,7 @@ function Routing() {
             <Navbar />
             <Home />
             <About />
+            <Projects />
         </>
     );
 }
