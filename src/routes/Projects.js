@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, useMediaQuery } from "@mui/material";
 import { Element } from "react-scroll";
 
@@ -9,6 +9,7 @@ import projects from "../data/projects";
 
 function Projects() {
     const px1000 = useMediaQuery("(max-width: 1000px)");
+    const [cardHovered, setCardHovered] = useState(false);
 
     return (
         <Element name="/projects">
@@ -25,7 +26,11 @@ function Projects() {
                                 justifyContent: "center",
                             }}
                         >
-                            <ProjectsCard project={project} />
+                            <ProjectsCard
+                                project={project}
+                                cardHovered={cardHovered === project.title}
+                                setCardHovered={setCardHovered}
+                            />
                         </Grid>
                     ))}
                 </Grid>

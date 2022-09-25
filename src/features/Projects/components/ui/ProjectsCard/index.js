@@ -7,6 +7,7 @@ import {
     DialogTitle,
     DialogActions,
     Slide,
+    Collapse,
     useMediaQuery,
 } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
@@ -37,7 +38,7 @@ const ACTIVE = [
 const AnimationTransition = {
     type: "spring",
     stiffness: 100,
-    damping: 8,
+    damping: 10,
     mass: 0.7,
 };
 
@@ -47,6 +48,15 @@ const ExpandVariants = {
     },
     expanded: {
         maxWidth: "580px",
+    },
+};
+
+const FadeVariants = {
+    initial: {
+        opacity: 0,
+    },
+    show: {
+        opacity: 1,
     },
 };
 
@@ -92,43 +102,70 @@ const SlideDown = React.forwardRef(function SlideDown(props, ref) {
  * @param {{ project: import("../../../../../data/projects").ProjectItem }} props
  * @returns
  */
-function ProjectsCard(props) {
-    const [cardHovered, setCardHovered] = useState(false);
+function ProjectsCard({ cardHovered, setCardHovered, ...props }) {
+    const px1000 = useMediaQuery("(max-width: 1000px)");
+    const isMobile = useMediaQuery("(max-width: 600px)");
+    const tooSmall = useMediaQuery("(max-width: 450px)");
+
     // Used to store actual state to fix hovered being true when mouse is not over the card
     const [_cardHovered, _setCardHovered] = useState(false);
     const [dialogOpen, setDialogOpen] = useState(false);
 
     const handleMouseOver = useCallback(() => {
-        setCardHovered(true);
-        _setCardHovered(true);
-    }, []);
+        if (!isMobile) {
+            setCardHovered(props.project.title);
+            _setCardHovered(props.project.title);
+        }
+    }, [isMobile]);
     const handleMouseOut = useCallback(() => {
-        setCardHovered(dialogOpen);
-        _setCardHovered(false);
-    }, [dialogOpen]);
+        if (!isMobile) {
+            setCardHovered(dialogOpen);
+            _setCardHovered(false);
+        }
+    }, [dialogOpen, isMobile]);
 
     const handleOpen = useCallback(
-        () => setDialogOpen(!!props.project.links),
+        () =>
+            setDialogOpen(!!props.project.links ? props.project.title : false),
         [props.project.links]
     );
-    const handleClose = useCallback(() => setDialogOpen(false), []);
+    const handleClose = useCallback(() => {
+        setDialogOpen(false);
+        if (cardHovered !== _cardHovered) setCardHovered(_cardHovered);
+    }, [cardHovered, _cardHovered]);
 
+    const handleClick = useCallback(() => {
+        if (isMobile) {
+            if (cardHovered) {
+                setCardHovered(dialogOpen);
+                _setCardHovered(false);
+            } else {
+                setCardHovered(props.project.title);
+                _setCardHovered(props.project.title);
+            }
+        } else {
+            handleOpen();
+        }
+    }, [isMobile, dialogOpen, cardHovered]);
     const openLinks = useCallback((links) => {
         if (!Array.isArray(links)) return window.open(links, "_blank");
         links.forEach((link) => window.open(link, "_blank"));
     }, []);
 
     useEffect(() => {
-        if (!dialogOpen && cardHovered !== _cardHovered)
-            setCardHovered(_cardHovered);
-    }, [dialogOpen, cardHovered, _cardHovered]);
-
-    const px1000 = useMediaQuery("(max-width: 1000px)");
+        if (
+            dialogOpen === props.project.title &&
+            cardHovered !== props.project.title
+        ) {
+            setCardHovered(props.project.title);
+            _setCardHovered(props.project.title);
+        }
+    }, [dialogOpen, cardHovered]);
 
     return (
         <>
             <Dialog
-                open={dialogOpen}
+                open={dialogOpen === props.project.title}
                 onClose={handleClose}
                 TransitionComponent={SlideDown}
             >
@@ -184,7 +221,7 @@ function ProjectsCard(props) {
                             position: "relative",
                             border: "none",
                         }}
-                        onClick={handleOpen}
+                        onClick={handleClick}
                         onMouseOver={handleMouseOver}
                         onMouseOut={handleMouseOut}
                     >
@@ -214,7 +251,31 @@ function ProjectsCard(props) {
                                                 .array()
                                                 .join(", ")}, 0.9)`),
                                 }}
-                            ></Box>
+                            />
+                            <motion.div
+                                style={{
+                                    position: "absolute",
+                                    top: "50%",
+                                    left: "50%",
+                                    transform: "translate(-50%, -50%)",
+                                    zIndex: 1,
+                                }}
+                                variants={FadeVariants}
+                                initial="initial"
+                                animate={
+                                    tooSmall && cardHovered ? "show" : "initial"
+                                }
+                                transition={AnimationTransition}
+                            >
+                                {tooSmall && cardHovered && (
+                                    <Button
+                                        variant="contained"
+                                        onClick={handleOpen}
+                                    >
+                                        Click for links
+                                    </Button>
+                                )}
+                            </motion.div>
                         </Banner>
                         <Box
                             sx={{
@@ -260,7 +321,9 @@ function ProjectsCard(props) {
                                             marginLeft: "0.6rem",
                                         }}
                                     >
-                                        <Typography>Hover me</Typography>
+                                        <Typography>
+                                            {isMobile ? "Click me" : "Hover me"}
+                                        </Typography>
                                     </Ribbon>
                                 </GroupBox>
                             </motion.div>
@@ -318,7 +381,11 @@ function ProjectsCard(props) {
                             <motion.div
                                 variants={SlideRightVariants(235)}
                                 initial="initial"
-                                animate={cardHovered ? "show" : "initial"}
+                                animate={
+                                    !tooSmall && cardHovered
+                                        ? "show"
+                                        : "initial"
+                                }
                                 transition={{
                                     type: "spring",
                                     stiffness: 100,
@@ -336,7 +403,8 @@ function ProjectsCard(props) {
                                         fontWeight={700}
                                         letterSpacing="0.1rem"
                                         sx={{
-                                            fontSize: `clamp(0rem, 4.5vw, 1.25rem)`,
+                                            fontSize:
+                                                "clamp(0rem, 4.5vw, 1.25rem)",
                                         }}
                                     >
                                         {props.project.title}
@@ -346,7 +414,11 @@ function ProjectsCard(props) {
                             <motion.div
                                 variants={SlideUpVariants(235)}
                                 initial="initial"
-                                animate={cardHovered ? "show" : "initial"}
+                                animate={
+                                    !tooSmall && cardHovered
+                                        ? "show"
+                                        : "initial"
+                                }
                                 transition={{
                                     type: "spring",
                                     stiffness: 100,
@@ -372,6 +444,32 @@ function ProjectsCard(props) {
                                 </Box>
                             </motion.div>
                         </Box>
+                        <Collapse
+                            in={tooSmall && cardHovered}
+                            sx={{
+                                margin:
+                                    tooSmall && cardHovered && "0.2rem 0.5rem",
+                            }}
+                        >
+                            <Typography
+                                variant="h6"
+                                fontWeight={700}
+                                letterSpacing="0.1rem"
+                                sx={{
+                                    fontSize: "clamp(0rem, 4.5vw, 1.25rem)",
+                                }}
+                            >
+                                {props.project.title}
+                            </Typography>
+                            <Typography
+                                variant="body1"
+                                sx={{
+                                    fontSize: "clamp(0rem, 3vw, 1rem)",
+                                }}
+                            >
+                                {props.project.description}
+                            </Typography>
+                        </Collapse>
                     </GlassCard>
                 </motion.div>
             </AnimatePresence>
