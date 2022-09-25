@@ -7,6 +7,7 @@ import {
     DialogTitle,
     DialogActions,
     Slide,
+    useMediaQuery,
 } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -121,6 +122,8 @@ function ProjectsCard(props) {
         if (!dialogOpen && cardHovered !== _cardHovered)
             setCardHovered(_cardHovered);
     }, [dialogOpen, cardHovered, _cardHovered]);
+
+    const px1000 = useMediaQuery("(max-width: 1000px)");
 
     return (
         <>
@@ -332,6 +335,9 @@ function ProjectsCard(props) {
                                         variant="h6"
                                         fontWeight={700}
                                         letterSpacing="0.1rem"
+                                        sx={{
+                                            fontSize: `clamp(0rem, 4.5vw, 1.25rem)`,
+                                        }}
                                     >
                                         {props.project.title}
                                     </Typography>
@@ -353,7 +359,14 @@ function ProjectsCard(props) {
                                         marginLeft: "0.7rem",
                                     }}
                                 >
-                                    <Typography variant="body1">
+                                    <Typography
+                                        variant="body1"
+                                        sx={{
+                                            fontSize: `clamp(0rem, ${
+                                                px1000 ? "2.5vw" : "1.25vw"
+                                            }, 1rem)`,
+                                        }}
+                                    >
                                         {props.project.description}
                                     </Typography>
                                 </Box>
