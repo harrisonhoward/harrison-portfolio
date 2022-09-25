@@ -45,7 +45,7 @@ const ExpandVariants = {
         maxWidth: "400px",
     },
     expanded: {
-        maxWidth: "500px",
+        maxWidth: "580px",
     },
 };
 
