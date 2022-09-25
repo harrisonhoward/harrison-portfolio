@@ -1,4 +1,5 @@
 import React from "react";
+import { Grid } from "@mui/material";
 import { Element } from "react-scroll";
 
 import Container from "../styles/Container";
@@ -10,9 +11,13 @@ function Projects() {
     return (
         <Element name="/projects">
             <Container>
-                {projects.map((project, index) => (
-                    <ProjectsCard key={index} project={project} />
-                ))}
+                <Grid container justifyContent="space-evenly">
+                    {projects.map((project, index) => (
+                        <Grid item key={index}>
+                            <ProjectsCard project={project} />
+                        </Grid>
+                    ))}
+                </Grid>
             </Container>
         </Element>
     );

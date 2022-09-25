@@ -18,8 +18,6 @@ import GroupBox from "../../../../../styles/GroupBox";
 import Banner from "./styles/Banner";
 import Ribbon from "./styles/Ribbon";
 
-import { GLOBAL_PREFIX } from "../../../../../ClassNameGenerator";
-
 const ACTIVE = [
     {
         label: "Inactive",
@@ -44,10 +42,10 @@ const AnimationTransition = {
 
 const ExpandVariants = {
     initial: {
-        width: "min(100%, 400px)",
+        maxWidth: "400px",
     },
     expanded: {
-        width: "min(100%, 500px)",
+        maxWidth: "500px",
     },
 };
 
