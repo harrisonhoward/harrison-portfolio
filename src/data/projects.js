@@ -64,7 +64,7 @@ const projects = [
         },
     },
     {
-        banner: "MongoDBBanner.png",
+        banner: "MongoDBBanner.jpg",
         title: "Mongo Web App",
         description:
             "Create a new database connection entry and view all of the databasdes, " +
