@@ -116,23 +116,23 @@ function ProjectsCard({ cardHovered, setCardHovered, ...props }) {
             setCardHovered(props.project.title);
             _setCardHovered(props.project.title);
         }
-    }, [isMobile]);
+    }, [isMobile, props.project.title, setCardHovered]);
     const handleMouseOut = useCallback(() => {
         if (!isMobile) {
             setCardHovered(dialogOpen);
             _setCardHovered(false);
         }
-    }, [dialogOpen, isMobile]);
+    }, [dialogOpen, isMobile, setCardHovered]);
 
     const handleOpen = useCallback(
         () =>
             setDialogOpen(!!props.project.links ? props.project.title : false),
-        [props.project.links]
+        [props.project.links, props.project.title]
     );
     const handleClose = useCallback(() => {
         setDialogOpen(false);
         if (cardHovered !== _cardHovered) setCardHovered(_cardHovered);
-    }, [cardHovered, _cardHovered]);
+    }, [cardHovered, _cardHovered, setCardHovered]);
 
     const handleClick = useCallback(() => {
         if (isMobile) {
@@ -146,7 +146,15 @@ function ProjectsCard({ cardHovered, setCardHovered, ...props }) {
         } else {
             handleOpen();
         }
-    }, [isMobile, dialogOpen, cardHovered]);
+    }, [
+        isMobile,
+        dialogOpen,
+        cardHovered,
+        props.project.title,
+        handleOpen,
+        _setCardHovered,
+        setCardHovered,
+    ]);
     const openLinks = useCallback((links) => {
         if (!Array.isArray(links)) return window.open(links, "_blank");
         links.forEach((link) => window.open(link, "_blank"));
@@ -160,7 +168,13 @@ function ProjectsCard({ cardHovered, setCardHovered, ...props }) {
             setCardHovered(props.project.title);
             _setCardHovered(props.project.title);
         }
-    }, [dialogOpen, cardHovered]);
+    }, [
+        dialogOpen,
+        cardHovered,
+        props.project.title,
+        _setCardHovered,
+        setCardHovered,
+    ]);
 
     return (
         <>
