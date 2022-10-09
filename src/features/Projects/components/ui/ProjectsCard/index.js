@@ -237,7 +237,7 @@ function ProjectsCard({ cardHovered, setCardHovered, ...props }) {
                                 sx={{
                                     position: "absolute",
                                     width: "100%",
-                                    height: "calc(100% - 4px)",
+                                    height: "calc(100% - 3px)",
                                     transition:
                                         "background-color 0.2s ease-in-out",
                                     backgroundColor:
@@ -270,6 +270,9 @@ function ProjectsCard({ cardHovered, setCardHovered, ...props }) {
                                 {tooSmall && cardHovered && (
                                     <Button
                                         variant="contained"
+                                        sx={{
+                                            fontSize: "clamp(0rem, 4vw, 1rem)",
+                                        }}
                                         onClick={handleOpen}
                                     >
                                         Click for links
