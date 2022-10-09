@@ -45,39 +45,29 @@ const projects = [
         },
     },
     {
-        banner: "EcommerceBanner.jpg",
-        title: "Ecommerce Website",
-        description:
-            "In a test environment create fake successful and unsuccessful payments on " +
-            "a catalogue of products. Manager your card, orders and the receipt for your order. As an " +
-            "administrator manage the users, products and orders present on the website.",
-        active: 0,
+        banner: "PakkoBanner.jpg",
+        title: "Quote System",
+        description: "Pakko quote system",
+        active: 2,
         dateRange: {
-            start: "2021",
-            end: "2021",
+            start: "2022",
         },
         links: {
-            code: [
-                "https://github.com/Forbidden-Duck/ecommerce-frontend",
-                "https://github.com/Forbidden-Duck/ecommerce-backend",
-            ],
+            website: "https://quote.pakko.com.au/",
         },
     },
     {
-        banner: "MongoDBBanner.jpg",
-        title: "Mongo Web App",
-        description:
-            "Create a new database connection entry and view all of the databasdes, " +
-            "collections and documents for that particular connection. Create an account to be able " +
-            "to save and favourite your database connections.",
-        active: 0,
+        banner: "PakkoBanner.jpg",
+        title: "Interactive Design Platform",
+        description: "Pakko IDP",
+        active: 2,
         dateRange: {
             start: "2022",
-            end: "2022",
         },
         links: {
-            code: "https://github.com/Forbidden-Duck/mongo-web-app",
+            website: "https://idp.pakko.com.au/",
         },
+        overrideTitle: 305,
     },
 ];
 export default projects;

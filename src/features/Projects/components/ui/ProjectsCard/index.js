@@ -382,7 +382,9 @@ function ProjectsCard({ cardHovered, setCardHovered, ...props }) {
                                 </GroupBox>
                             </motion.div>
                             <motion.div
-                                variants={SlideRightVariants(235)}
+                                variants={SlideRightVariants(
+                                    props.project.overrideTitle || 235
+                                )}
                                 initial="initial"
                                 animate={
                                     !tooSmall && cardHovered
