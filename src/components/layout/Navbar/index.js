@@ -54,9 +54,9 @@ function Navbar() {
                         background: "rgba(26, 26, 26, 0.5)",
                         backdropFilter: "blur(10px)",
                         border: "1px solid rgba(255, 255, 255, 0.1)",
-                        width: "575px",
+                        width: navGlobals.width,
                         height: navGlobals.height + 30,
-                        left: "calc(50% - 575px / 2)",
+                        left: `calc(50% - ${navGlobals.width}px / 2)`,
                     }}
                     initial={false}
                     animate={{
