@@ -36,10 +36,7 @@ const ACTIVE = [
 ];
 
 const AnimationTransition = {
-    type: "spring",
-    stiffness: 100,
-    damping: 10,
-    mass: 0.7,
+    duration: 0.3,
 };
 
 const ExpandVariants = {
@@ -102,27 +99,21 @@ const SlideDown = React.forwardRef(function SlideDown(props, ref) {
  * @param {{ project: import("../../../../../data/projects").ProjectItem }} props
  * @returns
  */
-function ProjectsCard({ cardHovered, setCardHovered, ...props }) {
+function ProjectsCard(props) {
     const px1000 = useMediaQuery("(max-width: 1000px)");
     const isMobile = useMediaQuery("(max-width: 600px)");
     const tooSmall = useMediaQuery("(max-width: 450px)");
 
     // Used to store actual state to fix hovered being true when mouse is not over the card
-    const [_cardHovered, _setCardHovered] = useState(false);
+    const [cardHovered, setCardHovered] = useState(false);
     const [dialogOpen, setDialogOpen] = useState(false);
 
     const handleMouseOver = useCallback(() => {
-        if (!isMobile) {
-            setCardHovered(props.project.title);
-            _setCardHovered(props.project.title);
-        }
-    }, [isMobile, props.project.title, setCardHovered]);
+        setCardHovered(true);
+    }, [setCardHovered]);
     const handleMouseOut = useCallback(() => {
-        if (!isMobile) {
-            setCardHovered(dialogOpen);
-            _setCardHovered(false);
-        }
-    }, [dialogOpen, isMobile, setCardHovered]);
+        setCardHovered(false);
+    }, [setCardHovered]);
 
     const handleOpen = useCallback(
         () =>
@@ -131,50 +122,15 @@ function ProjectsCard({ cardHovered, setCardHovered, ...props }) {
     );
     const handleClose = useCallback(() => {
         setDialogOpen(false);
-        if (cardHovered !== _cardHovered) setCardHovered(_cardHovered);
-    }, [cardHovered, _cardHovered, setCardHovered]);
+    }, [setDialogOpen]);
 
     const handleClick = useCallback(() => {
-        if (isMobile) {
-            if (cardHovered) {
-                setCardHovered(dialogOpen);
-                _setCardHovered(false);
-            } else {
-                setCardHovered(props.project.title);
-                _setCardHovered(props.project.title);
-            }
-        } else {
-            handleOpen();
-        }
-    }, [
-        isMobile,
-        dialogOpen,
-        cardHovered,
-        props.project.title,
-        handleOpen,
-        _setCardHovered,
-        setCardHovered,
-    ]);
+        handleOpen();
+    }, [handleOpen]);
     const openLinks = useCallback((links) => {
         if (!Array.isArray(links)) return window.open(links, "_blank");
         links.forEach((link) => window.open(link, "_blank"));
     }, []);
-
-    useEffect(() => {
-        if (
-            dialogOpen === props.project.title &&
-            cardHovered !== props.project.title
-        ) {
-            setCardHovered(props.project.title);
-            _setCardHovered(props.project.title);
-        }
-    }, [
-        dialogOpen,
-        cardHovered,
-        props.project.title,
-        _setCardHovered,
-        setCardHovered,
-    ]);
 
     return (
         <>
@@ -405,12 +361,7 @@ function ProjectsCard({ cardHovered, setCardHovered, ...props }) {
                                         ? "show"
                                         : "initial"
                                 }
-                                transition={{
-                                    type: "spring",
-                                    stiffness: 100,
-                                    damping: 10,
-                                    mass: 0.7,
-                                }}
+                                transition={AnimationTransition}
                             >
                                 <Box
                                     sx={{
@@ -438,12 +389,7 @@ function ProjectsCard({ cardHovered, setCardHovered, ...props }) {
                                         ? "show"
                                         : "initial"
                                 }
-                                transition={{
-                                    type: "spring",
-                                    stiffness: 100,
-                                    damping: 12,
-                                    mass: 0.7,
-                                }}
+                                transition={AnimationTransition}
                             >
                                 <Box
                                     sx={{
