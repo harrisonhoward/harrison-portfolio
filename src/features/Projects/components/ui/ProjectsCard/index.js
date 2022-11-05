@@ -190,6 +190,7 @@ function ProjectsCard(props) {
                         sx={{
                             position: "relative",
                             border: "none",
+                            cursor: props.project.links ? "pointer" : "default",
                         }}
                         onClick={handleClick}
                         onMouseOver={handleMouseOver}
@@ -351,63 +352,69 @@ function ProjectsCard(props) {
                                     )}
                                 </GroupBox>
                             </motion.div>
-                            <motion.div
-                                variants={SlideRightVariants(
-                                    props.project.overrideTitle || 235
-                                )}
-                                initial="initial"
-                                animate={
-                                    !tooSmall && cardHovered
-                                        ? "show"
-                                        : "initial"
-                                }
-                                transition={AnimationTransition}
+                            <Box
+                                sx={{
+                                    paddingRight: "1rem",
+                                }}
                             >
-                                <Box
-                                    sx={{
-                                        marginLeft: "0.7rem",
-                                    }}
+                                <motion.div
+                                    variants={SlideRightVariants(
+                                        props.project.overrideTitle || 235
+                                    )}
+                                    initial="initial"
+                                    animate={
+                                        !tooSmall && cardHovered
+                                            ? "show"
+                                            : "initial"
+                                    }
+                                    transition={AnimationTransition}
                                 >
-                                    <Typography
-                                        variant="h6"
-                                        fontWeight={700}
-                                        letterSpacing="0.1rem"
+                                    <Box
                                         sx={{
-                                            fontSize:
-                                                "clamp(0rem, 4.5vw, 1.25rem)",
+                                            marginLeft: "0.7rem",
                                         }}
                                     >
-                                        {props.project.title}
-                                    </Typography>
-                                </Box>
-                            </motion.div>
-                            <motion.div
-                                variants={SlideUpVariants(235)}
-                                initial="initial"
-                                animate={
-                                    !tooSmall && cardHovered
-                                        ? "show"
-                                        : "initial"
-                                }
-                                transition={AnimationTransition}
-                            >
-                                <Box
-                                    sx={{
-                                        marginLeft: "0.7rem",
-                                    }}
+                                        <Typography
+                                            variant="h6"
+                                            fontWeight={700}
+                                            letterSpacing="0.1rem"
+                                            sx={{
+                                                fontSize:
+                                                    "clamp(0rem, 4.5vw, 1.25rem)",
+                                            }}
+                                        >
+                                            {props.project.title}
+                                        </Typography>
+                                    </Box>
+                                </motion.div>
+                                <motion.div
+                                    variants={SlideUpVariants(235)}
+                                    initial="initial"
+                                    animate={
+                                        !tooSmall && cardHovered
+                                            ? "show"
+                                            : "initial"
+                                    }
+                                    transition={AnimationTransition}
                                 >
-                                    <Typography
-                                        variant="body1"
+                                    <Box
                                         sx={{
-                                            fontSize: `clamp(0rem, ${
-                                                px1000 ? "2.5vw" : "1.25vw"
-                                            }, 1rem)`,
+                                            marginLeft: "0.7rem",
                                         }}
                                     >
-                                        {props.project.description}
-                                    </Typography>
-                                </Box>
-                            </motion.div>
+                                        <Typography
+                                            variant="body1"
+                                            sx={{
+                                                fontSize: `clamp(0rem, ${
+                                                    px1000 ? "2.5vw" : "1.25vw"
+                                                }, 1rem)`,
+                                            }}
+                                        >
+                                            {props.project.description}
+                                        </Typography>
+                                    </Box>
+                                </motion.div>
+                            </Box>
                         </Box>
                         <Collapse
                             in={tooSmall && cardHovered}
