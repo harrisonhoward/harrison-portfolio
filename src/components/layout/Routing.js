@@ -11,10 +11,13 @@ import routes from "../../data/routes";
 
 import { ActiveScroller } from "../../context/ScrollerContext";
 
+import useScrollerEvent from "../../hooks/useScrollerEvent";
+
 function Routing() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { active } = ActiveScroller();
+    const { active, scrollActive } = ActiveScroller();
+    useScrollerEvent();
 
     // If route doesn't exist redirect to home page
     useEffect(() => {
@@ -38,11 +41,16 @@ function Routing() {
 
     // Set path as active
     useEffect(() => {
-        const currentRoute = location.pathname;
-        if (![null, undefined].includes(active))
-            if (currentRoute !== active) navigate(active, { replace: true });
+        // Record when scrolling is active
+        // Prevent route from updating while auto-scrolling is active
+        if (!scrollActive) {
+            const currentRoute = location.pathname;
+            if (![null, undefined].includes(active))
+                if (currentRoute !== active)
+                    navigate(active, { replace: true });
+        }
         // eslint-disable-next-line
-    }, [active, navigate]);
+    }, [active, navigate, scrollActive]);
 
     return (
         <>

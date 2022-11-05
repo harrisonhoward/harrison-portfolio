@@ -15,7 +15,9 @@ const useScrollerEvent = (handler) => {
         const eventListener = (eventName) => (to, element) => {
             if (eventName === "begin") setScrollActive(true);
             if (eventName === "end") setScrollActive(false);
-            savedHandler.current(eventName, to, element);
+            if (typeof savedHandler.current === "function") {
+                savedHandler.current(eventName, to, element);
+            }
         };
         Events.scrollEvent.register("begin", eventListener("begin"));
         Events.scrollEvent.register("end", eventListener("end"));
