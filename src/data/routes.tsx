@@ -1,3 +1,5 @@
+import { Navigate } from "react-router-dom";
+
 import Home from "../routes/Home";
 import About from "../routes/About";
 
@@ -14,6 +16,12 @@ const routes: Route[] = [
         name: "About",
         path: "/about",
         element: <About />,
+    },
+    {
+        name: "404",
+        path: "*",
+        element: <Navigate to="/" />,
+        noNav: true,
     },
 ];
 export default routes;
