@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Typography, IconButton, Tooltip } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { TypeAnimation } from "react-type-animation";
@@ -14,6 +15,7 @@ import useProgressiveImage from "../hooks/useProgressiveImage";
 
 // Resources
 import redirects from "../data/redirects";
+import myInfo from "../data/myInfo";
 
 function Home() {
     const h4FontClamping = "clamp(0rem, 7vw, 2.125rem)";
@@ -22,6 +24,12 @@ function Home() {
     const profileBackground = useProgressiveImage(
         "resources/profile/HarrisonHoward-low-mobile.jpg",
         "resources/profile/HarrisonHoward-high-mobile.jpg"
+    );
+
+    // TypeAnimation uses a memo anyway so if the value changes it won't change until a remount
+    const describeMe = useMemo(
+        () => myInfo.describeMe.map((item) => [item, 1000]).flat(),
+        []
     );
 
     return (
@@ -38,7 +46,7 @@ function Home() {
                 >
                     Hi, I'm{" "}
                     <Spangraphy color="primary.light">
-                        Harrison Howard
+                        {myInfo.name.standard}
                     </Spangraphy>
                 </Typography>
                 <Typography
@@ -50,14 +58,7 @@ function Home() {
                     <Spangraphy fontWeight={500} color="secondary.light">
                         <TypeAnimation
                             className="animation-home"
-                            sequence={[
-                                "Full-Stack Developer",
-                                1000,
-                                "React Developer",
-                                1000,
-                                "Passionate Developer",
-                                1000,
-                            ]}
+                            sequence={describeMe}
                             wrapper="h5"
                             repeat={Infinity}
                         />
