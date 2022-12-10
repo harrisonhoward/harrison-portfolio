@@ -1,9 +1,11 @@
 import { useEffect } from "react";
-import { ThemeProvider, createTheme, useMediaQuery } from "@mui/material";
+import { ThemeProvider, useMediaQuery } from "@mui/material";
+import { Routes, Route } from "react-router-dom";
 
 // Components
 import PageContainer from "./features/App/styles/PageContainer";
 import Blur from "./features/App/styles/Blur";
+import Parallax from "./components/layout/Parallax";
 
 // Hooks
 import useProgressiveImage from "./hooks/useProgressiveImage";
@@ -38,6 +40,8 @@ function App() {
             >
                 <Blur />
             </PageContainer>
+            <Routes></Routes>
+            <Parallax />
         </ThemeProvider>
     );
 }
