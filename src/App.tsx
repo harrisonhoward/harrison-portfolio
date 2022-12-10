@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import PageContainer from "./features/App/styles/PageContainer";
 import Blur from "./features/App/styles/Blur";
 import Parallax from "./components/layout/Parallax";
+import Navbar from "./components/layout/Navbar";
 
 // Hooks
 import useProgressiveImage from "./hooks/useProgressiveImage";
@@ -42,6 +43,7 @@ function App() {
                 <Blur />
             </PageContainer>
             <Parallax />
+            <Navbar />
             <Routes>
                 {routes.map((route, index) => (
                     <Route
