@@ -1,4 +1,5 @@
 import Home from "../routes/Home";
+import About from "../routes/About";
 
 export interface Route {
     name: string;
@@ -7,5 +8,12 @@ export interface Route {
     noNav?: boolean;
 }
 
-const routes: Route[] = [{ name: "Home", path: "/", element: <Home /> }];
+const routes: Route[] = [
+    { name: "Home", path: "/", element: <Home /> },
+    {
+        name: "About",
+        path: "/about",
+        element: <About />,
+    },
+];
 export default routes;
