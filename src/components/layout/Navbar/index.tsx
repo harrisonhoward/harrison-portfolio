@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { AppBar, Container, Toolbar, useMediaQuery } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -23,6 +24,13 @@ function Navbar() {
     const isMobile = useMediaQuery("(max-width: 511px)");
 
     const scrollAmount = useScroll({ limit: navGlobals.scrollLimit });
+
+    // When mobile is set to false ensure drawer is now closed
+    useEffect(() => {
+        if (!isMobile && drawerOpen) {
+            setDrawerOpen(false);
+        }
+    }, [isMobile]);
 
     return (
         <AnimatePresence>
