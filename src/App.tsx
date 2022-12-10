@@ -41,6 +41,7 @@ function App() {
             >
                 <Blur />
             </PageContainer>
+            <Parallax />
             <Routes>
                 {routes.map((route, index) => (
                     <Route
@@ -50,7 +51,6 @@ function App() {
                     />
                 ))}
             </Routes>
-            <Parallax />
         </ThemeProvider>
     );
 }

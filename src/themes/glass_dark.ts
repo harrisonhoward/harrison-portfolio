@@ -109,7 +109,6 @@ const glass_dark = createTheme({
                 enterTouchDelay: 100,
                 TransitionComponent: Zoom,
                 TransitionProps: { timeout: 300 },
-                arrow: true,
             },
             styleOverrides: {
                 tooltip: {
