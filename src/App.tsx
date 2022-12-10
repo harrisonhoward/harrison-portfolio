@@ -1,5 +1,11 @@
+import { Box, Typography } from "@mui/material";
+
 function App() {
-    return <p>Hello World!</p>;
+    return (
+        <Box>
+            <Typography color="black">Hello World!</Typography>
+        </Box>
+    );
 }
 
 export default App;
