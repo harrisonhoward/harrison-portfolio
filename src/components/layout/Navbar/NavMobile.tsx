@@ -29,11 +29,14 @@ function NavMobile(props: NavMobileProps) {
                     keepMounted: true,
                 }}
             >
-                {props.routes.map((route, index) => (
-                    <NavButton key={index} to={route.path} isMobile>
-                        {route.name}
-                    </NavButton>
-                ))}
+                {props.routes
+                    // noNav is used to hide routes from the navbar
+                    .filter((route) => !route.noNav)
+                    .map((route, index) => (
+                        <NavButton key={index} to={route.path} isMobile>
+                            {route.name}
+                        </NavButton>
+                    ))}
             </SwipeableDrawer>
         </Box>
     );
