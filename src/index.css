@@ -16,3 +16,13 @@ code {
 #root {
     position: relative;
 }
+
+.animation-home {
+    display: inline;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    margin: 0;
+}

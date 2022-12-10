@@ -13,6 +13,7 @@ import useProgressiveImage from "./hooks/useProgressiveImage";
 // Resources
 import preloadImages from "./data/preloadImages";
 import glass_dark from "./themes/glass_dark";
+import routes from "./data/routes";
 
 function App() {
     // Preload images set in preloadImages
@@ -40,7 +41,15 @@ function App() {
             >
                 <Blur />
             </PageContainer>
-            <Routes></Routes>
+            <Routes>
+                {routes.map((route, index) => (
+                    <Route
+                        key={index}
+                        path={route.path}
+                        element={route.element}
+                    />
+                ))}
+            </Routes>
             <Parallax />
         </ThemeProvider>
     );
