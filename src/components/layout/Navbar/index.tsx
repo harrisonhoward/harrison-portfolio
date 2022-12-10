@@ -68,11 +68,14 @@ function Navbar() {
                     ) : (
                         // Container doesn't support variant, use ID to enable nav styles
                         <Container id="nav">
-                            {routes.map((route, index) => (
-                                <NavButton key={index} to={route.path}>
-                                    {route.name}
-                                </NavButton>
-                            ))}
+                            {routes
+                                // noNav is used to hide routes from the navbar
+                                .filter((route) => !route.noNav)
+                                .map((route, index) => (
+                                    <NavButton key={index} to={route.path}>
+                                        {route.name}
+                                    </NavButton>
+                                ))}
                         </Container>
                     )}
                 </Toolbar>

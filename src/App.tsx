@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { ThemeProvider, useMediaQuery } from "@mui/material";
-import { Routes, Route } from "react-router-dom";
 
 // Components
 import PageContainer from "./features/App/styles/PageContainer";
 import Blur from "./features/App/styles/Blur";
 import Parallax from "./components/layout/Parallax";
 import Navbar from "./components/layout/Navbar";
+import Routing from "./components/layout/Routing";
 
 // Hooks
 import useProgressiveImage from "./hooks/useProgressiveImage";
@@ -14,7 +14,6 @@ import useProgressiveImage from "./hooks/useProgressiveImage";
 // Resources
 import preloadImages from "./data/preloadImages";
 import glass_dark from "./themes/glass_dark";
-import routes from "./data/routes";
 
 function App() {
     // Preload images set in preloadImages
@@ -44,15 +43,7 @@ function App() {
             </PageContainer>
             <Parallax />
             <Navbar />
-            <Routes>
-                {routes.map((route, index) => (
-                    <Route
-                        key={index}
-                        path={route.path}
-                        element={route.element}
-                    />
-                ))}
-            </Routes>
+            <Routing />
         </ThemeProvider>
     );
 }
