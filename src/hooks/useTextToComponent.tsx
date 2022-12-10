@@ -32,7 +32,7 @@ function useTextToComponent(texts: string[], myInfo: IMyInfo) {
                     /({fullname})/gm,
                     (_, matchIndex) => (
                         <Code
-                            key={matchIndex}
+                            key={`{fullname}_${matchIndex}`}
                             sx={{
                                 color: (theme) =>
                                     Color(theme.palette.primary.main)
@@ -50,7 +50,7 @@ function useTextToComponent(texts: string[], myInfo: IMyInfo) {
                     /({age})/gm,
                     (_, matchIndex) => (
                         <DateTooltip
-                            key={matchIndex}
+                            key={`{age}_${matchIndex}`}
                             date={myInfo.dob}
                             format={"dddd, Do of MMMM YYYY"}
                         >
@@ -59,7 +59,7 @@ function useTextToComponent(texts: string[], myInfo: IMyInfo) {
                     )
                 );
                 return (
-                    <Typography key={index} variant="body1">
+                    <Typography key={`paragraph_${index}`} variant="body1">
                         {replacedText}
                     </Typography>
                 );
