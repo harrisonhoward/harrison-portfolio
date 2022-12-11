@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 
 import Home from "../routes/Home";
 import About from "../routes/About";
+import Projects from "../routes/Projects";
 
 export interface Route {
     name: string;
@@ -16,6 +17,11 @@ const routes: Route[] = [
         name: "About",
         path: "/about",
         element: <About />,
+    },
+    {
+        name: "Projects",
+        path: "/projects",
+        element: <Projects />,
     },
     {
         name: "404",
