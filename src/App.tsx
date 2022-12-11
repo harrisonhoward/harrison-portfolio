@@ -41,7 +41,7 @@ function App() {
             >
                 <Blur />
             </PageContainer>
-            <Parallax />
+            {isMobile ? null : <Parallax />}
             <Navbar />
             <Routing />
         </ThemeProvider>
