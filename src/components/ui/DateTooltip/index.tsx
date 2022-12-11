@@ -23,7 +23,12 @@ function DateTooltip({
     sx,
 }: DateTooltipProps) {
     return (
-        <StyledTooltip title={date.format(format)} placement="top" sx={sx}>
+        <StyledTooltip
+            title={date.format(format)}
+            placement="top"
+            sx={sx}
+            enterTouchDelay={0}
+        >
             <Spangraphy>{children}</Spangraphy>
         </StyledTooltip>
     );

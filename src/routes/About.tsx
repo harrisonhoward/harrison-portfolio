@@ -76,7 +76,7 @@ function About() {
                         "&:before": {
                             content: "''",
                             position: "absolute",
-                            transform: "translate(-10px, 1rem)",
+                            transform: "translate(-10.5px, 1rem)",
                             borderTop: "10px solid transparent",
                             borderBottom: "10px solid transparent",
                             borderRight: "10px solid rgba(100, 100, 100, 0.7)",
