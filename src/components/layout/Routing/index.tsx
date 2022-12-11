@@ -10,8 +10,22 @@ import routes from "../../../data/routes";
 
 const X_DURATION = 0.4;
 const OPACITY_DURATION = 0.3;
+const DESKTOP_SPRING = {
+    stiffness: 90,
+    damping: 13,
+    mass: 0.9,
+};
+const MOBILE_SPRING = {
+    stiffness: 90,
+    damping: 12,
+    mass: 1,
+};
 
-function Routing() {
+export interface RoutingProps {
+    isMobile: boolean;
+}
+
+function Routing(props: RoutingProps) {
     const location = useLocation();
     const { current, previous } = usePathname();
 
@@ -57,7 +71,10 @@ function Routing() {
                                     transition: {
                                         delay: X_DURATION,
                                         x: {
-                                            duration: X_DURATION,
+                                            type: "spring",
+                                            ...(props.isMobile
+                                                ? MOBILE_SPRING
+                                                : DESKTOP_SPRING),
                                         },
                                         opacity: {
                                             duration: OPACITY_DURATION,

@@ -43,7 +43,7 @@ function App() {
             </PageContainer>
             {isMobile ? null : <Parallax />}
             <Navbar />
-            <Routing />
+            <Routing isMobile={isMobile} />
         </ThemeProvider>
     );
 }
