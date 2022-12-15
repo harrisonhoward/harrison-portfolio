@@ -28,6 +28,7 @@ function Projects() {
                 >
                     {projects.map((project, index) => (
                         <motion.div
+                            key={index}
                             animate={{
                                 width:
                                     isMobile || smallerHeight
@@ -42,7 +43,7 @@ function Projects() {
                             }}
                             transition={{ duration: 0.2 }}
                         >
-                            <Grid item key={index}>
+                            <Grid item>
                                 <ProjectCard project={project} />
                             </Grid>
                         </motion.div>
