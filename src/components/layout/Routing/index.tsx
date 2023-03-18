@@ -71,6 +71,10 @@ function Routing(props: RoutingProps) {
                                             duration: OPACITY_DURATION,
                                         },
                                     },
+                                    transitionEnd: {
+                                        x: 0,
+                                        y: 0,
+                                    },
                                 }}
                                 exit={{
                                     x: shouldMoveLeft ? moveLeft : moveRight,
