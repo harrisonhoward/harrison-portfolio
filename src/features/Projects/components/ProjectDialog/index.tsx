@@ -23,7 +23,7 @@ const SLIDE_DOWN = React.forwardRef(function SlideDown(
 });
 
 export interface ProjectDialogProps {
-    project: Project;
+    project: Project | null;
     open: boolean;
     handleClose: () => void;
 }
@@ -37,37 +37,37 @@ function ProjectDialog(props: ProjectDialogProps) {
             TransitionComponent={SLIDE_DOWN}
         >
             <DialogTitle textAlign="center">
-                {props.project.title}'s Links
+                {props.project?.title}'s Links
             </DialogTitle>
             <DialogActions>
                 <Button color="error" onClick={props.handleClose}>
                     Close
                 </Button>
-                {props.project.links?.code && (
+                {props.project?.links?.code && (
                     <Button
                         onClick={() => {
                             props.handleClose();
-                            openLinks(props.project.links!.code!);
+                            openLinks(props.project?.links!.code!);
                         }}
                     >
                         Code
                     </Button>
                 )}
-                {props.project.links?.website && (
+                {props.project?.links?.website && (
                     <Button
                         onClick={() => {
                             props.handleClose();
-                            openLinks(props.project.links!.website!);
+                            openLinks(props.project?.links!.website!);
                         }}
                     >
                         Live Website
                     </Button>
                 )}
-                {props.project.links?.misc && (
+                {props.project?.links?.misc && (
                     <Button
                         onClick={() => {
                             props.handleClose();
-                            openLinks(props.project.links!.misc!);
+                            openLinks(props.project?.links!.misc!);
                         }}
                     >
                         Other

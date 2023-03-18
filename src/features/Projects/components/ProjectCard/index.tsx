@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,30 +30,11 @@ export interface ProjectCardProps {
 }
 
 function ProjectCard(props: ProjectCardProps) {
-    // State
-    const {
-        value: dialogOpen,
-        setTrue: handleDialogOpen,
-        setFalse: handleDialogClose,
-    } = useBoolean(false);
-
-    // Callbacks
-    const handleCardClick = () => {
-        handleDialogOpen();
-    };
-
     return (
         <>
-            <ProjectDialog
-                key={`${JSON.stringify(props.project)}-dialog`}
-                project={props.project}
-                open={dialogOpen}
-                handleClose={handleDialogClose}
-            />
             <GlassCard
                 key={`${JSON.stringify(props.project)}-card`}
                 elevation={10}
-                onClick={handleCardClick}
                 sx={{
                     position: "relative",
                     border: "none",
