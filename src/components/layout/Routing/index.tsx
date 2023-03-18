@@ -2,8 +2,8 @@ import { useMemo } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
-// Hooks
-import usePathname from "../../../hooks/usePathname";
+// Context
+import { useRouteContext } from "../../../context/RouteContext";
 
 // Resources
 import routes from "../../../data/routes";
@@ -25,20 +25,23 @@ export interface RoutingProps {
     isMobile: boolean;
 }
 
+const moveLeft = "-100vw";
+const moveRight = "100vw";
+
 function Routing(props: RoutingProps) {
     const location = useLocation();
-    const { current, previous } = usePathname();
+    const { current, previous } = useRouteContext();
 
-    // Get the index of the current route
-    const routeIndex = useMemo(
-        () => routes.findIndex((route) => route.path === current),
-        [current]
-    );
-    // Get the index of the previous route
-    const previousIndex = useMemo(
-        () => routes.findIndex((route) => route.path === previous),
-        [previous]
-    );
+    // Using the current route and the previous route calculate whether to move the page to the left or to the right
+    const shouldMoveLeft = useMemo(() => {
+        const currentRouteIndex = routes.findIndex(
+            (route) => route.path === current
+        );
+        const previousRouteIndex = routes.findIndex(
+            (route) => route.path === previous
+        );
+        return currentRouteIndex > previousRouteIndex;
+    }, [current]);
 
     return (
         <AnimatePresence initial={false} mode="sync">
@@ -48,21 +51,9 @@ function Routing(props: RoutingProps) {
                         key={index}
                         path={route.path}
                         element={
-                            /**
-                             * If the current route is before the next route
-                             * 1. Current route moves to the left
-                             * 2. Next route moves in from the right
-                             * Else
-                             * 1. Current route moves to the right
-                             * 2. Next route moves in from the left
-                             */
                             <motion.div
                                 initial={{
-                                    x:
-                                        previousIndex !== null &&
-                                        routeIndex > previousIndex
-                                            ? "-100vw"
-                                            : "100vw",
+                                    x: shouldMoveLeft ? moveRight : moveLeft,
                                     opacity: 0,
                                 }}
                                 animate={{
@@ -82,11 +73,7 @@ function Routing(props: RoutingProps) {
                                     },
                                 }}
                                 exit={{
-                                    x:
-                                        previousIndex !== null &&
-                                        routeIndex > previousIndex
-                                            ? "100vw"
-                                            : "-100vw",
+                                    x: shouldMoveLeft ? moveLeft : moveRight,
                                     opacity: 0,
                                     transition: {
                                         x: {

@@ -1,6 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import { Container, Typography, MenuItem } from "@mui/material";
 
+// Context
+import { useRouteContext } from "../../../context/RouteContext";
+import { useCallback } from "react";
+
 export interface NavButtonProps {
     to: string;
     isMobile?: boolean;
@@ -9,6 +13,12 @@ export interface NavButtonProps {
 
 function NavButton(props: NavButtonProps) {
     const location = useLocation();
+    const { update } = useRouteContext();
+
+    // Actions
+    const onButtonClicked = useCallback(() => {
+        update(props.to);
+    }, []);
 
     // This is the render for the component
     const ComponentRender = (
@@ -45,6 +55,7 @@ function NavButton(props: NavButtonProps) {
                 textDecoration: "none",
             }}
             to={props.to}
+            onMouseDown={onButtonClicked}
         >
             {Component}
         </Link>
