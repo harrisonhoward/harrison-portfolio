@@ -13,7 +13,10 @@ const Overlay = styled(Box)({
     left: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    transition: "background-color 0.2s ease-in-out",
+    ":hover": {
+        backgroundColor: "rgba(0, 0, 0, 0.3)",
+    },
 });
 
 export interface BannerProps {

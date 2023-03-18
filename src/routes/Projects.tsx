@@ -1,6 +1,7 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Grid, useMediaQuery } from "@mui/material";
 import { AnimatePresence, Variants, motion } from "framer-motion";
+import { useTimeout } from "usehooks-ts";
 
 // Components
 import Container from "../styles/Container";
@@ -16,26 +17,28 @@ const MOBILE_WIDTH = 350;
 
 function Projects() {
     // Dialog logic
+    const [dialogOpen, setDialogOpen] = useState(false);
     const [selectedProject, setSelectedProject] = useState<Project | null>(
         null
     );
     const handleDialogOpen = useCallback(
         (project: Project) => {
             setSelectedProject(project);
+            setDialogOpen(true);
         },
         [setSelectedProject]
     );
     const handleDialogClose = useCallback(() => {
-        setSelectedProject(null);
+        setDialogOpen(false);
     }, [setSelectedProject]);
 
+    // Animation logic
     const isMobile = useMediaQuery("(max-width: 600px)");
     const smallerHeight = useMediaQuery("(max-height: 700px)");
-
     const projectCardWidth = useMemo(() => {
         return isMobile || smallerHeight ? MOBILE_WIDTH : DESKTOP_WIDTH;
     }, [isMobile, smallerHeight]);
-    const projectVariants = useMemo(() => {
+    const projectVariants: Variants = useMemo(() => {
         return {
             initial: {
                 width: projectCardWidth,
@@ -57,7 +60,7 @@ function Projects() {
         <Container sx={{ width: "100%" }}>
             <ProjectDialog
                 project={selectedProject}
-                open={!!selectedProject}
+                open={dialogOpen}
                 handleClose={handleDialogClose}
             />
             <AnimatePresence>
@@ -74,6 +77,7 @@ function Projects() {
                             variants={projectVariants}
                             initial="initial"
                             animate={
+                                dialogOpen &&
                                 selectedProject?.title === project.title
                                     ? "expanded"
                                     : "initial"
