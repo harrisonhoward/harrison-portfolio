@@ -65,6 +65,7 @@ function ParallaxIcon(props: ParallaxIconProps) {
 
     return (
         <motion.div
+            className="parallax-icon"
             style={{
                 position: "absolute",
                 width: width || "32px",

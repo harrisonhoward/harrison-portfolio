@@ -4,3 +4,7 @@
     color: white;
     margin-top: 0.5rem;
 }
+
+.parallax-icon:hover {
+    cursor: pointer;
+}
