@@ -1,14 +1,10 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { Variants, motion } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
-import Color from "color";
+import { useCallback, useMemo } from "react";
+import { Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Variants } from "framer-motion";
 import { useBoolean } from "usehooks-ts";
 
 // Components
 import GlassCard from "../../../../components/ui/GlassCard";
-import GroupBox from "../../../../styles/GroupBox";
 import Banner from "./styles/Banner";
 import Ribbon from "./styles/Ribbon";
 import LeftGroup from "./styles/LeftGroup";

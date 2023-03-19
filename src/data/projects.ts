@@ -56,7 +56,10 @@ const projects: Project[] = [
     {
         banner: "PakkoBanner.jpg",
         title: "Quote System",
-        description: "Pakko quote system",
+        description:
+            "I create the user interface for the current quote system for Pakko. " +
+            "It allows the user to intuitively insert the specifications for their packagig needs. " +
+            "The site will create a quote based on that criterion.",
         status: Status.Active,
         dates: {
             start: "2022",
@@ -68,7 +71,10 @@ const projects: Project[] = [
     {
         banner: "PakkoBanner.jpg",
         title: "Interactive Design Platform",
-        description: "Pakko IDP",
+        description:
+            "Using three.js, I assisted in the creation of a 3D interactive design platform. " +
+            "This system allows the user to create a live 3D model of their box. I overlooked " +
+            "the implementation of the animation and scaling.",
         status: Status.Active,
         dates: {
             start: "2022",
