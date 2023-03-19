@@ -71,9 +71,9 @@ function Projects() {
                     columnGap={4}
                     maxWidth="1100px"
                 >
-                    {projects.map((project, index) => (
+                    {projects.map((project) => (
                         <motion.div
-                            key={index}
+                            key={project.title}
                             variants={projectVariants}
                             initial="initial"
                             animate={
@@ -87,7 +87,13 @@ function Projects() {
                             onClick={handleProjectClick(project)}
                         >
                             <Grid item>
-                                <ProjectCard project={project} />
+                                <ProjectCard
+                                    project={project}
+                                    dialogOpen={
+                                        dialogOpen &&
+                                        selectedProject?.title === project.title
+                                    }
+                                />
                             </Grid>
                         </motion.div>
                     ))}
