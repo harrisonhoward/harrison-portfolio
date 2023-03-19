@@ -12,8 +12,7 @@ import ProjectDialog from "../features/Projects/components/ProjectDialog";
 import projects, { Project } from "../data/projects";
 
 // Contants
-const DESKTOP_WIDTH = 500;
-const MOBILE_WIDTH = 350;
+const WIDTH = 500;
 
 function Projects() {
     // Dialog logic
@@ -33,21 +32,16 @@ function Projects() {
     }, [setSelectedProject]);
 
     // Animation logic
-    const isMobile = useMediaQuery("(max-width: 600px)");
-    const smallerHeight = useMediaQuery("(max-height: 700px)");
-    const projectCardWidth = useMemo(() => {
-        return isMobile || smallerHeight ? MOBILE_WIDTH : DESKTOP_WIDTH;
-    }, [isMobile, smallerHeight]);
     const projectVariants: Variants = useMemo(() => {
         return {
             initial: {
-                width: projectCardWidth,
+                width: WIDTH,
             },
             expanded: {
-                width: projectCardWidth + 50,
+                width: WIDTH + 50,
             },
         };
-    }, [projectCardWidth]);
+    }, []);
 
     // Action
     const handleProjectClick = useCallback((project: Project) => {

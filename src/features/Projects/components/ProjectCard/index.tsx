@@ -13,6 +13,7 @@ import Banner from "./styles/Banner";
 import Ribbon from "./styles/Ribbon";
 import LeftGroup from "./styles/LeftGroup";
 import RightGroup from "./styles/RightGroup";
+import MainGroup from "./styles/MainGroup";
 
 // Types
 import { Project, Status } from "../../../../data/projects";
@@ -34,12 +35,21 @@ export interface ProjectCardProps {
     dialogOpen: boolean;
 }
 
-const cardVariants: Variants = {
+const ribbonVariants: Variants = {
     initial: {
         y: -64,
     },
     hovered: {
         y: -16,
+    },
+};
+
+const mainGroupVariants: Variants = {
+    initial: {
+        x: "-101%",
+    },
+    hovered: {
+        x: 0,
     },
 };
 
@@ -84,9 +94,10 @@ function ProjectCard(props: ProjectCardProps) {
                         position: "relative",
                     },
                 }}
+                active={!showHoverText}
             >
                 <LeftGroup
-                    variants={cardVariants}
+                    variants={ribbonVariants}
                     animate={showHoverText ? "initial" : "hovered"}
                 >
                     {/* Date Ribbon */}
@@ -127,6 +138,31 @@ function ProjectCard(props: ProjectCardProps) {
                         </Typography>
                     </Ribbon>
                 </RightGroup>
+                {/* Title & Description */}
+                <MainGroup
+                    variants={mainGroupVariants}
+                    initial="initial"
+                    animate={showHoverText ? "initial" : "hovered"}
+                    transition={{
+                        type: "spring",
+                        damping: 20,
+                        stiffness: 150,
+                    }}
+                >
+                    <Typography
+                        variant="h6"
+                        fontWeight={500}
+                        fontSize={"clamp(0rem, 4.5vw, 1.25rem)"}
+                    >
+                        {props.project.title}
+                    </Typography>
+                    <Typography
+                        variant="body2"
+                        fontSize={"clamp(0rem, 2.8vw, 0.9rem)"}
+                    >
+                        {props.project.description}
+                    </Typography>
+                </MainGroup>
             </Banner>
         </GlassCard>
     );
