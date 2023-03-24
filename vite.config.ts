@@ -1,10 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-let overallChunkSize = 0;
-let chunksOver = 0;
-let skipChunk = -1;
-
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [react({})],
