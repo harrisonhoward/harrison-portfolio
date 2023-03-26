@@ -91,8 +91,8 @@ function ParallaxIcon(props: ParallaxIconProps) {
         >
             <DevIconButton
                 colour={0}
-                mousedown={`${mouseDown}`}
-                mouseover={`${mouseOver}`}
+                mousedown={mouseDown}
+                mouseover={mouseOver}
             />
             <DevIconComponent style={props.sx} size={props.width || "32px"} />
             {clicked && props.label && (

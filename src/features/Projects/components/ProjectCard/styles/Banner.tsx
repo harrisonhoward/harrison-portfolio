@@ -7,7 +7,9 @@ const Container = styled(Box)({
 const StyledImage = styled("img")({
     width: "100%",
 });
-const Overlay = styled(Box)<{ active: boolean }>((props) => ({
+const Overlay = styled(Box, {
+    shouldForwardProp: (propName) => propName !== "active",
+})<{ active: boolean }>((props) => ({
     position: "absolute",
     top: 0,
     left: 0,
