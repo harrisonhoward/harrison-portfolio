@@ -42,7 +42,7 @@ const ribbonVariants: Variants = {
 
 const mainGroupVariants: Variants = {
     initial: {
-        x: "-101%",
+        x: "-110%",
     },
     hovered: {
         x: 0,
