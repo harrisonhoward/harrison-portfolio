@@ -100,6 +100,7 @@ function ParallaxIcon(props: ParallaxIconProps) {
                     className="animation"
                     sequence={[props.label, 3000, ""]}
                     cursor={false}
+                    wrapper="div"
                 />
             )}
         </motion.div>

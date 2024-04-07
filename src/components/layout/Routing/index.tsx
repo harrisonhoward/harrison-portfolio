@@ -44,7 +44,7 @@ function Routing(props: RoutingProps) {
     }, [current]);
 
     return (
-        <AnimatePresence initial={false} mode="sync">
+        <AnimatePresence initial={false} mode="wait">
             <Routes location={location} key={location.pathname}>
                 {routes.map((route, index) => (
                     <Route

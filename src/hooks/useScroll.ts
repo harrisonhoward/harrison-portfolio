@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useEventListener, useEffectOnce } from "usehooks-ts";
+import { useEventListener } from "usehooks-ts";
 
 export interface ScrollOptions {
     limit?: number;
@@ -26,9 +26,9 @@ function useScroll(options?: ScrollOptions) {
     );
 
     // Ensure the scroll limit is updated on mount
-    useEffectOnce(() => {
+    useEffect(() => {
         handleScroll(document.scrollingElement?.scrollTop || 0);
-    });
+    }, []);
 
     // Update scroll amount when scroll event is fired
     useEventListener("scroll", () => {
