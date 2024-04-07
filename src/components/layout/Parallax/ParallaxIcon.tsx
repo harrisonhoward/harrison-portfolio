@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import DevIcons from "devicons-react";
 
 // Components
 import DevIconButton from "./styles/DevIconButton";
@@ -21,7 +20,7 @@ export interface ParallaxIconProps extends ParallaxItem {
 
 function ParallaxIcon(props: ParallaxIconProps) {
     const { top, left, right, bottom, width, height } = props;
-    const DevIconComponent = DevIcons[props.icon || "Aarch64Original"];
+    const DevIconComponent = props.icon;
 
     let coordX = 0;
     let coordY = 0;
