@@ -1,17 +1,14 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { Grid } from "@mui/material";
-import { AnimatePresence, Variants, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 // Components
 import Container from "../styles/Container";
-import ProjectCard from "../features/Projects/components/ProjectCard";
 import ProjectDialog from "../features/Projects/components/ProjectDialog";
 
 // Resources
-import projects, { Project } from "../data/projects";
-
-// Constants
-const WIDTH = 500;
+import projects from "../data/projects";
+import Project from "../features/Projects/components/Project";
 
 function Projects() {
     // Dialog logic
@@ -30,23 +27,9 @@ function Projects() {
         setDialogOpen(false);
     }, [setSelectedProject]);
 
-    // Animation logic
-    const projectVariants: Variants = useMemo(() => {
-        return {
-            initial: {
-                width: WIDTH,
-            },
-            expanded: {
-                width: WIDTH + 50,
-            },
-        };
-    }, []);
-
     // Action
     const handleProjectClick = useCallback((project: Project) => {
-        return useCallback(() => {
-            handleDialogOpen(project);
-        }, []);
+        handleDialogOpen(project);
     }, []);
 
     return (
@@ -65,30 +48,13 @@ function Projects() {
                     maxWidth="1100px"
                 >
                     {projects.map((project) => (
-                        <motion.div
+                        <Project
                             key={project.title}
-                            variants={projectVariants}
-                            initial="initial"
-                            animate={
-                                dialogOpen &&
-                                selectedProject?.title === project.title
-                                    ? "expanded"
-                                    : "initial"
-                            }
-                            whileHover="expanded"
-                            transition={{ duration: 0.2 }}
-                            onClick={handleProjectClick(project)}
-                        >
-                            <Grid item>
-                                <ProjectCard
-                                    project={project}
-                                    dialogOpen={
-                                        dialogOpen &&
-                                        selectedProject?.title === project.title
-                                    }
-                                />
-                            </Grid>
-                        </motion.div>
+                            project={project}
+                            selectedProject={selectedProject}
+                            dialogOpen={dialogOpen}
+                            onClick={handleProjectClick}
+                        />
                     ))}
                 </Grid>
             </AnimatePresence>
