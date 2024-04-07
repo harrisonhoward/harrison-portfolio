@@ -5,7 +5,7 @@ import { IconDefinition } from "@fortawesome/free-regular-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
     faGithub,
-    faTwitter,
+    faXTwitter,
     faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 
@@ -37,9 +37,9 @@ const redirects: Redirect[] = [
     },
     {
         username: "harrisonhowardd",
-        link: "https://twitter.com/{username}",
-        label: "Twitter",
-        icon: faTwitter,
+        link: "https://x.com/{username}",
+        label: "X (formerly Twitter)",
+        icon: faXTwitter,
     },
 ];
 export default redirects;
