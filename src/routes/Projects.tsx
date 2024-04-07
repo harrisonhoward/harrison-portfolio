@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Grid, useMediaQuery } from "@mui/material";
+import { useCallback, useMemo, useState } from "react";
+import { Grid } from "@mui/material";
 import { AnimatePresence, Variants, motion } from "framer-motion";
-import { useTimeout } from "usehooks-ts";
 
 // Components
 import Container from "../styles/Container";
@@ -11,7 +10,7 @@ import ProjectDialog from "../features/Projects/components/ProjectDialog";
 // Resources
 import projects, { Project } from "../data/projects";
 
-// Contants
+// Constants
 const WIDTH = 500;
 
 function Projects() {

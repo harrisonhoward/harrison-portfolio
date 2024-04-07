@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import routes, { Route } from "../data/routes";
+import { Route } from "../data/routes";
 
 export interface RouteContextType {
     current: Route["path"];
