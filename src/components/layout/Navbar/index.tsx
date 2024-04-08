@@ -86,6 +86,8 @@ function Navbar() {
                             drawer={drawerOpen}
                             setDrawer={setDrawerOpen}
                             toggleDrawer={toggleDrawer}
+                            animating={animating}
+                            onClick={handleClick}
                         />
                     ) : (
                         // Container doesn't support variant, use ID to enable nav styles
