@@ -7,9 +7,12 @@ export interface RouteContextType {
     update: (newRoute: Route["path"]) => void;
 }
 
-export const useRouteContext = create<RouteContextType>((set) => ({
+export const useRouteContext = create<RouteContextType>((set, get) => ({
     current: window.location.pathname,
     previous: null,
-    update: (newRoute: Route["path"]) =>
-        set((state) => ({ current: newRoute, previous: state.current })),
+    update: (newRoute: Route["path"]) => {
+        // If the new route is the same as the current route, do nothing
+        if (get().current === newRoute) return;
+        set((state) => ({ current: newRoute, previous: state.current }));
+    },
 }));

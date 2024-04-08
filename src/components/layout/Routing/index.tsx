@@ -8,7 +8,11 @@ import { useRouteContext } from "../../../context/RouteContext";
 // Resources
 import routes from "../../../data/routes";
 
-const X_DURATION = 0.4;
+/**
+ * The duration the x axis takes to complete one phase of the animation.
+ * This will be used to prevent you from navigation while the animation is still exiting
+ */
+export const X_DURATION = 0.4;
 const OPACITY_DURATION = 0.3;
 const DESKTOP_SPRING = {
     stiffness: 90,
@@ -46,9 +50,9 @@ function Routing(props: RoutingProps) {
     return (
         <AnimatePresence initial={false} mode="wait">
             <Routes location={location} key={location.pathname}>
-                {routes.map((route, index) => (
+                {routes.map((route) => (
                     <Route
-                        key={index}
+                        key={route.path}
                         path={route.path}
                         element={
                             <motion.div
