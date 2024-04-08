@@ -13,6 +13,8 @@ export interface NavMobileProps {
     drawer: boolean;
     setDrawer: (open: boolean) => void;
     toggleDrawer: () => void;
+    animating?: boolean;
+    onClick?: () => void;
 }
 
 function NavMobile(props: NavMobileProps) {
@@ -33,7 +35,13 @@ function NavMobile(props: NavMobileProps) {
                     // noNav is used to hide routes from the navbar
                     .filter((route) => !route.noNav)
                     .map((route, index) => (
-                        <NavButton key={index} to={route.path} isMobile>
+                        <NavButton
+                            key={index}
+                            to={route.path}
+                            animating={props.animating}
+                            onClick={props.onClick}
+                            isMobile
+                        >
                             {route.name}
                         </NavButton>
                     ))}

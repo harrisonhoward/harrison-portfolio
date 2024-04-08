@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Container, Typography, MenuItem } from "@mui/material";
 
 // Context
@@ -7,37 +7,54 @@ import { useCallback } from "react";
 
 export interface NavButtonProps {
     to: string;
+    /**
+     * If true this will prevent the button from being clicked
+     */
+    animating?: boolean;
     isMobile?: boolean;
     children?: string | JSX.Element;
+    onClick?: () => void;
 }
 
 function NavButton(props: NavButtonProps) {
+    const { to, animating, isMobile, children, onClick } = props;
+
     const location = useLocation();
     const { update } = useRouteContext();
+    const navigate = useNavigate();
 
     // Actions
-    const onButtonClicked = useCallback(() => {
-        update(props.to);
-    }, []);
+    const handleLinkClick: React.MouseEventHandler<HTMLAnchorElement> =
+        useCallback(
+            (evt) => {
+                evt.preventDefault();
+                if (!animating) {
+                    onClick?.();
+                    update(to);
+                    navigate(to);
+                }
+            },
+            [onClick, animating, navigate]
+        );
 
     // This is the render for the component
     const ComponentRender = (
         <Typography
-            variant={location.pathname === props.to ? "nav-active" : "nav"}
+            variant={location.pathname === to ? "nav-active" : "nav"}
             sx={{
                 userSelect: "none",
             }}
         >
-            {props.children}
+            {children}
         </Typography>
     );
 
     // This is the component itself
-    const Component = props.isMobile ? (
+    const Component = isMobile ? (
         <MenuItem
             sx={{
-                padding: props.isMobile ? "1.2rem 32px" : "0",
-                borderBottom: props.isMobile
+                padding: isMobile ? "1.2rem 32px" : "0",
+                borderBottom: isMobile
                     ? "1px solid rgba(255, 255, 255, 0.08)"
                     : "none",
             }}
@@ -54,8 +71,8 @@ function NavButton(props: NavButtonProps) {
                 color: "inherit",
                 textDecoration: "none",
             }}
-            to={props.to}
-            onMouseDown={onButtonClicked}
+            to={to}
+            onClick={handleLinkClick}
         >
             {Component}
         </Link>
