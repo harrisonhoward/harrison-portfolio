@@ -56,6 +56,11 @@ function Routing(props: RoutingProps) {
                         path={route.path}
                         element={
                             <motion.div
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    height: "100%",
+                                }}
                                 initial={{
                                     x: shouldMoveLeft ? moveRight : moveLeft,
                                     opacity: 0,

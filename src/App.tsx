@@ -5,7 +5,7 @@ import { ThemeProvider, useMediaQuery } from "@mui/material";
 import PageContainer from "./features/App/styles/PageContainer";
 import Blur from "./features/App/styles/Blur";
 import Parallax from "./components/layout/Parallax";
-import Navbar from "./components/layout/Navbar";
+// import Navbar from "./components/layout/Navbar";
 import Routing from "./components/layout/Routing";
 
 // Hooks
@@ -23,7 +23,7 @@ function App() {
         });
     }, []);
 
-    // Progessively load the background for desktop and mobile
+    // Progressively load the background for desktop and mobile
     const isMobile = useMediaQuery("(max-width: 600px)");
     const desktopBackground = useProgressiveImage(
         "resources/background/dark-background-low.jpg",
@@ -42,7 +42,7 @@ function App() {
                 <Blur />
             </PageContainer>
             {isMobile ? null : <Parallax />}
-            <Navbar />
+            {/* <Navbar /> */}
             <Routing isMobile={isMobile} />
         </ThemeProvider>
     );
