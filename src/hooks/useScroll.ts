@@ -17,6 +17,7 @@ function useScroll(options?: ScrollOptions) {
                 }
                 // If the new amount is bigger than the limit return
                 if (amount > options.limit) {
+                    setScrollAmount(options.limit);
                     return;
                 }
             }

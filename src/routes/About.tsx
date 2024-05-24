@@ -30,7 +30,7 @@ function About() {
     const AboutMe = useTextToComponent(myInfo.aboutMe, myInfo);
 
     return (
-        <Container sx={{ margin: "0 1rem" }}>
+        <Container>
             <GroupBox
                 sx={{
                     "@media (max-width: 600px)": {

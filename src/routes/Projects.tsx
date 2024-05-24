@@ -50,7 +50,7 @@ function Projects() {
     }, []);
 
     return (
-        <Container sx={{ width: "100%" }}>
+        <Container>
             <ProjectDialog
                 project={selectedProject}
                 open={dialogOpen}
