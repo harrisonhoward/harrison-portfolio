@@ -9,6 +9,9 @@ export default defineConfig({
         open: "http://howardfamily.ddns.net:3000/",
         port: 3000,
         strictPort: true,
+        watch: {
+            usePolling: true,
+        },
     },
     build: {
         // Only warn when our build exceeds 1000kB
