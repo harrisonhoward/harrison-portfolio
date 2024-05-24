@@ -1,9 +1,9 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useCallback } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Container, Typography, MenuItem } from "@mui/material";
 
 // Context
 import { useRouteContext } from "../../../context/RouteContext";
-import { useCallback } from "react";
 
 export interface NavButtonProps {
     to: string;
@@ -21,7 +21,6 @@ function NavButton(props: NavButtonProps) {
 
     const location = useLocation();
     const { update } = useRouteContext();
-    const navigate = useNavigate();
 
     // Actions
     const handleLinkClick: React.MouseEventHandler<HTMLAnchorElement> =
@@ -31,10 +30,9 @@ function NavButton(props: NavButtonProps) {
                 if (!animating) {
                     onClick?.();
                     update(to);
-                    navigate(to);
                 }
             },
-            [onClick, animating, navigate]
+            [onClick, animating]
         );
 
     // This is the render for the component

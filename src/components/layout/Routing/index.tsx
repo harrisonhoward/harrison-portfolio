@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 // Context
@@ -34,10 +34,16 @@ const moveRight = "100vw";
 
 function Routing(props: RoutingProps) {
     const location = useLocation();
+    const navigate = useNavigate();
     const { current, previous } = useRouteContext();
 
     // Using the current route and the previous route calculate whether to move the page to the left or to the right
     const shouldMoveLeft = useMemo(() => {
+        // We have to navigate here instead of when the user clicks the button.
+        // This is because the framer animation will animate before this has had a chance to update
+        if (current !== location.pathname) {
+            navigate(current);
+        }
         const currentRouteIndex = routes.findIndex(
             (route) => route.path === current
         );
@@ -45,7 +51,7 @@ function Routing(props: RoutingProps) {
             (route) => route.path === previous
         );
         return currentRouteIndex > previousRouteIndex;
-    }, [current]);
+    }, [current, previous]);
 
     return (
         <AnimatePresence initial={false} mode="wait">
