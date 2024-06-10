@@ -6,7 +6,7 @@ export default defineConfig({
     plugins: [react()],
     server: {
         host: "0.0.0.0",
-        open: "http://howardfamily.ddns.net:3000/",
+        open: "http://localhost:3000/",
         port: 3000,
         strictPort: true,
         watch: {
