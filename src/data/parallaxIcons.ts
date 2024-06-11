@@ -43,7 +43,7 @@ const PARALLAX_ITEMS: ParallaxItem[] = [
     },
     {
         icon: ReduxOriginal,
-        top: "25%",
+        top: "17%",
         left: "50%",
         depth: 30,
         sx: {
