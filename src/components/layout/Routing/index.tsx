@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -33,16 +33,20 @@ const moveLeft = "-100vw";
 const moveRight = "100vw";
 
 function Routing(props: RoutingProps) {
+    // Special code for strict mode where it runs navigate twice
+    const historyTrack = useRef<string>();
+
     const location = useLocation();
     const navigate = useNavigate();
-    const { current, previous } = useRouteContext();
+    const { current, previous, update } = useRouteContext();
 
     // Using the current route and the previous route calculate whether to move the page to the left or to the right
     const shouldMoveLeft = useMemo(() => {
         // We have to navigate here instead of when the user clicks the button.
         // This is because the framer animation will animate before this has had a chance to update
-        if (current !== location.pathname) {
+        if (current !== location.pathname && historyTrack.current !== current) {
             navigate(current);
+            historyTrack.current = current;
         }
         const currentRouteIndex = routes.findIndex(
             (route) => route.path === current
@@ -51,7 +55,21 @@ function Routing(props: RoutingProps) {
             (route) => route.path === previous
         );
         return currentRouteIndex > previousRouteIndex;
-    }, [current, previous]);
+    }, [current, previous, historyTrack]);
+
+    // This should track when the user presses a browser navigation button
+    useEffect(() => {
+        if (
+            // If the current state doesn't match the current around
+            current !== location.pathname &&
+            // And there is no history track or it is equal to current state
+            (!historyTrack.current || historyTrack.current === current)
+        ) {
+            // Reset state because we are out of sync
+            historyTrack.current = undefined;
+            update(location.pathname);
+        }
+    }, [location.pathname]);
 
     return (
         <AnimatePresence initial={false} mode="wait">

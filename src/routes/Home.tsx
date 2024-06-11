@@ -9,6 +9,7 @@ import GlassCard from "../components/ui/GlassCard";
 import Spangraphy from "../components/ui/Spangraphy";
 import Container from "../styles/Container";
 import GroupBox from "../styles/GroupBox";
+import NavButton from "../components/layout/NavButton/NavButton";
 
 // Hooks
 import useProgressiveImage from "../hooks/useProgressiveImage";
@@ -16,6 +17,7 @@ import useProgressiveImage from "../hooks/useProgressiveImage";
 // Resources
 import redirects from "../data/redirects";
 import myInfo from "../data/myInfo";
+import { RouteName } from "../data/routes";
 
 function Home() {
     const h4FontClamping = "clamp(0rem, 7vw, 2.125rem)";
@@ -92,6 +94,7 @@ function Home() {
                     ))}
                 </GroupBox>
             </GlassCard>
+            <NavButton toName={RouteName.About} />
         </Container>
     );
 }
