@@ -16,18 +16,17 @@ export interface NavButtonProps {
 
 const COMMON_STYLE: SxProps = {
     position: "absolute",
-    top: "50%",
-    transform: "translateY(-50%)",
+    top: -60,
 };
 
 const RIGHT_STYLE: SxProps = {
     ...COMMON_STYLE,
-    right: -60,
+    right: 0,
 };
 
 const LEFT_STYLE: SxProps = {
     ...COMMON_STYLE,
-    left: -60,
+    left: 0,
 };
 
 const NavButton: React.FC<NavButtonProps> = ({
