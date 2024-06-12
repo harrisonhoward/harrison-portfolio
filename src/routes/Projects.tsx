@@ -1,65 +1,35 @@
-import { useCallback, useState } from "react";
-import { Grid } from "@mui/material";
-import { AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
 
 // Components
 import Container from "../styles/Container";
-import ProjectDialog from "../features/Projects/components/ProjectDialog";
+import NavButton from "../components/layout/NavButton/NavButton";
+import GlassCard from "../components/ui/GlassCard";
+
+// Features
+import ProjectSlider from "../features/Projects/ProjectSlider";
 
 // Resources
-import projects from "../data/projects";
-import Project from "../features/Projects/components/Project";
+import { RouteName } from "../data/routes";
 
-function Projects() {
-    // Dialog logic
-    const [dialogOpen, setDialogOpen] = useState(false);
-    const [selectedProject, setSelectedProject] = useState<Project | null>(
-        null
-    );
-    const handleDialogOpen = useCallback(
-        (project: Project) => {
-            setSelectedProject(project);
-            setDialogOpen(true);
-        },
-        [setSelectedProject]
-    );
-    const handleDialogClose = useCallback(() => {
-        setDialogOpen(false);
-    }, [setSelectedProject]);
-
-    // Action
-    const handleProjectClick = useCallback((project: Project) => {
-        handleDialogOpen(project);
-    }, []);
+const Projects: React.FC = () => {
+    const [activeYear, setActiveYear] = useState(2017);
 
     return (
         <Container>
-            <ProjectDialog
-                project={selectedProject}
-                open={dialogOpen}
-                handleClose={handleDialogClose}
-            />
-            <AnimatePresence>
-                <Grid
-                    container
-                    justifyContent="center"
-                    rowGap={4}
-                    columnGap={4}
-                    maxWidth="1100px"
-                >
-                    {projects.map((project) => (
-                        <Project
-                            key={project.title}
-                            project={project}
-                            selectedProject={selectedProject}
-                            dialogOpen={dialogOpen}
-                            onClick={handleProjectClick}
-                        />
-                    ))}
-                </Grid>
-            </AnimatePresence>
+            <NavButton toName={RouteName.About} direction="left" />
+            <GlassCard
+                sx={{
+                    padding: "1rem 2rem",
+                    minWidth: 500,
+                }}
+            >
+                <ProjectSlider
+                    activeYear={activeYear}
+                    onChange={setActiveYear}
+                />
+            </GlassCard>
         </Container>
     );
-}
+};
 
 export default Projects;
