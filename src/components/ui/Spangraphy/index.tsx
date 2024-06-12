@@ -13,6 +13,8 @@ const Spangraphy = forwardRef(
                 fontSize="inherit"
                 fontWeight="inherit"
                 border="inherit"
+                lineHeight="inherit"
+                letterSpacing="inherit"
                 {...props}
                 ref={ref}
                 component="span"

@@ -47,6 +47,7 @@ const projects: Project[] = [
         status: Status.Active,
         dates: {
             start: "2020",
+            end: "2022",
         },
         links: {
             website:
@@ -58,11 +59,12 @@ const projects: Project[] = [
         title: "Quote System",
         description:
             "I create the user interface for the current quote system for Pakko. " +
-            "It allows the user to intuitively insert the specifications for their packagig needs. " +
+            "It allows the user to intuitively insert the specifications for their packaging needs. " +
             "The site will create a quote based on that criterion.",
         status: Status.Active,
         dates: {
             start: "2022",
+            end: "2022",
         },
         links: {
             website: "https://quote.pakko.com.au/",
@@ -78,6 +80,7 @@ const projects: Project[] = [
         status: Status.Active,
         dates: {
             start: "2022",
+            end: "2022",
         },
         links: {
             website: "https://idp.pakko.com.au/",
