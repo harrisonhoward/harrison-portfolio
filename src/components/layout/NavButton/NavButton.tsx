@@ -17,6 +17,7 @@ export interface NavButtonProps {
 const COMMON_STYLE: SxProps = {
     position: "absolute",
     top: -60,
+    padding: "1px",
 };
 
 const RIGHT_STYLE: SxProps = {

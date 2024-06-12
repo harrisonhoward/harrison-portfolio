@@ -3,8 +3,8 @@ import Color from "color";
 
 import navGlobals from "../data/navGlobals";
 
-const PrimaryMain = Color("#11a2cf");
-const SecondaryMain = Color("#12e69c");
+export const PrimaryMain = Color("#11a2cf");
+export const SecondaryMain = Color("#12e69c");
 
 declare module "@mui/material" {
     interface ContainerPropsVariantOverrides {
@@ -55,45 +55,6 @@ const glass_dark = createTheme({
                     transition: "all 0.5s ease-in-out",
                 },
             },
-            variants: [
-                {
-                    props: { id: "nav" },
-                    style: {
-                        display: "flex",
-                        alignItems: "center",
-                        width: "unset",
-                    },
-                },
-            ],
-        },
-        MuiTypography: {
-            variants: [
-                {
-                    props: { variant: "nav" },
-                    style: {
-                        cursor: "pointer",
-                        fontSize: "1.2rem",
-                        fontWeight: "bold",
-                        transition: "all 0.2s ease-in-out",
-                        "&:hover": {
-                            color: "#c9a240",
-                        },
-                    },
-                },
-                {
-                    props: { variant: "nav-active" },
-                    style: {
-                        cursor: "pointer",
-                        fontSize: "1.2rem",
-                        fontWeight: "bold",
-                        transition: "all 0.2s ease-in-out",
-                        color: "#ffd15c",
-                        "&:hover": {
-                            color: "#c9a240",
-                        },
-                    },
-                },
-            ],
         },
         MuiDrawer: {
             styleOverrides: {
@@ -133,6 +94,26 @@ const glass_dark = createTheme({
                     border: "1px solid rgba(255, 255, 255, 0.1)",
                 },
             },
+        },
+        MuiIconButton: {
+            variants: [
+                {
+                    // As any because TypeScript complains but this is a perfectly acceptable use case
+                    props: { target: undefined } as any,
+                    style: {
+                        background: "rgba(26, 26, 26, 0.4)",
+                        backdropFilter: "blur(5px)",
+                        border: "1px solid rgba(255, 255, 255, 0)",
+                        transition: "all 200ms ease-in-out",
+                        transitionProperty: "background, border, opacity",
+                        ":hover": {
+                            background: "rgba(100, 100, 100, 0.6)",
+                            border: "1px solid rgba(200, 200, 200, 0.1)",
+                            opacity: 0.6,
+                        },
+                    },
+                },
+            ],
         },
     },
 });

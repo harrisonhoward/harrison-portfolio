@@ -19,10 +19,11 @@ const StyledSlider = styled(Slider)<{ percentage: number; index: number }>`
         background: ${({ theme, percentage }) => `
             linear-gradient(
                 to right,
-                ${theme.palette.primary.dark} 0% ${percentage}%,
+                ${theme.palette.primary.main} 0% ${percentage}%,
                 ${theme.palette.action.disabled} ${percentage}% 100%
             )
         `};
+        border: 0.1px solid black;
     }
 
     ${({ theme, index }) =>

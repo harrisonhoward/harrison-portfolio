@@ -15,12 +15,17 @@ const Projects: React.FC = () => {
     const [activeYear, setActiveYear] = useState(2017);
 
     return (
-        <Container>
+        <Container
+            sx={{
+                width: "100%",
+                maxWidth: 700,
+            }}
+        >
             <NavButton toName={RouteName.About} direction="left" />
             <GlassCard
                 sx={{
                     padding: "1rem 2rem",
-                    minWidth: 500,
+                    width: "100%",
                 }}
             >
                 <ProjectSlider
