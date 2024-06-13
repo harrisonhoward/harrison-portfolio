@@ -1,3 +1,5 @@
+import dayjs, { type Dayjs } from "dayjs";
+
 export enum Status {
     Active = "active",
     InProgress = "in-progress",
@@ -9,9 +11,11 @@ export interface Project {
     title: string;
     description: string;
     status: Status;
+    // Days are not accurate and will not be included in any of the pages
+    // It's included now so that it can be parsed
     dates: {
-        start: string;
-        end?: string;
+        start: Dayjs;
+        end?: Dayjs;
     };
     links?: {
         code?: string;
@@ -30,8 +34,8 @@ const projects: Project[] = [
             "provided the user an analysis of the data.",
         status: Status.Inactive,
         dates: {
-            start: "2017",
-            end: "2020",
+            start: dayjs("01/04/2017"),
+            end: dayjs("01/11/2020"),
         },
         links: {
             code: "https://github.com/Forbidden-Duck/forbidden-bot",
@@ -46,8 +50,8 @@ const projects: Project[] = [
             "users continue to report them to me.",
         status: Status.Active,
         dates: {
-            start: "2020",
-            end: "2022",
+            start: dayjs("01/12/2020"),
+            end: dayjs("01/02/2022"),
         },
         links: {
             website:
@@ -63,8 +67,8 @@ const projects: Project[] = [
             "The site will create a quote based on that criterion.",
         status: Status.Active,
         dates: {
-            start: "2022",
-            end: "2022",
+            start: dayjs("01/06/2022"),
+            end: dayjs("01/09/2022"),
         },
         links: {
             website: "https://quote.pakko.com.au/",
@@ -79,8 +83,8 @@ const projects: Project[] = [
             "the implementation of the animation and scaling.",
         status: Status.Active,
         dates: {
-            start: "2022",
-            end: "2022",
+            start: dayjs("01/06/2022"),
+            end: dayjs("01/09/2022"),
         },
         links: {
             website: "https://idp.pakko.com.au/",

@@ -6,13 +6,16 @@ import NavButton from "../components/layout/NavButton/NavButton";
 import GlassCard from "../components/ui/GlassCard";
 
 // Features
-import ProjectSlider from "../features/Projects/ProjectSlider";
+import ProjectYearSlider from "../features/Projects/ProjectYearSlider";
 
 // Resources
 import { RouteName } from "../data/routes";
+import { getAllAvailableYears } from "../utils/ProjectUtil";
+
+const firstProjectYear = parseInt(getAllAvailableYears()[0]);
 
 const Projects: React.FC = () => {
-    const [activeYear, setActiveYear] = useState(2017);
+    const [activeYear, setActiveYear] = useState(firstProjectYear);
 
     return (
         <Container
@@ -28,7 +31,7 @@ const Projects: React.FC = () => {
                     width: "100%",
                 }}
             >
-                <ProjectSlider
+                <ProjectYearSlider
                     activeYear={activeYear}
                     onChange={setActiveYear}
                 />

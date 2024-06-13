@@ -10,17 +10,20 @@ import Spangraphy from "../components/ui/Spangraphy";
  * Will return an array of unique years
  */
 export function getAllAvailableYears() {
-    const years = projects.map((project) => project.dates.start);
-    return Array.from(new Set(years));
+    const years = projects.map((project) =>
+        dayjs(project.dates.start).year().toString()
+    );
+    return Array.from(new Set(years)).sort();
 }
 
 /**
  * Will determine if the current year has a project connected to it
  */
 export function getCurrentYearHasProject() {
-    const currentYear = dayjs().year();
+    const currentYear = dayjs().year().toString();
     return projects.some(
-        (project) => project.dates.start === currentYear.toString()
+        (project) =>
+            dayjs(project.dates.start).year().toString() === currentYear
     );
 }
 
@@ -42,7 +45,7 @@ export function getSliderPercentageOfTheYear(year: number): number {
     return (yearBefore - min) * percentageRange;
 }
 
-export function getProjectMarkers(): Mark[] {
+export function getProjectYearMarkers(): Mark[] {
     const projectMarkers = getAllAvailableYears();
     if (!getCurrentYearHasProject()) {
         projectMarkers.push(dayjs().year().toString());

@@ -1,15 +1,16 @@
 import React, { useCallback, useMemo } from "react";
 import { Slider, SliderOwnProps, css, styled } from "@mui/material";
+import dayjs from "dayjs";
 
 import projects from "../../data/projects";
 import {
     getCurrentYearHasProject,
-    getProjectMarkers,
+    getProjectYearMarkers,
     getSliderPercentageOfTheYear,
 } from "../../utils/ProjectUtil";
 import { GLOBAL_PREFIX } from "../../core/ClassNameGenerator";
 
-export interface ProjectSliderProps {
+export interface ProjectYearSliderProps {
     activeYear: number;
     onChange: (year: number) => void;
 }
@@ -35,11 +36,11 @@ const StyledSlider = styled(Slider)<{ percentage: number; index: number }>`
         `}
 `;
 
-const ProjectSlider: React.FC<ProjectSliderProps> = ({
+const ProjectYearSlider: React.FC<ProjectYearSliderProps> = ({
     activeYear,
     onChange,
 }) => {
-    const projectMarkers = useMemo(() => getProjectMarkers(), []);
+    const projectMarkers = useMemo(() => getProjectYearMarkers(), []);
     const currentYearHasProject = getCurrentYearHasProject();
 
     const min = projectMarkers[0].value;
@@ -56,7 +57,9 @@ const ProjectSlider: React.FC<ProjectSliderProps> = ({
         (_, newValue) => {
             // If a project doesn't exist then we need to prevent the change
             const projectExists = projects.some(
-                (project) => project.dates.start === newValue.toString()
+                (project) =>
+                    dayjs(project.dates.start).year().toString() ===
+                    newValue.toString()
             );
             if (!Array.isArray(newValue) && projectExists) {
                 onChange(newValue);
@@ -87,4 +90,4 @@ const ProjectSlider: React.FC<ProjectSliderProps> = ({
     );
 };
 
-export default ProjectSlider;
+export default ProjectYearSlider;
