@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo } from "react";
 import { Slider, SliderOwnProps, css, styled } from "@mui/material";
-import dayjs from "dayjs";
 
 import projects from "../../data/projects";
 import {
@@ -57,9 +56,7 @@ const ProjectYearSlider: React.FC<ProjectYearSliderProps> = ({
         (_, newValue) => {
             // If a project doesn't exist then we need to prevent the change
             const projectExists = projects.some(
-                (project) =>
-                    dayjs(project.dates.start).year().toString() ===
-                    newValue.toString()
+                (project) => project.dates.start.year() === newValue
             );
             if (!Array.isArray(newValue) && projectExists) {
                 onChange(newValue);

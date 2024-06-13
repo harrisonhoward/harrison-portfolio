@@ -1,4 +1,8 @@
 import dayjs, { type Dayjs } from "dayjs";
+// Add ability to add custom format for this file
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+dayjs.extend(customParseFormat);
 
 export enum Status {
     Active = "active",
@@ -34,8 +38,8 @@ const projects: Project[] = [
             "provided the user an analysis of the data.",
         status: Status.Inactive,
         dates: {
-            start: dayjs("01/04/2017"),
-            end: dayjs("01/11/2020"),
+            start: dayjs("04/2017", "MM/YYYY"),
+            end: dayjs("11/2020", "MM/YYYY"),
         },
         links: {
             code: "https://github.com/Forbidden-Duck/forbidden-bot",
@@ -50,8 +54,8 @@ const projects: Project[] = [
             "users continue to report them to me.",
         status: Status.Active,
         dates: {
-            start: dayjs("01/12/2020"),
-            end: dayjs("01/02/2022"),
+            start: dayjs("12/2020", "MM/YYYY"),
+            end: dayjs("02/2022", "MM/YYYY"),
         },
         links: {
             website:
@@ -67,8 +71,8 @@ const projects: Project[] = [
             "The site will create a quote based on that criterion.",
         status: Status.Active,
         dates: {
-            start: dayjs("01/06/2022"),
-            end: dayjs("01/09/2022"),
+            start: dayjs("06/2022", "MM/YYYY"),
+            end: dayjs("09/2022", "MM/YYYY"),
         },
         links: {
             website: "https://quote.pakko.com.au/",
@@ -83,8 +87,8 @@ const projects: Project[] = [
             "the implementation of the animation and scaling.",
         status: Status.Active,
         dates: {
-            start: dayjs("01/06/2022"),
-            end: dayjs("01/09/2022"),
+            start: dayjs("06/2022", "MM/YYYY"),
+            end: dayjs("09/2022", "MM/YYYY"),
         },
         links: {
             website: "https://idp.pakko.com.au/",

@@ -6,13 +6,13 @@ import { Tooltip } from "@mui/material";
 import projects from "../data/projects";
 import Spangraphy from "../components/ui/Spangraphy";
 
+// #region Project Years
+
 /**
  * Will return an array of unique years
  */
 export function getAllAvailableYears() {
-    const years = projects.map((project) =>
-        dayjs(project.dates.start).year().toString()
-    );
+    const years = projects.map((project) => project.dates.start.year());
     return Array.from(new Set(years)).sort();
 }
 
@@ -20,10 +20,9 @@ export function getAllAvailableYears() {
  * Will determine if the current year has a project connected to it
  */
 export function getCurrentYearHasProject() {
-    const currentYear = dayjs().year().toString();
+    const currentYear = dayjs().year();
     return projects.some(
-        (project) =>
-            dayjs(project.dates.start).year().toString() === currentYear
+        (project) => project.dates.start.year() === currentYear
     );
 }
 
@@ -33,10 +32,10 @@ export function getCurrentYearHasProject() {
 export function getSliderPercentageOfTheYear(year: number): number {
     const projectMarkers = getAllAvailableYears();
     if (!getCurrentYearHasProject()) {
-        projectMarkers.push(dayjs().year().toString());
+        projectMarkers.push(dayjs().year());
     }
-    const min = parseInt(projectMarkers[0]);
-    const max = parseInt(projectMarkers[projectMarkers.length - 1]);
+    const min = projectMarkers[0];
+    const max = projectMarkers[projectMarkers.length - 1];
     // Get the range from the min & max
     const range = max - min;
     const percentageRange = 100 / range;
@@ -48,10 +47,10 @@ export function getSliderPercentageOfTheYear(year: number): number {
 export function getProjectYearMarkers(): Mark[] {
     const projectMarkers = getAllAvailableYears();
     if (!getCurrentYearHasProject()) {
-        projectMarkers.push(dayjs().year().toString());
+        projectMarkers.push(dayjs().year());
     }
     return projectMarkers.map((year) => {
-        if (dayjs().year().toString() === year) {
+        if (dayjs().year() === year) {
             return {
                 label: (
                     <Tooltip
@@ -66,13 +65,42 @@ export function getProjectYearMarkers(): Mark[] {
                         </Spangraphy>
                     </Tooltip>
                 ),
-                value: parseInt(year),
+                value: year,
             };
         }
 
         return {
             label: year,
-            value: parseInt(year),
+            value: year,
         };
     });
 }
+
+// #endregion
+
+// #region Project By Year
+
+/**
+ * Will return an array of projects in the year provided
+ */
+export function getAllAvailableProjectsInYear(year: number) {
+    const projectsInYear = projects.filter(
+        (project) => project.dates.start.year() === year
+    );
+    // Return projects sorted by month (if same month then use existing order)
+    return projectsInYear.sort((a, b) => {
+        return a.dates.start.month() - b.dates.start.month();
+    });
+}
+
+export function getProjectByYearMarkers(year: number): Mark[] {
+    const projectMarkers = getAllAvailableProjectsInYear(year);
+    return projectMarkers.map((project, index) => {
+        return {
+            label: project.title,
+            value: index,
+        };
+    });
+}
+
+// #endregion
