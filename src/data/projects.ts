@@ -1,4 +1,6 @@
+import { PaletteColors } from "@mui/material";
 import dayjs, { type Dayjs } from "dayjs";
+import { nanoid } from "nanoid";
 // Add ability to add custom format for this file
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
@@ -10,7 +12,20 @@ export enum Status {
     Inactive = "inactive",
 }
 
+export const STATUS_COLORS: Record<Status, keyof PaletteColors> = {
+    [Status.Active]: "success",
+    [Status.InProgress]: "warning",
+    [Status.Inactive]: "error",
+};
+
+export const STATUS_LABELS: Record<Status, string> = {
+    [Status.Active]: "Active",
+    [Status.InProgress]: "In Progress",
+    [Status.Inactive]: "Inactive",
+};
+
 export interface Project {
+    id: string;
     banner: string;
     title: string;
     description: string;
@@ -30,6 +45,7 @@ export interface Project {
 
 const projects: Project[] = [
     {
+        id: nanoid(),
         banner: "ForbiddenBanner.gif",
         title: "Forbidden Statistics",
         description:
@@ -46,6 +62,7 @@ const projects: Project[] = [
         },
     },
     {
+        id: nanoid(),
         banner: "FitbitBanner.jpg",
         title: "Fitbit",
         description:
@@ -63,6 +80,7 @@ const projects: Project[] = [
         },
     },
     {
+        id: nanoid(),
         banner: "PakkoBanner.jpg",
         title: "Quote System",
         description:
@@ -79,6 +97,7 @@ const projects: Project[] = [
         },
     },
     {
+        id: nanoid(),
         banner: "PakkoBanner.jpg",
         title: "Interactive Design Platform",
         description:
@@ -94,6 +113,6 @@ const projects: Project[] = [
             website: "https://idp.pakko.com.au/",
         },
     },
-];
+] satisfies Project[];
 
 export default projects;

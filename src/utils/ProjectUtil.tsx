@@ -3,7 +3,7 @@ import type { Mark } from "@mui/base";
 import dayjs from "dayjs";
 import { Tooltip } from "@mui/material";
 
-import projects from "../data/projects";
+import projects, { type Project } from "../data/projects";
 import Spangraphy from "../components/ui/Spangraphy";
 
 // #region Project Years
@@ -101,6 +101,16 @@ export function getProjectByYearMarkers(year: number): Mark[] {
             value: index,
         };
     });
+}
+
+/**
+ * This will return the project by the year and index provided. Can be undefined.
+ */
+export function getProjectByYearAndIndex(
+    year: number,
+    index: number
+): Project | undefined {
+    return getAllAvailableProjectsInYear(year)[index];
 }
 
 // #endregion

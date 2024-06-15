@@ -1,4 +1,4 @@
-import { createTheme, Zoom } from "@mui/material";
+import { createTheme, Palette, PaletteColor, Zoom } from "@mui/material";
 import Color from "color";
 
 import navGlobals from "../data/navGlobals";
@@ -7,6 +7,12 @@ export const PrimaryMain = Color("#11a2cf");
 export const SecondaryMain = Color("#12e69c");
 
 declare module "@mui/material" {
+    export type PaletteColors = Omit<
+        Palette,
+        {
+            [K in keyof Palette]: Palette[K] extends PaletteColor ? never : K;
+        }[keyof Palette]
+    >;
     interface ContainerPropsVariantOverrides {
         nav: true;
     }

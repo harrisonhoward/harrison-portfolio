@@ -1,17 +1,23 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 
 // Components
 import Container from "../styles/Container";
 import NavButton from "../components/layout/NavButton/NavButton";
 import GlassCard from "../components/ui/GlassCard";
-import ProjectMonthSlider from "../features/Projects/ProjectSlider";
 
 // Features
 import ProjectYearSlider from "../features/Projects/ProjectYearSlider";
+import ProjectMonthSlider from "../features/Projects/ProjectSlider";
+import ProjectCard from "../features/Projects/ProjectCard";
 
 // Resources
+import projects from "../data/projects";
 import { RouteName } from "../data/routes";
-import { getAllAvailableYears } from "../utils/ProjectUtil";
+import {
+    getAllAvailableYears,
+    getProjectByYearAndIndex,
+} from "../utils/ProjectUtil";
 
 const firstProjectYear = getAllAvailableYears()[0];
 
@@ -19,6 +25,11 @@ const Projects: React.FC = () => {
     const [activeYear, setActiveYear] = useState(firstProjectYear);
     // Index is based on the active year
     const [activeProjectIndex, setActiveProjectIndex] = useState(0);
+
+    const selectedProject = useMemo(
+        () => getProjectByYearAndIndex(activeYear, activeProjectIndex),
+        [activeYear, activeProjectIndex]
+    );
 
     const handleYearChange = useCallback(
         (newYear: number) => {
@@ -31,6 +42,8 @@ const Projects: React.FC = () => {
     return (
         <Container
             sx={{
+                flexDirection: "column",
+                alignItems: "center",
                 width: "100%",
                 maxWidth: 700,
             }}
@@ -40,8 +53,10 @@ const Projects: React.FC = () => {
                 sx={{
                     justifyContent: "center",
                     alignItems: "center",
-                    width: "100%",
+                    // Fix overflow issues, 4rem for padding and 2px for border
+                    width: "calc(100% - 4rem - 2px)",
                     padding: "1rem 2rem",
+                    marginBottom: "1rem",
                 }}
             >
                 <ProjectYearSlider
@@ -54,6 +69,16 @@ const Projects: React.FC = () => {
                     onChange={setActiveProjectIndex}
                 />
             </GlassCard>
+            <AnimatePresence mode="wait">
+                {/* This setup allows us to animate in and out of projects */}
+                {projects.map((project) => {
+                    if (project.id !== selectedProject?.id) {
+                        return null;
+                    }
+
+                    return <ProjectCard key={project.id} project={project} />;
+                })}
+            </AnimatePresence>
         </Container>
     );
 };
