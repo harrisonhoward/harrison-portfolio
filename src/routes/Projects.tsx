@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
 // Components
@@ -18,6 +18,7 @@ import {
     getAllAvailableYears,
     getProjectByYearAndIndex,
 } from "../utils/ProjectUtil";
+import { useDebounceValue } from "usehooks-ts";
 
 const firstProjectYear = getAllAvailableYears()[0];
 
@@ -26,10 +27,25 @@ const Projects: React.FC = () => {
     // Index is based on the active year
     const [activeProjectIndex, setActiveProjectIndex] = useState(0);
 
-    const selectedProject = useMemo(
+    // TODO: Return this code when framer motion animations don't break
+    // const selectedProject = useMemo(
+    //     () => getProjectByYearAndIndex(activeYear, activeProjectIndex),
+    //     [activeYear, activeProjectIndex]
+    // );
+
+    const [selectedProject, setSelectedProject] = useDebounceValue(
         () => getProjectByYearAndIndex(activeYear, activeProjectIndex),
-        [activeYear, activeProjectIndex]
+        250
     );
+    useEffect(() => {
+        const newProject = getProjectByYearAndIndex(
+            activeYear,
+            activeProjectIndex
+        );
+        if (selectedProject?.id !== newProject?.id) {
+            setSelectedProject(newProject);
+        }
+    }, [activeYear, activeProjectIndex]);
 
     const handleYearChange = useCallback(
         (newYear: number) => {
