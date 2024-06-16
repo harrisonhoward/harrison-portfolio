@@ -12,6 +12,11 @@ import Banner from "../../components/ui/Banner";
 
 interface ProjectCardProps {
     project: Project;
+    /**
+     * This is useful for determine if animation plays or not\
+     * For instance if the banner never changes, why animate it?
+     */
+    refProject?: Project;
 }
 
 interface RibbonProps {
@@ -53,19 +58,52 @@ const RIBBON_VARIANTS: Variants = {
     },
 };
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+const BANNER_VARIANTS: Variants = {
+    visible: {
+        opacity: 1,
+    },
+    hidden: {
+        opacity: 0,
+    },
+};
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, refProject }) => {
     const startYear = project.dates.start.year();
     const endYear = project.dates.end?.year();
 
+    const isSameBanner = refProject?.banner === project.banner;
+    const isSameStartYear = refProject?.dates.start.year() === startYear;
+    const isSameEndYear = refProject?.dates.end?.year() === endYear;
+    const isSameStatus = refProject?.status === project?.status;
+
     return (
         <GlassCard>
-            <Banner
-                src={`resources/projects/${project.banner}`}
-                alt={project.title}
-                skeletonWidth={600}
-                skeletonHeight={180}
-            />
-            <Ribbons variants={RIBBON_VARIANTS} animate="visible" exit="hidden">
+            <motion.div
+                style={{ display: "flex", opacity: 1 }}
+                variants={!isSameBanner ? BANNER_VARIANTS : undefined}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+            >
+                <Banner
+                    src={`resources/projects/${project.banner}`}
+                    alt={project.title}
+                    skeletonWidth={600}
+                    skeletonHeight={180}
+                />
+            </motion.div>
+            <Ribbons
+                // Will be overridden if the animation is present
+                style={{ y: -16 }}
+                variants={
+                    !isSameStartYear || !isSameEndYear || !isSameStatus
+                        ? RIBBON_VARIANTS
+                        : undefined
+                }
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+            >
                 <Ribbon>
                     <Typography variant="subtitle2">
                         {startYear}

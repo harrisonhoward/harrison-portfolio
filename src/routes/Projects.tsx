@@ -12,13 +12,13 @@ import ProjectMonthSlider from "../features/Projects/ProjectSlider";
 import ProjectCard from "../features/Projects/ProjectCard";
 
 // Resources
-import projects from "../data/projects";
+import projects, { Project } from "../data/projects";
 import { RouteName } from "../data/routes";
 import {
     getAllAvailableYears,
     getProjectByYearAndIndex,
 } from "../utils/ProjectUtil";
-import { useDebounceValue } from "usehooks-ts";
+import { useAnimatedSelected } from "../hooks/useAnimatedSelection";
 
 const firstProjectYear = getAllAvailableYears()[0];
 
@@ -33,9 +33,12 @@ const Projects: React.FC = () => {
     //     [activeYear, activeProjectIndex]
     // );
 
-    const [selectedProject, setSelectedProject] = useDebounceValue(
-        () => getProjectByYearAndIndex(activeYear, activeProjectIndex),
-        250
+    const {
+        selected: selectedProject,
+        refSelected: refProjectSelected,
+        setSelected: setSelectedProject,
+    } = useAnimatedSelected<Project | undefined>(
+        getProjectByYearAndIndex(activeYear, activeProjectIndex)
     );
     useEffect(() => {
         const newProject = getProjectByYearAndIndex(
@@ -92,7 +95,13 @@ const Projects: React.FC = () => {
                         return null;
                     }
 
-                    return <ProjectCard key={project.id} project={project} />;
+                    return (
+                        <ProjectCard
+                            key={project.id}
+                            project={project}
+                            refProject={refProjectSelected}
+                        />
+                    );
                 })}
             </AnimatePresence>
         </Container>

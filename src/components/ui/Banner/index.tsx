@@ -42,7 +42,7 @@ const Banner: React.FC<BannerProps> = ({
         );
     }
 
-    return <StyledImage src={src} alt={alt} />;
+    return <StyledImage src={src} alt={alt} draggable="false" />;
 };
 
 export default Banner;
