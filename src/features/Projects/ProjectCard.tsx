@@ -23,10 +23,10 @@ interface RibbonProps {
     palette?: keyof PaletteColors;
 }
 
-const Content = styled(Box)`
-    max-width: 500px;
-    background: rgba(26, 26, 26, 0.8);
+const Content = styled(motion(Box))`
+    width: 100%;
     padding: 0.5rem 1rem;
+    box-sizing: border-box;
 `;
 
 const Ribbon = styled(Box)<RibbonProps>`
@@ -67,6 +67,24 @@ const BANNER_VARIANTS: Variants = {
     },
 };
 
+const CONTENT_VARIANTS: Variants = {
+    visible: {
+        x: 0,
+        transition: {
+            type: "spring",
+            stiffness: 90,
+            damping: 13,
+            mass: 0.9,
+        },
+    },
+    hidden: {
+        x: "-100%",
+        transition: {
+            duration: 0.275,
+        },
+    },
+};
+
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, refProject }) => {
     const startYear = project.dates.start.year();
     const endYear = project.dates.end?.year();
@@ -77,7 +95,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, refProject }) => {
     const isSameStatus = refProject?.status === project?.status;
 
     return (
-        <GlassCard>
+        <GlassCard
+            backgroundOpacity={0.8}
+            sx={{
+                maxWidth: 600,
+            }}
+        >
             <motion.div
                 style={{ display: "flex", opacity: 1 }}
                 variants={!isSameBanner ? BANNER_VARIANTS : undefined}
@@ -116,7 +139,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, refProject }) => {
                     </Typography>
                 </Ribbon>
             </Ribbons>
-            <Content>
+            <Content
+                variants={CONTENT_VARIANTS}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+            >
                 <Typography variant="h4" fontSize="2rem" fontWeight="500">
                     {project.title}
                 </Typography>
