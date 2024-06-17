@@ -72,8 +72,7 @@ const Projects: React.FC = () => {
                 sx={{
                     justifyContent: "center",
                     alignItems: "center",
-                    // Fix overflow issues, 4rem for padding and 2px for border
-                    width: "calc(100% - 4rem - 2px)",
+                    width: "100%",
                     padding: "1rem 2rem",
                     marginBottom: "1rem",
                 }}

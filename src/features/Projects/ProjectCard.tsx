@@ -145,10 +145,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, refProject }) => {
                 animate="visible"
                 exit="hidden"
             >
-                <Typography variant="h4" fontSize="2rem" fontWeight="500">
+                <Typography
+                    variant="h4"
+                    fontSize="clamp(0rem, 5.5vw, 2rem)"
+                    fontWeight="500"
+                >
                     {project.title}
                 </Typography>
-                <Typography variant="body1">{project.description}</Typography>
+                <Typography
+                    variant="body1"
+                    fontSize="clamp(0rem, 2.75vw, 1rem)"
+                >
+                    {project.description}
+                </Typography>
             </Content>
         </GlassCard>
     );
