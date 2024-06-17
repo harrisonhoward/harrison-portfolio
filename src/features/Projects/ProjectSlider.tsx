@@ -53,6 +53,7 @@ const ProjectMonthSlider: React.FC<ProjectMonthSliderProps> = ({
         <AnimatedSlider
             // For animating
             variants={RAIL_VARIANTS}
+            initial={projectMarkers.length > 1 ? "expanded" : "shrunk"}
             animate={projectMarkers.length > 1 ? "expanded" : "shrunk"}
             // For the slider
             min={min}

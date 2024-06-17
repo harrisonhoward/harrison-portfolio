@@ -147,15 +147,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, refProject }) => {
             >
                 <Typography
                     variant="h4"
-                    fontSize="clamp(0rem, 5.5vw, 2rem)"
+                    fontSize="clamp(0rem, 6vw, 2rem)"
                     fontWeight="500"
                 >
                     {project.title}
                 </Typography>
-                <Typography
-                    variant="body1"
-                    fontSize="clamp(0rem, 2.75vw, 1rem)"
-                >
+                <Typography variant="body1" fontSize="clamp(0rem, 3.5vw, 1rem)">
                     {project.description}
                 </Typography>
             </Content>
