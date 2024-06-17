@@ -24,6 +24,13 @@ const Banner: React.FC<BannerProps> = ({
         setLoaded(true);
     }, []);
 
+    // In some cases the image is loaded from the cache so we need to handle it in a callback ref
+    const handleRef = useCallback((node: HTMLImageElement | null) => {
+        if (node?.complete) {
+            setLoaded(true);
+        }
+    }, []);
+
     // If the image changes we need to reset the loading state until the new image is loaded
     useEffect(() => {
         setLoaded(false);
@@ -37,7 +44,12 @@ const Banner: React.FC<BannerProps> = ({
                 height={skeletonHeight || "100%"}
                 animation="wave"
             >
-                <StyledImage src={src} alt={alt} onLoad={handleLoad} />
+                <StyledImage
+                    ref={handleRef}
+                    src={src}
+                    alt={alt}
+                    onLoad={handleLoad}
+                />
             </Skeleton>
         );
     }
