@@ -33,17 +33,20 @@ const moveLeft = "-100vw";
 const moveRight = "100vw";
 
 function Routing(props: RoutingProps) {
-    // Special code for strict mode where it runs navigate twice
-    const historyTrack = useRef<string>();
-
     const location = useLocation();
     const navigate = useNavigate();
+    // Special code for strict mode where it runs navigate twice
+    const historyTrack = useRef<string | undefined>(location.pathname);
     const { current, previous, update } = useRouteContext();
 
     useEffect(() => {
         // We have to navigate here instead of when the user clicks the button.
         // This is because the framer animation will animate before this has had a chance to update
-        if (current !== location.pathname && historyTrack.current !== current) {
+        if (
+            current !== location.pathname &&
+            historyTrack.current &&
+            historyTrack.current !== current
+        ) {
             navigate(current);
             historyTrack.current = current;
         }
