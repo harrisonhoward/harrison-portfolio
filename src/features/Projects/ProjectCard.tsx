@@ -1,6 +1,16 @@
 import React from "react";
-import { Box, PaletteColors, Typography, styled } from "@mui/material";
+import {
+    Box,
+    IconButton,
+    PaletteColors,
+    Tooltip,
+    Typography,
+    styled,
+} from "@mui/material";
 import { Variants, motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import {
     STATUS_COLORS,
@@ -145,13 +155,47 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, refProject }) => {
                 animate="visible"
                 exit="hidden"
             >
-                <Typography
-                    variant="h4"
-                    fontSize="clamp(0rem, 6vw, 2rem)"
-                    fontWeight="500"
-                >
-                    {project.title}
-                </Typography>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <Typography
+                        variant="h4"
+                        fontSize="clamp(0rem, 6vw, 2rem)"
+                        fontWeight="500"
+                    >
+                        {project.title}
+                    </Typography>
+                    {project.links?.website && (
+                        <Tooltip title="Website" placement="top">
+                            <IconButton
+                                target="_blank"
+                                href={project.links.website}
+                                color="secondary"
+                                sx={{
+                                    marginLeft: 2,
+                                    marginBottom: "4px",
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faExternalLink} />
+                            </IconButton>
+                        </Tooltip>
+                    )}
+                    {project.links?.code && (
+                        <Tooltip title="GitHub" placement="top">
+                            <IconButton
+                                target="_blank"
+                                href={project.links.code}
+                                color="secondary"
+                                sx={{
+                                    marginLeft: project.links?.website
+                                        ? 0.5
+                                        : 2,
+                                    marginBottom: "4px",
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faGithub} />
+                            </IconButton>
+                        </Tooltip>
+                    )}
+                </Box>
                 <Typography variant="body1" fontSize="clamp(0rem, 3.5vw, 1rem)">
                     {project.description}
                 </Typography>

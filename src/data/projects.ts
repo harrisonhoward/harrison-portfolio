@@ -39,7 +39,6 @@ export interface Project {
     links?: {
         code?: string;
         website?: string;
-        misc?: string;
     };
 }
 
@@ -157,7 +156,7 @@ const projects: Project[] = [
             start: dayjs("04/2024", "MM/YYYY"),
         },
         links: {
-            misc: "https://www.axcelerate.com.au/axcelerate-day-2024",
+            website: "https://www.axcelerate.com.au/axcelerate-day-2024",
         },
     },
     {
