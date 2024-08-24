@@ -3,8 +3,8 @@ import type { Mark } from "@mui/base";
 import dayjs from "dayjs";
 import { Tooltip } from "@mui/material";
 
-import projects, { type Project } from "../data/projects";
 import Spangraphy from "../components/ui/Spangraphy";
+import projects, { type Project } from "../data/projects";
 
 // #region Project Years
 

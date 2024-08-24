@@ -3,11 +3,13 @@ import { Navigate } from "react-router-dom";
 import Home from "../routes/Home";
 import About from "../routes/About";
 import Projects from "../routes/Projects";
+import Work from "../routes/Work";
 
 export enum RouteName {
     Home = "Home",
     About = "About Me",
     Projects = "Projects",
+    Work = "Work",
     NotFound = "404",
 }
 
@@ -29,6 +31,11 @@ const routes = [
         name: RouteName.Projects,
         path: "/projects",
         element: <Projects />,
+    },
+    {
+        name: RouteName.Work,
+        path: "/work",
+        element: <Work />,
     },
     {
         name: RouteName.NotFound,

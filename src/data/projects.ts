@@ -6,22 +6,22 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 
 dayjs.extend(customParseFormat);
 
-export enum Status {
+export enum ProjectStatus {
     Active = "active",
     InProgress = "in-progress",
     Inactive = "inactive",
 }
 
-export const STATUS_COLORS: Record<Status, keyof PaletteColors> = {
-    [Status.Active]: "success",
-    [Status.InProgress]: "warning",
-    [Status.Inactive]: "error",
+export const STATUS_COLORS: Record<ProjectStatus, keyof PaletteColors> = {
+    [ProjectStatus.Active]: "success",
+    [ProjectStatus.InProgress]: "warning",
+    [ProjectStatus.Inactive]: "error",
 };
 
-export const STATUS_LABELS: Record<Status, string> = {
-    [Status.Active]: "Active",
-    [Status.InProgress]: "In Progress",
-    [Status.Inactive]: "Inactive",
+export const STATUS_LABELS: Record<ProjectStatus, string> = {
+    [ProjectStatus.Active]: "Active",
+    [ProjectStatus.InProgress]: "In Progress",
+    [ProjectStatus.Inactive]: "Inactive",
 };
 
 export interface Project {
@@ -29,7 +29,7 @@ export interface Project {
     banner: string;
     title: string;
     description: string;
-    status: Status;
+    status: ProjectStatus;
     // Days are not accurate and will not be included in any of the pages
     // It's included now so that it can be parsed
     dates: {
@@ -51,7 +51,7 @@ const projects: Project[] = [
             "Forbidden was a General Statistics Discord bot. " +
             "It gathered statistics from video games and other media and " +
             "provided the user an analysis of the data.",
-        status: Status.Inactive,
+        status: ProjectStatus.Inactive,
         dates: {
             start: dayjs("04/2017", "MM/YYYY"),
             end: dayjs("11/2020", "MM/YYYY"),
@@ -68,7 +68,7 @@ const projects: Project[] = [
             "A collection of clockfaces and apps that I have created. " +
             "They work on a variety of Fitbit devices and I continue to apply bug fixes as " +
             "users continue to report them to me.",
-        status: Status.Inactive,
+        status: ProjectStatus.Inactive,
         dates: {
             start: dayjs("12/2020", "MM/YYYY"),
             end: dayjs("02/2022", "MM/YYYY"),
@@ -86,7 +86,7 @@ const projects: Project[] = [
             "I create the user interface for the current quote system for Pakko. " +
             "It allows the user to intuitively insert the specifications for their packaging needs. " +
             "The site will create a quote based on that criterion.",
-        status: Status.Active,
+        status: ProjectStatus.Active,
         dates: {
             start: dayjs("06/2022", "MM/YYYY"),
             end: dayjs("09/2022", "MM/YYYY"),
@@ -103,7 +103,7 @@ const projects: Project[] = [
             "Using three.js, I assisted in the creation of a 3D interactive design platform. " +
             "This system allows the user to create a live 3D model of their box. I overlooked " +
             "the implementation of the animation and scaling.",
-        status: Status.Active,
+        status: ProjectStatus.Active,
         dates: {
             start: dayjs("06/2022", "MM/YYYY"),
             end: dayjs("09/2022", "MM/YYYY"),
@@ -120,7 +120,7 @@ const projects: Project[] = [
             "I played a major part in upgrading the WYSIWYG framework that powers the Assessment editor. " +
             "I assisted in the development in the Question Banks feature that allows the user to create a bank of questions " +
             "that can be used in multiple assessments.",
-        status: Status.Active,
+        status: ProjectStatus.Active,
         dates: {
             start: dayjs("01/2023", "MM/YYYY"),
         },
@@ -137,7 +137,7 @@ const projects: Project[] = [
             "Implemented the design overhaul of the Learner Help Requests features. " +
             "This gave Learners a more intuitive experience when requesting help, it also allows them " +
             "to assign trainers relating to their enrolments.",
-        status: Status.Active,
+        status: ProjectStatus.Active,
         dates: {
             start: dayjs("01/2023", "MM/YYYY"),
         },
@@ -151,7 +151,7 @@ const projects: Project[] = [
         banner: "AxcelerateBanner.jpg",
         title: "Unannounced Project",
         description: "More details to come on aXcelerate day 2024",
-        status: Status.InProgress,
+        status: ProjectStatus.InProgress,
         dates: {
             start: dayjs("04/2024", "MM/YYYY"),
         },
@@ -164,7 +164,7 @@ const projects: Project[] = [
         banner: "PlexGleamBanner.jpg",
         title: "Plex Discord RPC",
         description: "A Discord Rich Presence tool for Plex Media Server.",
-        status: Status.InProgress,
+        status: ProjectStatus.InProgress,
         dates: {
             start: dayjs("05/2024", "MM/YYYY"),
         },
@@ -172,6 +172,6 @@ const projects: Project[] = [
             code: "https://github.com/harrisonhoward/plex_discord_rpc",
         },
     },
-] satisfies Project[];
+];
 
 export default projects;

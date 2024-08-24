@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from "react";
-import { Slider, SliderOwnProps, css, styled } from "@mui/material";
+import { SliderOwnProps } from "@mui/material";
 
 import projects from "../../data/projects";
 import {
@@ -7,33 +7,12 @@ import {
     getProjectYearMarkers,
     getSliderPercentageOfTheYear,
 } from "../../utils/ProjectUtil";
-import { GLOBAL_PREFIX } from "../../core/ClassNameGenerator";
+import Slider from "../../components/ui/Slider/Slider";
 
 export interface ProjectYearSliderProps {
     activeYear: number;
     onChange: (year: number) => void;
 }
-
-const StyledSlider = styled(Slider)<{ percentage: number; index: number }>`
-    & .${GLOBAL_PREFIX}Slider-rail {
-        background: ${({ theme, percentage }) => `
-            linear-gradient(
-                to right,
-                ${theme.palette.primary.main} 0% ${percentage}%,
-                ${theme.palette.action.disabled} ${percentage}% 100%
-            )
-        `};
-        border: 0.1px solid black;
-    }
-
-    ${({ theme, index }) =>
-        index > -1 &&
-        css`
-            & .${GLOBAL_PREFIX}Slider-mark[data-index="${index}"] {
-                background: ${theme.palette.action.disabled};
-            }
-        `}
-`;
 
 const ProjectYearSlider: React.FC<ProjectYearSliderProps> = ({
     activeYear,
@@ -70,7 +49,7 @@ const ProjectYearSlider: React.FC<ProjectYearSliderProps> = ({
     );
 
     return (
-        <StyledSlider
+        <Slider
             min={min}
             max={max}
             value={activeYear}
