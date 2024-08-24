@@ -8,7 +8,7 @@ type AnimatedLinkReturn = React.MouseEventHandler<HTMLElement>;
 
 /**
  * Hook to handle the main project navigation. This handles preventing the button from working while animating.
- * TODO: This will need to be moved to context to be more affective as this only blocks the button you click
+ * TODO: This will need to be moved to context to be more effective as this only blocks the button you click
  */
 function useAnimatedLink(to: string): AnimatedLinkReturn {
     const animationTimeoutRef = useRef<number>();

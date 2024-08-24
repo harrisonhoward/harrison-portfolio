@@ -15,17 +15,23 @@ import ProjectCard from "../features/Projects/ProjectCard";
 import projects, { Project } from "../data/projects";
 import { RouteName } from "../data/routes";
 import {
+    getAllAvailableProjectsInYear,
     getAllAvailableYears,
     getProjectByYearAndIndex,
 } from "../utils/ProjectUtil";
 import { useAnimatedSelected } from "../hooks/useAnimatedSelection";
 
-const firstProjectYear = getAllAvailableYears()[0];
+const allAvailableYears = getAllAvailableYears();
+const initialActiveYear = allAvailableYears[allAvailableYears.length - 1];
+const projectsInYear = getAllAvailableProjectsInYear(initialActiveYear);
+const initialActiveProjectIndex = projectsInYear.length - 1;
 
 const Projects: React.FC = () => {
-    const [activeYear, setActiveYear] = useState(firstProjectYear);
+    const [activeYear, setActiveYear] = useState(initialActiveYear);
     // Index is based on the active year
-    const [activeProjectIndex, setActiveProjectIndex] = useState(0);
+    const [activeProjectIndex, setActiveProjectIndex] = useState(
+        initialActiveProjectIndex
+    );
 
     // TODO: Return this code when framer motion animations don't break
     // const selectedProject = useMemo(

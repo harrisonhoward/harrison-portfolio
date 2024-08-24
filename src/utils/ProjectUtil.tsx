@@ -46,11 +46,12 @@ export function getSliderPercentageOfTheYear(year: number): number {
 
 export function getProjectYearMarkers(): Mark[] {
     const projectMarkers = getAllAvailableYears();
-    if (!getCurrentYearHasProject()) {
+    const currentYearHasProject = getCurrentYearHasProject();
+    if (!currentYearHasProject) {
         projectMarkers.push(dayjs().year());
     }
     return projectMarkers.map((year) => {
-        if (dayjs().year() === year) {
+        if (!currentYearHasProject && dayjs().year() === year) {
             return {
                 label: (
                     <Tooltip

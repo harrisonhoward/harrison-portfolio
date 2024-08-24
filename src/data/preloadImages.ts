@@ -6,5 +6,7 @@ const images: string[] = [
     "resources/projects/ForbiddenBanner.gif",
     "resources/projects/FitbitBanner.jpg",
     "resources/projects/PakkoBanner.jpg",
+    "resources/projects/AxcelerateBanner.jpg",
+    "resources/projects/PlexGleamBanner.jpg",
 ];
 export default images;

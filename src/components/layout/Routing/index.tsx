@@ -40,14 +40,17 @@ function Routing(props: RoutingProps) {
     const navigate = useNavigate();
     const { current, previous, update } = useRouteContext();
 
-    // Using the current route and the previous route calculate whether to move the page to the left or to the right
-    const shouldMoveLeft = useMemo(() => {
+    useEffect(() => {
         // We have to navigate here instead of when the user clicks the button.
         // This is because the framer animation will animate before this has had a chance to update
         if (current !== location.pathname && historyTrack.current !== current) {
             navigate(current);
             historyTrack.current = current;
         }
+    }, [current, location, historyTrack]);
+
+    // Using the current route and the previous route calculate whether to move the page to the left or to the right
+    const shouldMoveLeft = useMemo(() => {
         const currentRouteIndex = routes.findIndex(
             (route) => route.path === current
         );
@@ -55,7 +58,7 @@ function Routing(props: RoutingProps) {
             (route) => route.path === previous
         );
         return currentRouteIndex > previousRouteIndex;
-    }, [current, previous, historyTrack]);
+    }, [current, previous]);
 
     // This should track when the user presses a browser navigation button
     useEffect(() => {
