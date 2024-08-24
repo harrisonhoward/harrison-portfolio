@@ -74,6 +74,7 @@ const Projects: React.FC = () => {
             }}
         >
             <NavButton toName={RouteName.About} direction="left" />
+            <NavButton toName={RouteName.Work} direction="right" />
             <GlassCard
                 sx={{
                     justifyContent: "center",
