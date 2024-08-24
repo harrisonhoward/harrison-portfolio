@@ -5,6 +5,7 @@ import GlassCard from "../components/ui/GlassCard";
 import Container from "../styles/Container";
 import GroupBox from "../styles/GroupBox";
 import ProfileImage from "../features/About/styles/ProfileImage";
+import NavButton from "../components/layout/NavButton/NavButton";
 
 // Hooks
 import useProgressiveImage from "../hooks/useProgressiveImage";
@@ -12,6 +13,7 @@ import useTextToComponent from "../hooks/useTextToComponent";
 
 // Resources
 import myInfo from "../data/myInfo";
+import { RouteName } from "../data/routes";
 
 // Constants
 const MAX_WIDTH = 600;
@@ -31,6 +33,7 @@ function About() {
 
     return (
         <Container>
+            <NavButton toName={RouteName.Home} direction="left" />
             <GroupBox
                 sx={{
                     "@media (max-width: 600px)": {
@@ -108,6 +111,7 @@ function About() {
                     </GroupBox>
                 </GlassCard>
             </GroupBox>
+            <NavButton toName={RouteName.Projects} />
         </Container>
     );
 }

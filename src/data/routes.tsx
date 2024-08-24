@@ -4,30 +4,37 @@ import Home from "../routes/Home";
 import About from "../routes/About";
 import Projects from "../routes/Projects";
 
+export enum RouteName {
+    Home = "Home",
+    About = "About Me",
+    Projects = "Projects",
+    NotFound = "404",
+}
+
 export interface Route {
-    name: string;
+    name: RouteName;
     path: string;
     element: JSX.Element;
     noNav?: boolean;
 }
 
-const routes: Route[] = [
-    { name: "Home", path: "/", element: <Home /> },
+const routes = [
+    { name: RouteName.Home, path: "/", element: <Home /> },
     {
-        name: "About",
+        name: RouteName.About,
         path: "/about",
         element: <About />,
     },
     {
-        name: "Projects",
+        name: RouteName.Projects,
         path: "/projects",
         element: <Projects />,
     },
     {
-        name: "404",
+        name: RouteName.NotFound,
         path: "*",
         element: <Navigate to="/" />,
         noNav: true,
     },
-];
+] as const;
 export default routes;

@@ -7,10 +7,11 @@ const PageContainer = styled("div")<PageContainerProps>((props) => ({
     background: `url(${props.background})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-    height: "100%",
-    width: "100%",
+    height: "100dvh",
+    width: "100dvw",
     top: 0,
     left: 0,
     zIndex: -1,
+    overflow: "hidden",
 }));
 export default PageContainer;

@@ -1,99 +1,116 @@
-import { useCallback, useMemo, useState } from "react";
-import { Grid } from "@mui/material";
-import { AnimatePresence, Variants, motion } from "framer-motion";
+import React, { useCallback, useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 
 // Components
 import Container from "../styles/Container";
-import ProjectCard from "../features/Projects/components/ProjectCard";
-import ProjectDialog from "../features/Projects/components/ProjectDialog";
+import NavButton from "../components/layout/NavButton/NavButton";
+import GlassCard from "../components/ui/GlassCard";
+
+// Features
+import ProjectYearSlider from "../features/Projects/ProjectYearSlider";
+import ProjectMonthSlider from "../features/Projects/ProjectSlider";
+import ProjectCard from "../features/Projects/ProjectCard";
 
 // Resources
 import projects, { Project } from "../data/projects";
+import { RouteName } from "../data/routes";
+import {
+    getAllAvailableProjectsInYear,
+    getAllAvailableYears,
+    getProjectByYearAndIndex,
+} from "../utils/ProjectUtil";
+import { useAnimatedSelected } from "../hooks/useAnimatedSelection";
 
-// Constants
-const WIDTH = 500;
+const allAvailableYears = getAllAvailableYears();
+const initialActiveYear = allAvailableYears[allAvailableYears.length - 1];
+const projectsInYear = getAllAvailableProjectsInYear(initialActiveYear);
+const initialActiveProjectIndex = projectsInYear.length - 1;
 
-function Projects() {
-    // Dialog logic
-    const [dialogOpen, setDialogOpen] = useState(false);
-    const [selectedProject, setSelectedProject] = useState<Project | null>(
-        null
+const Projects: React.FC = () => {
+    const [activeYear, setActiveYear] = useState(initialActiveYear);
+    // Index is based on the active year
+    const [activeProjectIndex, setActiveProjectIndex] = useState(
+        initialActiveProjectIndex
     );
-    const handleDialogOpen = useCallback(
-        (project: Project) => {
-            setSelectedProject(project);
-            setDialogOpen(true);
+
+    // TODO: Return this code when framer motion animations don't break
+    // const selectedProject = useMemo(
+    //     () => getProjectByYearAndIndex(activeYear, activeProjectIndex),
+    //     [activeYear, activeProjectIndex]
+    // );
+
+    const {
+        selected: selectedProject,
+        refSelected: refProjectSelected,
+        setSelected: setSelectedProject,
+    } = useAnimatedSelected<Project | undefined>(
+        getProjectByYearAndIndex(activeYear, activeProjectIndex)
+    );
+    useEffect(() => {
+        const newProject = getProjectByYearAndIndex(
+            activeYear,
+            activeProjectIndex
+        );
+        if (selectedProject?.id !== newProject?.id) {
+            setSelectedProject(newProject);
+        }
+    }, [activeYear, activeProjectIndex]);
+
+    const handleYearChange = useCallback(
+        (newYear: number) => {
+            setActiveYear(newYear);
+            setActiveProjectIndex(0);
         },
-        [setSelectedProject]
+        [setActiveYear, setActiveProjectIndex]
     );
-    const handleDialogClose = useCallback(() => {
-        setDialogOpen(false);
-    }, [setSelectedProject]);
-
-    // Animation logic
-    const projectVariants: Variants = useMemo(() => {
-        return {
-            initial: {
-                width: WIDTH,
-            },
-            expanded: {
-                width: WIDTH + 50,
-            },
-        };
-    }, []);
-
-    // Action
-    const handleProjectClick = useCallback((project: Project) => {
-        return useCallback(() => {
-            handleDialogOpen(project);
-        }, []);
-    }, []);
 
     return (
-        <Container>
-            <ProjectDialog
-                project={selectedProject}
-                open={dialogOpen}
-                handleClose={handleDialogClose}
-            />
-            <AnimatePresence>
-                <Grid
-                    container
-                    justifyContent="center"
-                    rowGap={4}
-                    columnGap={4}
-                    maxWidth="1100px"
-                >
-                    {projects.map((project) => (
-                        <motion.div
-                            key={project.title}
-                            variants={projectVariants}
-                            initial="initial"
-                            animate={
-                                dialogOpen &&
-                                selectedProject?.title === project.title
-                                    ? "expanded"
-                                    : "initial"
-                            }
-                            whileHover="expanded"
-                            transition={{ duration: 0.2 }}
-                            onClick={handleProjectClick(project)}
-                        >
-                            <Grid item>
-                                <ProjectCard
-                                    project={project}
-                                    dialogOpen={
-                                        dialogOpen &&
-                                        selectedProject?.title === project.title
-                                    }
-                                />
-                            </Grid>
-                        </motion.div>
-                    ))}
-                </Grid>
+        <Container
+            sx={{
+                flexDirection: "column",
+                alignItems: "center",
+                width: "100%",
+                maxWidth: 700,
+            }}
+        >
+            <NavButton toName={RouteName.About} direction="left" />
+            <GlassCard
+                sx={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "100%",
+                    padding: "1rem 2rem",
+                    marginBottom: "1rem",
+                }}
+            >
+                <ProjectYearSlider
+                    activeYear={activeYear}
+                    onChange={handleYearChange}
+                />
+                <ProjectMonthSlider
+                    activeYear={activeYear}
+                    activeProjectIndex={activeProjectIndex}
+                    onChange={setActiveProjectIndex}
+                />
+            </GlassCard>
+            <AnimatePresence mode="wait">
+                {/* This setup allows us to animate in and out of projects */}
+                {projects.map((project) => {
+                    if (project.id !== selectedProject?.id) {
+                        return null;
+                    }
+
+                    return (
+                        <ProjectCard
+                            key={project.id}
+                            project={project}
+                            refProject={refProjectSelected}
+                        />
+                    );
+                })}
             </AnimatePresence>
         </Container>
     );
-}
+};
 
 export default Projects;
