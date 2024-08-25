@@ -14,6 +14,7 @@ import useProgressiveImage from "./hooks/useProgressiveImage";
 // Resources
 import preloadImages from "./data/preloadImages";
 import glass_dark from "./themes/glass_dark";
+import RouteDial from "./components/layout/RouteDial";
 
 function App() {
     // Preload images set in preloadImages
@@ -36,6 +37,7 @@ function App() {
 
     return (
         <ThemeProvider theme={glass_dark}>
+            <RouteDial />
             <PageContainer
                 background={isMobile ? mobileBackground : desktopBackground}
             >

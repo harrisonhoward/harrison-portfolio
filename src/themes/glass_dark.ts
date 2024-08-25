@@ -2,6 +2,7 @@ import { createTheme, Palette, PaletteColor, Zoom } from "@mui/material";
 import Color from "color";
 
 import navGlobals from "../data/navGlobals";
+import { GLOBAL_PREFIX } from "../core/ClassNameGenerator";
 
 export const PrimaryMain = Color("#11a2cf");
 export const SecondaryMain = Color("#12e69c");
@@ -120,6 +121,32 @@ const glass_dark = createTheme({
                     },
                 },
             ],
+        },
+        MuiSpeedDial: {
+            styleOverrides: {
+                root: {
+                    [`& > .${GLOBAL_PREFIX}ButtonBase-root`]: {
+                        background: PrimaryMain.rgb().alpha(0.5).toString(),
+                        backdropFilter: "blur(5px)",
+                        border: "1px solid rgba(0, 0, 0, 0.1)",
+                        ":hover": {
+                            background: PrimaryMain.rgb().alpha(0.6).toString(),
+                            border: "1px solid rgba(200, 200, 200, 0.1)",
+                            opacity: 0.6,
+                        },
+                    },
+                    [`.${GLOBAL_PREFIX}SpeedDial-actions > .${GLOBAL_PREFIX}ButtonBase-root`]:
+                        {
+                            background: "rgba(26, 26, 26, 0.8)",
+                            backdropFilter: "blur(5px)",
+                            border: "1px solid rgba(0, 0, 0, 0.1)",
+                            ":hover": {
+                                background: "rgba(26, 26, 26, 0.6)",
+                                border: "1px solid rgba(200, 200, 200, 0.1)",
+                            },
+                        },
+                },
+            },
         },
     },
 });
